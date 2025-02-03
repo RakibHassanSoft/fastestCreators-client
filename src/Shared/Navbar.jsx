@@ -58,7 +58,7 @@ const Navbar = () => {
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
   const navigate = useNavigate();
 
-  console.log(user);
+  // console.log(user);
   const handleLogOut = async () => {
     // Check if the user is connected to the internet
     if (!navigator.onLine) {
@@ -328,60 +328,55 @@ const Navbar = () => {
                   className="w-20 h-20 rounded-full"
                 />
               </div>
-              
-                <div className=" right-0 mt-2  text-white rounded-md shadow-lg ">
-                  <h1 className="mt-2 mb-2 text-center ">{user?.displayName}</h1>
-                  <h1 className="mt-2 mb-6 ">{user?.email}</h1>
-                  <Link
-                    to="/dashboard"
-                    className="block mb-2 hover:bg-green-700text-white border-b-2 border-r-4 border-green-600 py-1 px-2  transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
-                    onClick={() => setDashboard(false)}
-                  >
-                    Profile
-                  </Link>
-                  <Link
-                    to="/dashboard"
-                    className="block mb-2 hover:bg-green-700text-white border-b-2 border-r-4 border-green-600 py-1 px-2  transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
-                    onClick={() => setDashboard(false)}
-                  >
-                    Dashboard
-                  </Link>
-                  <Link
-                    to="/logout"
-                    onClick={() => {
-                      setDashboard(false);
-                      handleLogOut();
-                    }}
-                    className="block mb-2 hover:bg-green-700text-white border-b-2 border-r-4 border-green-600 py-1 px-2  transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
-                  >
-                    Logout
-                  </Link>
-                </div>
-             
+
+              <div className=" right-0 mt-2  text-white rounded-md shadow-lg ">
+                
+                <Link
+                  to="/dashboard"
+                  className="block mb-2 hover:bg-green-700text-white border-b-2 border-r-4 border-green-600 py-1 px-2  transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
+                  onClick={() => setDashboard(false)}
+                >
+                  Profile
+                </Link>
+                <Link
+                  to="/dashboard"
+                  className="block mb-2 hover:bg-green-700text-white border-b-2 border-r-4 border-green-600 py-1 px-2  transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
+                  onClick={() => setDashboard(false)}
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  to="/logout"
+                  onClick={() => {
+                    setDashboard(false);
+                    handleLogOut();
+                  }}
+                  className="block mb-2 hover:bg-green-700text-white border-b-2 border-r-4 border-green-600 py-1 px-2  transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
+                >
+                  Logout
+                </Link>
+              </div>
             </div>
           </>
         )}
-        {
-          !user && <div className="flex gap-2 justify-center">
-             <Link
-                   
-                   to="/login"
-                   onClick={toggleSidebar}
-                   className="block mb-2 hover:bg-green-700text-white hover:bg-white border-b-2 border-r-4 border-green-600 py-1 px-2  transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
-                 >
-                   Login
-                 </Link>
-                 <Link
-                   
-                   to="/register"
-                   onClick={toggleSidebar}
-                   className="block mb-2 hover:bg-green-700text-white hover:bg-white border-b-2 border-r-4 border-green-600 py-1 px-2  transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
-                 >
-                   Register
-                 </Link>
-
+        {!user && (
+          <div className="flex gap-2 justify-center">
+            <Link
+              to="/login"
+              onClick={toggleSidebar}
+              className="block mb-2 hover:bg-green-700text-white hover:bg-white border-b-2 border-r-4 border-green-600 py-1 px-2  transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
+            >
+              Login
+            </Link>
+            <Link
+              to="/register"
+              onClick={toggleSidebar}
+              className="block mb-2 hover:bg-green-700text-white hover:bg-white border-b-2 border-r-4 border-green-600 py-1 px-2  transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
+            >
+              Register
+            </Link>
           </div>
-        }
+        )}
       </div>
 
       <div>
@@ -406,12 +401,9 @@ const Navbar = () => {
                     {child.title}
                   </Link>
                 ))}
-                
               </div>
             )}
-            
           </div>
-          
         ))}
       </div>
       {/* right part  */}
@@ -658,19 +650,22 @@ const Navbar = () => {
 
       {/* Sidebar */}
       <div
-  className={`fixed top-0 left-0 h-screen mt-28 bg-gray-800 text-white w-80 rounded-r-lg p-6 transition-transform transform ${
-    isOpen ? "translate-x-0" : "-translate-x-full"
-  } overflow-y-auto`} // Add overflow-y-auto for scrolling
->
+        className={`fixed top-0 left-0 h-screen  bg-gray-800 text-white w-80 rounded-r-lg p-6 transition-transform transform ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } overflow-y-auto`} // Add overflow-y-auto for scrolling
+      >
         <div className="flex justify-end">
-        <button
-          className="text-5xl mb-4 px-2 border-r-4 border-b-2 border-green-500 text-green-600 rounded-full focus:outline-none"
-          onClick={toggleSidebar}
-        >
-          ×
-        </button>
+          <button
+            className="text-5xl mb-4 px-2 border-r-4 border-b-2 border-green-500 text-green-600 rounded-full focus:outline-none"
+            onClick={toggleSidebar}
+          >
+            ×
+          </button>
         </div>
+        <div>
+
         {list2}
+        </div>
       </div>
     </div>
   );
