@@ -36,7 +36,7 @@ const FrequentlyAsked = ({ frequently }) => {
   };
 
   return (
-    <div className="w-full mt-8 px-4 sm:px-6 md:px-8">
+    <div className="w-full mb-12 mt-16 px-4 sm:px-6 md:px-8">
       <h2 className="text-2xl font-bold text-green-800 text-center mb-6">Frequently Asked Questions</h2>
       <div className="">
         {frequently.map((item, index) => (

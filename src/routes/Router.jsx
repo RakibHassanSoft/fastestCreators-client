@@ -32,6 +32,8 @@ import PrivacyPolicy from "../pages/Policy/PrivacyPolicy";
 import ContractsDetails from "../pages/DashBoard/Contracts/ContractsDetails";
 import OrderForm from "../pages/Order/OrderForm";
 import BlogPage from "../pages/Blog/BlogPage";
+import Orders from "../pages/DashBoard/Order/Orders";
+import MyOrder from "../pages/MyOrder/MyOrder";
 
   const Router = createBrowserRouter([
     {
@@ -157,6 +159,16 @@ import BlogPage from "../pages/Blog/BlogPage";
                 path:"contracts",
                 // element:<Gig/>
                 element:<AdminProtectedRoute><ContractsDetails/></AdminProtectedRoute>
+            },
+            {
+                path:"orders",
+                // element:<Gig/>
+                element:<AdminProtectedRoute><Orders/></AdminProtectedRoute>
+            },
+            {
+                path:"my-order",
+                // element:<Gig/>
+                element:<MyOrder/>
             },
         ]
     }

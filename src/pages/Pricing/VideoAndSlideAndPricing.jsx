@@ -9,35 +9,44 @@ import Feedback from "./Feedback";
 
 const VideoAndSlideAndPricing = (props) => {
   const {
-  
     whyChooseUs,
     feature,
     pricing,
     frequently,
     offerings,
     highlights,
-    media
+    media,
   } = props;
 
   return (
     <div className="">
-      <div className="flex flex-col md:flex-col lg:flex-row   justify-between mt-20 gap-3">
+      <div className="flex flex-col md:flex-col lg:flex-col   justify-between mt-20 gap-3">
         {/* video and image  */}
-        <div className="w-full ">
+        <div className="w-full flex flex-col lg:flex-row">
           {/* slide  */}
 
-          <Slider media={media} ></Slider>
-
-          <AboutGig whyChooseUs={whyChooseUs}  offerings={offerings} highlights={highlights}/>
-        </div>
-        {/* pricing  */}
-        <div className="w-full lg:m-0 md:w-11/12 md:m-auto lg:w-1/2">
+          <Slider media={media}></Slider>
           <Tab
             feature={feature}
             pricing={pricing}
             offerings={offerings}
             highlights={highlights}
           ></Tab>
+          {/* <AboutGig whyChooseUs={whyChooseUs}  offerings={offerings} highlights={highlights}/> */}
+        </div>
+        {/* pricing  */}
+        <div className="w-full flex flex-col lg:flex-row lg:m-0 md:w-full md:m-auto">
+          {/* <Tab
+            feature={feature}
+            pricing={pricing}
+            offerings={offerings}
+            highlights={highlights}
+          ></Tab> */}
+          <AboutGig
+            whyChooseUs={whyChooseUs}
+            offerings={offerings}
+            highlights={highlights}
+          />
           <FrequentlyAsked frequently={frequently} />
         </div>
       </div>

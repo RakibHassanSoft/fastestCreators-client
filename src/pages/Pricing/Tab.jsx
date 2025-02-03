@@ -33,7 +33,7 @@ const Tab = ({ feature, pricing }) => {
   
  
   return (
-    <div className="w-full">
+    <div className="w-full md:w-full mt-12 md:mt-0 lg:mt-0  lg:w-1/3">
       {/* Tab Headers */}
       <div className="flex w-full justify-center shadow-lg rounded-t-lg overflow-hidden">
         {["Basic", "Standard", "Premium"].map((tab, index) => (

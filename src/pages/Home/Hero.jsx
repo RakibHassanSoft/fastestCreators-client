@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useService from "../../hook/useService";
+import { FaLaptopCode, FaMobileAlt, FaPaintBrush, FaVideo } from 'react-icons/fa';
 
 const Hero = () => {
   const { data, isLoading, isError, error } = useService();
@@ -15,11 +16,38 @@ const Hero = () => {
   }, [data]);
 
   if (isLoading) {
-    return <p className="text-teal-600 text-center">Loading...</p>;
-  }
-
-  if (isError) {
-    return <p className="text-red-600 text-center">Error: {error.message}</p>;
+    return (
+      <section className="bg-blue-500 text-white py-20">
+      <div className="container mx-auto text-center">
+        <h1 className="text-4xl font-bold mb-4">Our Services</h1>
+        <p className="text-lg mb-6">
+          We offer a range of services to help your business succeed.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Web Development */}
+          <div className="flex flex-col items-center">
+            <FaLaptopCode className="text-4xl mb-2" />
+            <h2 className="text-xl font-semibold">Web Development</h2>
+          </div>
+          {/* App Development */}
+          <div className="flex flex-col items-center">
+            <FaMobileAlt className="text-4xl mb-2" />
+            <h2 className="text-xl font-semibold">App Development</h2>
+          </div>
+          {/* Logo Design */}
+          <div className="flex flex-col items-center">
+            <FaPaintBrush className="text-4xl mb-2" />
+            <h2 className="text-xl font-semibold">Logo Design</h2>
+          </div>
+          {/* Video Editing */}
+          <div className="flex flex-col items-center">
+            <FaVideo className="text-4xl mb-2" />
+            <h2 className="text-xl font-semibold">Video Editing</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    );
   }
 
   if (!data || data.length === 0) {
@@ -27,7 +55,8 @@ const Hero = () => {
   }
 
   return (
-    <div className="relative h-[38rem] bg-gray-800">
+    <div className="relative h-64 md:h-80 lg:h-screen bg-gray-800">
+
       {/* Slider */}
       <div className="absolute inset-0 flex items-center justify-center">
         {data.map((item, index) => (
@@ -44,8 +73,12 @@ const Hero = () => {
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center text-white">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">Welcome to My Portfolio</h1>
-        <p className="text-lg md:text-xl">Showcasing Creativity and Expertise</p>
+        <h1 className="text-4xl md:text-6xl font-bold mb-4">
+          Welcome to My Portfolio
+        </h1>
+        <p className="text-lg md:text-xl">
+          Showcasing Creativity and Expertise
+        </p>
       </div>
 
       {/* Navigation Buttons */}

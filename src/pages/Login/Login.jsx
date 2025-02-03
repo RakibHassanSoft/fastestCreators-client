@@ -5,7 +5,7 @@ import { FiLock, FiMail } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import useAuth from "../../hooks/useAuth";
-import { postPublicData } from "../../BcckendConnection/postData";
+import { postPublicData, postSecureData } from "../../BcckendConnection/postData";
 
 const Login = () => {
   const { signInUser, resetPassword ,signInWithGoogle,logoutUser,signInWithFacebook} = useAuth();
@@ -18,53 +18,36 @@ const Login = () => {
 
   const handleForm = async (e) => {
     e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+    const { email, password } = e.target;
+    const newUser = { email: email.value, password: password.value };
   
-    const newUser = { email, password };
-  
-    // Check if the user is connected to the internet
+    // Check internet connection
     if (!navigator.onLine) {
-      swal(
-        "Network Error",
-        "Please check your internet connection and try again.",
-        "error"
-      );
-      return;
+      return swal("Network Error", "Please check your internet connection.", "error");
     }
   
     try {
-      // First, send the login data to the backend
+      // Login request to server
       const response = await postPublicData("/users/login", newUser);
-  
+      // console.log(response)
       if (response.statusCode === 200) {
-        // If server confirms the login, sign in the user with Firebase
-        const res = await signInUser(email, password);
+        // Firebase login
+        const res = await signInUser(email.value, password.value);
   
         if (res?.user?.uid) {
-          // If Firebase login is successful, show success message and navigate
-          await swal("Good job!", "You have successfully logged in!", "success");
-          const redirectTo = from || '/';  // If 'from' is not available, go to the homepage
-            navigate(redirectTo, { replace: true });
+          await swal("Good job!", "Successfully logged in!", "success");
+          navigate(from || '/', { replace: true });
         } else {
-          // If Firebase login fails, show error message
-          swal("Error", "Failed to sign in with Firebase!", "error");
+          swal("Error", "Firebase login failed!", "error");
         }
       } else {
-        // If server login fails, show error message
-        swal("Oops!", "Login failed on the server. Please try again.", "error");
+        swal("Oops!", "Server login failed. Please try again.", "error");
       }
     } catch (err) {
-      // Handle errors during server operation
-      if (err.message.includes("NetworkError")) {
-        swal(
-          "Network Error",
-          "Unable to reach the server. Please try again later.",
-          "error"
-        );
-      } else {
-        swal("Error", "Please try again letter ", "error");
-      }
+      const message = err.message.includes("NetworkError")
+        ? "Unable to reach the server. Try again later."
+        : "Please try again later.";
+      swal("Error", message, "error");
     }
   
     e.target.reset();

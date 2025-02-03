@@ -24,7 +24,7 @@ const Pricing = () => {
      
           // Set the fetched data into the state
           setGig(data?.data);
-          console.log(data?.data)
+          // console.log(data?.data)
         } catch (error) {
           setError(error.message);
         } finally {
@@ -45,7 +45,7 @@ const Pricing = () => {
     if (error) {
       return <div>Error: {error}</div>;
     }
-    console.log(gig?.feature)
+    // console.log(gig?.feature)
 
     return (
         <div className='w-full md:w-[90%] lg:w-[70%] m-auto mt-44'>

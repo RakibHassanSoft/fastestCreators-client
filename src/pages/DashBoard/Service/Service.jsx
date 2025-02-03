@@ -11,7 +11,7 @@ import putSecureData from "../../../BcckendConnection/putData";
 
 const Service = () => {
   const res = useService();
-  const { data, isLoading, isError, error, refetch } = res;
+  const { data, isLoading, refetch } = res;
   // Initialize useForm hook
   const { register, handleSubmit, reset } = useForm();
 
@@ -20,7 +20,7 @@ const Service = () => {
 
   // Handle form submission
   const onSubmit = async (data) => {
-    console.log("Form submitted with data:", data);
+    // console.log("Form submitted with data:", data);
 
     const imageFile = data.image[0];
     const serviceImage = await uploadSingleImage(imageFile);
@@ -34,7 +34,7 @@ const Service = () => {
     const res = await postPublicData("/services/create-service", newData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
-    console.log(res);
+    // console.log(res);
 
     if (res?.statusCode === 200) {
       Swal.fire({

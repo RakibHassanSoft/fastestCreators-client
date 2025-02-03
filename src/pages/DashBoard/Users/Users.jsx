@@ -6,6 +6,7 @@ import swal from "sweetalert";
 
 const Users = () => {
   const { data, isLoading, isError, error, refetch } = useUsers();
+  // console.log(data)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [newRole, setNewRole] = useState("");
@@ -14,6 +15,7 @@ const Users = () => {
     setSelectedUser(user); 
     setNewRole(user.role); // Initialize the role input with the current role
     setIsModalOpen(true); // Open the modal
+   
   };
 
   const handleRoleChange = (e) => {
@@ -30,13 +32,13 @@ const Users = () => {
     try {
       // Simulate API call for updating role
       const response = await putSecureData(
-        `/users/update-user/${selectedUser._id}`,
+        `/users/update-user/${selectedUser?._id}`,
         selectedUser.role === "user" ? admin : user
       );
       console.log(response);
       if(response.statusCode ===200){
         await swal("Good job!", "Your account has been created!", "success");
-
+        refetch();
      }
     
     } catch (err) {

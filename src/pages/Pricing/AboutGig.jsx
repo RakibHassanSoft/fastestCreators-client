@@ -4,7 +4,7 @@ const AboutGig = ({ whyChooseUs, offerings, highlights }) => {
   // console.log(offerings)
 
   return (
-    <div className="mx-auto p-6">
+    <div className="mx-auto p-6 lg:mt-32">
       <h1 className="text-3xl font-bold text-center text-green-800 mb-6">
         About Our Gig
       </h1>

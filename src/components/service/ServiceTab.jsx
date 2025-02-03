@@ -89,10 +89,10 @@ const ServiceTab = () => {
     setIsSidebarOpen(true); // Open the sidebar
   };
 
-  console.log(selectedService);
+  // console.log(selectedService);
 
   return (
-    <div className="container mx-auto p-6 md:mt-28 lg:mt-44 ">
+    <div className="container mx-auto p-6 mt-44 md:mt-28 lg:mt-44 ">
       <h1 className="text-center font-sans text-4xl mb-4 text-green-500 border-b lg:w-1/3 m-auto border-green-500 rounded-2xl p-4">
         Portfolio
       </h1>
@@ -103,7 +103,7 @@ const ServiceTab = () => {
           <button
             key={tab}
             onClick={() => setSelectedTab(tab)}
-            className={`px-6 py-2 text-lg font-semibold w-full sm:w-auto shadow-xl rounded-l-2xl ${
+            className={`px-6 py-2 text-lg font-semibold w-full sm:w-auto shadow-xl rounded-full ${
               selectedTab === tab
                 ? "bg-green-500 text-white border"
                 : "bg-white text-green-500 border"

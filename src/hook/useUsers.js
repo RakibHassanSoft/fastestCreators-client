@@ -1,14 +1,14 @@
 //http://localhost:3000/api/v1/users
 
 import { useQuery } from '@tanstack/react-query';
-import { getPublicData } from '../BcckendConnection/getData';
+import {   getSecureData } from '../BcckendConnection/getData';
 
 // Function to fetch the users
 const fetchUsers = async () => {
-  const data = await getPublicData('/users');  // Correct endpoint to fetch all gigs
+  const data = await getSecureData('/users');  // Correct endpoint to fetch all gigs
+
   return data;  // Return the fetched data
 };
-
 const useUsers = () => {
   const {
     data,  // `data` will hold the fetched result
@@ -25,6 +25,7 @@ const useUsers = () => {
   });
 
   // Return the relevant data and states
+  // console.log(data)
   return { data, isLoading, isError, error,refetch  };
 };
 

@@ -1,12 +1,13 @@
-import axiosPublic from './axiosPublic';
 import axiosSecure from './axiosSecure';
 import axios from "axios";
 
 
 // Public POST Request (No Authentication)
 const postPublicData = async (endpoint, data) => {
+  // console.log(data)
   try {
-    const response = await axiosPublic.post(endpoint, data, { withCredentials: true });
+    const response = await axiosSecure.post(endpoint, data, { withCredentials: true });
+    // console.log(response)
     return response.data;
   } catch (error) {
     console.error('Error posting public data:', error);

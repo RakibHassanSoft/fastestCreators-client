@@ -10,13 +10,14 @@ const fetchAdminData = async (email) => {
 
   const endpoint = `/users/check-admin?email=${email}`; // Correct endpoint
   const res = await postPublicData(endpoint); // Make the API call
+//  console.log(res)
   return res; // Return the result
 };
 
 // Custom hook to check if the user is an admin
 const useAdmin = () => {
   const { user, loading: authLoading } = useAuth();
-
+  // console.log(user)
   const { data, isLoading: queryLoading, isError, error } = useQuery({
     queryKey: ['admin', user?.email], // Include email in the cache key
     queryFn: () => fetchAdminData(user?.email), // Fetch function with email
@@ -29,6 +30,7 @@ const useAdmin = () => {
   // Combine loading states from useAuth and React Query
   const loading = authLoading || queryLoading;
 
+  // console.log(data)
   return { data, loading, isError, error };
 };
 

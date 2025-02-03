@@ -1,0 +1,166 @@
+/* Keyframes for ball animations */
+@keyframes ball-left {
+    0% {
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+    50% {
+      top: 0;
+      left: 100%;
+      transform: translateY(0);
+    }
+    100% {
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  }
+  
+  @keyframes ball-right {
+    0% {
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+    }
+    50% {
+      top: 100%;
+      right: 0;
+      transform: translateY(0);
+    }
+    100% {
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+    }
+  }
+  
+  @keyframes ball-top {
+    0% {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    50% {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    100% {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  
+  @keyframes ball-bottom {
+    0% {
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    50% {
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    100% {
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  
+  @keyframes ball-diagonal-top-left {
+    0% {
+      top: 0;
+      left: 0;
+    }
+    50% {
+      top: 100%;
+      left: 100%;
+    }
+    100% {
+      top: 0;
+      left: 0;
+    }
+  }
+  
+  @keyframes ball-diagonal-top-right {
+    0% {
+      top: 0;
+      right: 0;
+    }
+    50% {
+      top: 100%;
+      right: 100%;
+    }
+    100% {
+      top: 0;
+      right: 0;
+    }
+  }
+  
+  @keyframes ball-diagonal-bottom-left {
+    0% {
+      bottom: 0;
+      left: 0;
+    }
+    50% {
+      bottom: 100%;
+      left: 100%;
+    }
+    100% {
+      bottom: 0;
+      left: 0;
+    }
+  }
+  
+  @keyframes ball-diagonal-bottom-right {
+    0% {
+      bottom: 0;
+      right: 0;
+    }
+    50% {
+      bottom: 100%;
+      right: 100%;
+    }
+    100% {
+      bottom: 0;
+      right: 0;
+    }
+  }
+  
+  /* Ball Animation Classes */
+  .ball-animation-left {
+    animation: ball-left 5s linear infinite;
+  }
+  
+  .ball-animation-right {
+    animation: ball-right 5s linear infinite;
+  }
+  
+  .ball-animation-top {
+    animation: ball-top 5s linear infinite;
+  }
+  
+  .ball-animation-bottom {
+    animation: ball-bottom 5s linear infinite;
+  }
+  
+  .ball-animation-top-left {
+    animation: ball-diagonal-top-left 5s linear infinite;
+  }
+  
+  .ball-animation-top-right {
+    animation: ball-diagonal-top-right 5s linear infinite;
+  }
+  
+  .ball-animation-bottom-left {
+    animation: ball-diagonal-bottom-left 5s linear infinite;
+  }
+  
+  .ball-animation-bottom-right {
+    animation: ball-diagonal-bottom-right 5s linear infinite;
+  }
+  

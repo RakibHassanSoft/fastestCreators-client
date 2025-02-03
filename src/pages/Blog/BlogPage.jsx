@@ -203,15 +203,15 @@ const BlogPage = () => {
   };
 
   return (
-    <div className=" text-gray-900 min-h-screen font-sans mt-44">
+    <div className="text-gray-900 min-h-screen font-sans mt-44">
       <div className="container mx-auto px-6 py-10">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Blog Content */}
-          <div className="md:col-span-2  ">
+          <div className="md:col-span-2">
             {blogObjects.map((blog, index) => (
               <div
                 key={index}
-                className={`bg-gray-100 rounded-lg shadow-lg overflow-hidden transition-shadow duration-300 mb-24 p-2 ${
+                className={`bg-gray-100 rounded-lg shadow-lg overflow-hidden transition-shadow duration-300 mb-24 p-4 ${
                   expandedBlog === index ? "bg-green-100" : "hover:shadow-xl"
                 }`}
               >
@@ -219,7 +219,7 @@ const BlogPage = () => {
                 <img
                   src={blog.headImage}
                   alt="Blog Image"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-lg"
                 />
 
                 {/* Blog Content */}
@@ -251,7 +251,7 @@ const BlogPage = () => {
 
                   {/* Expanded Blog Content */}
                   {expandedBlog === index && (
-                    <div className="mt-6 bg-white p-8 rounded-xl shadow-lg ">
+                    <div className="mt-6 bg-white p-8 rounded-xl shadow-lg">
                       {blog.contents.map((content, contentIndex) => (
                         <div key={contentIndex} className="mb-10">
                           {/* Section Title */}
@@ -270,9 +270,8 @@ const BlogPage = () => {
                               <img
                                 src={content.image}
                                 alt={content.title}
-                                className="w-9/12 m-auto h-full rounded-lg "
+                                className="w-9/12 m-auto h-full rounded-lg"
                               />
-                              
                             </div>
                           )}
                         </div>
@@ -281,9 +280,10 @@ const BlogPage = () => {
                       {/* Action Button */}
                       <div className="text-center mt-8">
                         <Link to="/blog/1">
-                        <button className="px-6 py-3 text-white bg-green-600 hover:bg-green-700 rounded-full shadow-md transition duration-200">
-                          Explore More
-                        </button></Link>
+                          <button className="px-6 py-3 text-white bg-green-600 hover:bg-green-700 rounded-full shadow-md transition duration-200">
+                            Explore More
+                          </button>
+                        </Link>
                       </div>
                     </div>
                   )}
@@ -314,7 +314,7 @@ const BlogPage = () => {
               <h3 className="text-2xl font-bold text-gray-500 mb-4">
                 Categories
               </h3>
-              <ul className="space-y-3 ml-4  text-gray-500">
+              <ul className="space-y-3 ml-4 text-gray-500">
                 {categories.map((category, index) => (
                   <li key={index}>
                     <a

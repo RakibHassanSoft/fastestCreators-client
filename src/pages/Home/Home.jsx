@@ -10,8 +10,11 @@ import FreQuentlyAskendAndDiagram from '../../components/FreQuentlyAskendAndDiag
 
 import PortfolioTab from '../../components/Portfolio/Portfolio';
 import AnimatedText from '../../components/AnimatedText/AnimatedText';
+import useService from '../../hook/useService';
 
 const Home = () => {
+    
+    const { data, isLoading, isError, error, refetch } = useService();
     return (
         <div  className='mt-24'>
             <Hero></Hero>
@@ -19,7 +22,7 @@ const Home = () => {
              <AnimatedText/>
             <PortfolioTab/>
             <FreQuentlyAskendAndDiagram/>
-            <BlogSlider/>
+            {/* <BlogSlider/> */}
             <AboutCompany/>
             <PaymentTab/>
             <GoogleMap/>

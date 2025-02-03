@@ -1,17 +1,28 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useGigs from "../../hook/useGigs";
 import { ImCheckmark, ImCross } from "react-icons/im";
 import Header from "../Header/Header";
+import useStore from "../../zustand/useStore";
+import { useNavigate } from "react-router-dom";
 
 const PaymentTab = () => {
+  const navigete = useNavigate()
   // Fetching the services data
   const { data, isLoading, isError, error, refetch } = useGigs();
+  const { data: storeData, setData } = useStore();
 
   // Initialize the state to store services
   const [allServices, setAllServices] = useState([]);
   const [selectedService, setSelectedService] = useState(null); // Set initial state to null
+  const [payableData, setpayableData] = useState(null);
+  const handlePayable = (data) => {
+    setData(data)
 
+    navigete("/order-for-payment");
+   
+  };
   // Handle loading and data fetching
+  // console.log(payableData);
   useEffect(() => {
     if (data && data.data) {
       setAllServices(data.data); // Set services if data is available
@@ -77,7 +88,7 @@ const PaymentTab = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 mt-44">
+    <div className="container mx-auto p-6 mt-16 lg:mt-32 mb-16 lg:mb-32">
       <Header
         title={"Payment Plans"}
         description={"This is the best choice for you"}
@@ -101,26 +112,26 @@ const PaymentTab = () => {
       </div>
 
       {/* Payment Cards */}
-      <div className="flex flex-row flex-wrap justify-center gap-8 w-full md:w-11/12 lg:w-11/12 m-auto">
+      <div className="flex flex-row flex-wrap justify-center gap-8  ">
         {["basic", "standard", "premium"].map((plan) => (
           <div
-            key={plan}
-            className={`border border-gray-200 bg-white rounded-3xl shadow-lg flex flex-col relative group cursor-pointer overflow-hidden transition-all duration-300 ${
-              plan === "standard" ? "scale-105 shadow-2xl" : ""
-            }`}
-            style={{ maxWidth: "350px" }} // Optional fixed width for better alignment
-          >
+          key={plan}
+          className={`border border-gray-200 bg-white rounded-3xl shadow-lg flex flex-col relative group cursor-pointer overflow-hidden transition-all duration-300 ${
+            plan === "standard" ? "scale-105 shadow-2xl" : ""
+          } w-full sm:w-auto sm:min-w-[450px] sm:max-w-[350px]`}
+        >
             {/* Plan Header */}
             <div
               className={`${
                 plan === "standard"
-                  ? "bg-gradient-to-r from-blue-500 to-teal-600"
+                // bg-gradient-to-r mt-36 from-green-500 to-teal-400
+                  ? "bg-gradient-to-r from-green-500 to-teal-400 "
                   : "bg-gradient-to-r from-gray-400 to-gray-500"
               } text-white p-6 text-2xl text-center rounded-t-3xl`}
             >
               <h2 className="font-extrabold mb-2 capitalize">{plan} Plan</h2>
               {plan === "standard" && (
-                <span className="text-xs font-semibold bg-red-600 py-1 px-3 rounded-full absolute top-2 right-2">
+                <span className="text-xs font-semibold bg-black text-white py-2 px-3 rounded-full absolute top-2 right-2">
                   Recommended
                 </span>
               )}
@@ -136,14 +147,12 @@ const PaymentTab = () => {
               <div className=" bg-green-400 border-2"></div>
 
               {/* Price */}
-              <p className="mt-4  font-extrabold text-blue-600 text-center">
+              <p className="mt-4 font-extrabold text-green-600 text-center">
                 <div className="gap-2 flex items-center justify-center">
-                 
                   <span className="ml-2 text-5xl">
                     {selectedService?.pricing?.[plan]?.price || "N/A"}
                   </span>
                   <span className="line-through text-gray-400 text-3xl">
-                    
                     {parseFloat(
                       selectedService?.pricing?.[plan]?.price.replace("$", "")
                     ) + 200}
@@ -178,9 +187,9 @@ const PaymentTab = () => {
                           {feature.features[
                             ["basic", "standard", "premium"].indexOf(plan)
                           ] ? (
-                            <ImCheckmark className="text-xl" />
+                            <ImCheckmark className="text-xl text-green-600" />
                           ) : (
-                            <ImCross className="text-xl" />
+                            <ImCross className="text-xl text-red-400" />
                           )}
                         </span>
                         <span className="text-lg">{feature.title}</span>
@@ -203,9 +212,9 @@ const PaymentTab = () => {
                           {feature.features[
                             ["basic", "standard", "premium"].indexOf(plan)
                           ] ? (
-                            <ImCheckmark className="text-xl" />
+                            <ImCheckmark className="text-xl text-green-600" />
                           ) : (
-                            <ImCross className="text-xl" />
+                            <ImCross className="text-xl text-red-400" />
                           )}
                         </span>
                         <span className="text-lg">{feature.title}</span>
@@ -216,10 +225,20 @@ const PaymentTab = () => {
 
             {/* Button */}
             <div className="p-6">
-              <button className="mt-4 w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-lg transition-all duration-500 hover:scale-105">
-                Get Started
-              </button>
-            </div>
+        <button
+          onClick={() =>
+            handlePayable({
+              price: selectedService?.pricing?.[plan]?.price || "N/A",
+              description: selectedService?.pricing?.[plan]?.description || "N/A",
+              deliveryTime: selectedService?.pricing?.[plan]?.deliveryTime || "N/A",
+              revisions: selectedService?.pricing?.[plan]?.revisions || "N/A",
+            })
+          }
+          className="mt-4 w-full px-6 py-3 bg-gradient-to-r from-green-500 to-teal-400 text-white rounded-lg transition-all duration-500 hover:scale-105"
+        >
+          Get Started
+        </button>
+      </div>
           </div>
         ))}
       </div>

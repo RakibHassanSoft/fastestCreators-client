@@ -1,7 +1,9 @@
+
 import axiosSecure from './axiosSecure';
 
 // Secure PUT Request (Authentication required)
 const putSecureData = async (endpoint, data) => {
+
   try {
     const response = await axiosSecure.put(endpoint, data);
     return response.data;

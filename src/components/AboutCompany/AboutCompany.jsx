@@ -49,37 +49,46 @@ const AboutCompany = () => {
   return (
     <div className="relative w-full h-[500px] mt-44 mb-44">
       <img
-        src="https://res.cloudinary.com/dlixbyylv/image/upload/v1735759770/team_work_u7dhpt.jpg"
+        src="https://res.cloudinary.com/dlixbyylv/image/upload/v1737786835/OIP_me6hip.jpg"
         alt="Team Work"
         className="absolute inset-0 w-full h-full object-cover opacity-60"
       />
       <div className="absolute inset-0 bg-black bg-opacity-40 flex justify-center items-center">
-        <div className="text-white text-center space-y-8">
-          <h1 className="text-4xl lg:text-5xl font-extrabold">About Our Company</h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-2xl">
-            <div className="space-y-4 flex flex-col items-center">
-              <div className="flex gap-2">
-                <FaTrophy className="text-4xl" />
-                <h2 className="text-3xl font-bold">Total Success</h2>
-              </div>
-              <p className="font-semibold text-7xl">{data.totalSuccess}+</p>
-            </div>
-            <div className="space-y-4 flex flex-col items-center">
-            <div className="flex gap-2">
-              <FaProjectDiagram className="text-4xl" />
-              <h2 className="text-3xl font-bold">Total Projects</h2>
-              </div>
-              <p className="font-semibold text-7xl">{data.totalProjects}+</p>
-            </div>
-            <div className="space-y-4 flex flex-col items-center">
-            <div className="flex gap-2"> 
-              <FaUsers className="text-4xl" />
-              <h2 className="text-3xl font-bold">Total Buyers</h2>
-             </div>
-              <p className="font-semibold text-7xl">{data.totalBuyers}+</p>
-            </div>
-          </div>
-        </div>
+      <div className="text-white text-center space-y-8 pb-16">
+  <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mt-10">
+    About Our Company
+  </h1>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-xl md:text-2xl">
+    <div className="space-y-4 flex flex-col items-center">
+      <div className="flex gap-2 items-center">
+        <FaTrophy className="text-3xl md:text-4xl" />
+        <h2 className="text-2xl md:text-3xl font-bold">Total Success</h2>
+      </div>
+      <p className="font-semibold text-5xl md:text-6xl lg:text-7xl">
+        {data.totalSuccess}+
+      </p>
+    </div>
+    <div className="space-y-4 flex flex-col items-center">
+      <div className="flex gap-2 items-center">
+        <FaProjectDiagram className="text-3xl md:text-4xl" />
+        <h2 className="text-2xl md:text-3xl font-bold">Total Projects</h2>
+      </div>
+      <p className="font-semibold text-5xl md:text-6xl lg:text-7xl">
+        {data.totalProjects}+
+      </p>
+    </div>
+    <div className="space-y-4 flex flex-col items-center">
+      <div className="flex gap-2 items-center">
+        <FaUsers className="text-3xl md:text-4xl" />
+        <h2 className="text-2xl md:text-3xl font-bold">Total Buyers</h2>
+      </div>
+      <p className="font-semibold text-5xl md:text-6xl lg:text-7xl">
+        {data.totalBuyers}+
+      </p>
+    </div>
+  </div>
+</div>
+
       </div>
     </div>
   );

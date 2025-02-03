@@ -17,7 +17,8 @@ import useAdmin from "../../hook/useAdmin";
 
 const DashBoard = () => {
   const { data, loading, isError, error } = useAdmin();
-
+  // console.log(data?.data?.data?.role)
+  const role = data?.data?.data?.role;
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -33,7 +34,6 @@ const DashBoard = () => {
       </div>
     );
   }
-
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
@@ -53,33 +53,33 @@ const DashBoard = () => {
             <FaTachometerAlt className="mr-2" /> Dashboard
           </Link>
 
-          {data?.data?.role==='admin'&& (
+          {role === "admin" && (
             <>
-              <Link
+              {/* <Link
                 onClick={toggleSidebar}
                 to="/dashboard/users"
                 className="flex items-center py-2 px-4 rounded hover:bg-orange-600"
               >
                 <FaUsers className="mr-2" /> Users
-              </Link>
-              <Link
+              </Link> */}
+              {/* <Link
                 onClick={toggleSidebar}
                 to="/dashboard/gig"
                 className="flex items-center py-2 px-4 rounded hover:bg-orange-600"
               >
                 <FaServicestack className="mr-2" /> Gig
-              </Link>
+              </Link> */}
               <Link
                 onClick={toggleSidebar}
                 to="/dashboard/service"
                 className="flex items-center py-2 px-4 rounded hover:bg-orange-600"
               >
-                <FaHeadSideVirus className="mr-2" /> Service
+                <FaHeadSideVirus className="mr-2" /> Portfolio
               </Link>
 
               <Link
                 onClick={toggleSidebar}
-                to="/users"
+                to="/dashboard/orders"
                 className="flex items-center py-2 px-4 rounded hover:bg-orange-600"
               >
                 <FaBox className="mr-2" /> Order
@@ -89,33 +89,33 @@ const DashBoard = () => {
                 to="/dashboard/contracts"
                 className="flex items-center py-2 px-4 rounded hover:bg-orange-600"
               >
-                <FaProductHunt className="mr-2" /> Contracts
+                <FaProductHunt className="mr-2" /> Request
               </Link>
             </>
           )}
 
-          <Link
-            onClick={toggleSidebar}
-            to="/users"
-            className="flex items-center py-2 px-4 rounded hover:bg-orange-600"
-          >
-            <FaPhone className="mr-2" /> Contract
-          </Link>
-
-          <Link
-            onClick={toggleSidebar}
-            to="/settings"
-            className="flex items-center py-2 px-4 rounded hover:bg-orange-600"
-          >
-            <FaCog className="mr-2" /> Settings
-          </Link>
+          {role === "user" && (
+            <>
+              <Link
+                onClick={toggleSidebar}
+                to="/dashboard/my-order"
+                className="flex items-center py-2 px-4 rounded hover:bg-orange-600"
+              >
+                <FaHome className="mr-2" /> My Orders
+              </Link>
+            </>
+          )}
           <Link
             onClick={toggleSidebar}
             to="/"
-            className="flex items-center py-2 px-4 rounded hover:bg-orange-600"
+            className="p-t-4 border-t-white flex items-center py-2 px-4 rounded hover:bg-orange-600"
           >
             <FaHome className="mr-2" /> Home
           </Link>
+        </nav>
+
+        <nav>
+          
         </nav>
       </aside>
 

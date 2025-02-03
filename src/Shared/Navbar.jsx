@@ -58,6 +58,7 @@ const Navbar = () => {
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
   const navigate = useNavigate();
 
+  console.log(user);
   const handleLogOut = async () => {
     // Check if the user is connected to the internet
     if (!navigator.onLine) {
@@ -121,6 +122,7 @@ const Navbar = () => {
 
   const menuItems = [
     { path: "/", id: "home", title: "Home" },
+
     {
       path: "/services",
       id: "services",
@@ -137,6 +139,8 @@ const Navbar = () => {
     { path: "/about", id: "about", title: "About" },
     { path: "/contract", id: "contact", title: "Contact" },
     { path: "/faq", id: "portfolio", title: "FAQ" },
+    // { path: "/login", id: "login", title: "login" },
+    // { path: "/register", id: "register", title: "register" },
   ];
   const list1 = (
     <>
@@ -187,15 +191,6 @@ const Navbar = () => {
               <ul className="py-2">
                 <li>
                   <Link
-                    to="/service/web-development"
-                    className="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-600"
-                    onClick={() => handleSetActive("web-development")}
-                  >
-                    Web Development
-                  </Link>
-                </li>
-                <li>
-                  <Link
                     to="/service/logo-design"
                     className="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-600"
                     onClick={() => handleSetActive("logo-design")}
@@ -219,6 +214,16 @@ const Navbar = () => {
                     onClick={() => handleSetActive("video-editing")}
                   >
                     Video Editing
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/service/web-development"
+                    className="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-600"
+                    onClick={() => handleSetActive("web-development")}
+                  >
+                    Web Development
                   </Link>
                 </li>
                 <li>
@@ -303,35 +308,114 @@ const Navbar = () => {
     </>
   );
 
-
   const list2 = (
-    <>
-      {menuItems.map((item) => (
-        <div key={item.id}>
-          <Link
-            to={item.path}
-            onClick={toggleSidebar}
-            className="block mb-2 text-white bg-green-600 hover:bg-green-700 py-1 px-2 transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase w-full"
-          >
-            {item.title}
-          </Link>
-          {item.children && (
-            <div className="ml-3">
-              {item.children.map((child) => (
-                <Link
-                  key={child.path}
-                  to={child.path}
-                  onClick={toggleSidebar}
-                  className="block mb-2 text-white bg-green-600 hover:bg-green-700  py-1 px-2 transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
-                >
-                  {child.title}
-                </Link>
-              ))}
+    <div className="flex flex-col justify-between gap-3">
+      {/* left part  */}
+      <div className=" lg:flex w-8/12 m-auto text-center  items-center space-x-4">
+        {user && (
+          <>
+            <div className=" ">
+              <div
+                onClick={() => setDashboard(!dashboard)}
+                className="cursor-pointer flex justify-center items-center space--2"
+              >
+                <img
+                  src={
+                    user?.photoURL ||
+                    "https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_0.jpg"
+                  }
+                  alt="Avatar"
+                  className="w-20 h-20 rounded-full"
+                />
+              </div>
+              
+                <div className=" right-0 mt-2  text-white rounded-md shadow-lg ">
+                  <h1 className="mt-2 mb-2 text-center ">{user?.displayName}</h1>
+                  <h1 className="mt-2 mb-6 ">{user?.email}</h1>
+                  <Link
+                    to="/dashboard"
+                    className="block mb-2 hover:bg-green-700text-white border-b-2 border-r-4 border-green-600 py-1 px-2  transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
+                    onClick={() => setDashboard(false)}
+                  >
+                    Profile
+                  </Link>
+                  <Link
+                    to="/dashboard"
+                    className="block mb-2 hover:bg-green-700text-white border-b-2 border-r-4 border-green-600 py-1 px-2  transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
+                    onClick={() => setDashboard(false)}
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    to="/logout"
+                    onClick={() => {
+                      setDashboard(false);
+                      handleLogOut();
+                    }}
+                    className="block mb-2 hover:bg-green-700text-white border-b-2 border-r-4 border-green-600 py-1 px-2  transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
+                  >
+                    Logout
+                  </Link>
+                </div>
+             
             </div>
-          )}
-        </div>
-      ))}
-    </>
+          </>
+        )}
+        {
+          !user && <div className="flex gap-2 justify-center">
+             <Link
+                   
+                   to="/login"
+                   onClick={toggleSidebar}
+                   className="block mb-2 hover:bg-green-700text-white hover:bg-white border-b-2 border-r-4 border-green-600 py-1 px-2  transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
+                 >
+                   Login
+                 </Link>
+                 <Link
+                   
+                   to="/register"
+                   onClick={toggleSidebar}
+                   className="block mb-2 hover:bg-green-700text-white hover:bg-white border-b-2 border-r-4 border-green-600 py-1 px-2  transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
+                 >
+                   Register
+                 </Link>
+
+          </div>
+        }
+      </div>
+
+      <div>
+        {menuItems.map((item) => (
+          <div key={item.id}>
+            <Link
+              to={item.path}
+              onClick={toggleSidebar}
+              className="block mb-2 text-green-500 bg-whitehover:bg-green-700 border-b-2 border-r-4 border-green-600 hover:text-green-500 py-1 px-2 transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase w-full"
+            >
+              {item.title}
+            </Link>
+            {item.children && (
+              <div className="ml-3">
+                {item.children.map((child) => (
+                  <Link
+                    key={child.path}
+                    to={child.path}
+                    onClick={toggleSidebar}
+                    className="block mb-2 hover:bg-green-700text-white border-b-2 border-r-4 border-green-600 py-1 px-2 transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
+                  >
+                    {child.title}
+                  </Link>
+                ))}
+                
+              </div>
+            )}
+            
+          </div>
+          
+        ))}
+      </div>
+      {/* right part  */}
+    </div>
   );
 
   return (
@@ -342,19 +426,21 @@ const Navbar = () => {
         <div className="hidden lg:flex justify-evenly items-center px-4 py-2 ">
           <div className="flex space-x-4">
             <div className="flex items-center mx-auto">
-              <span className="font-medium flex justify-center items-center gap-2">
+              <span className="font-medium flex justify-center items-center gap-2 text-green-500">
                 <FaLocationArrow className="text-green-500"></FaLocationArrow>
                 Location:
               </span>
-              <span>123 Main Street, City, Country</span>
+              <span className="text-gray-500 font-bold">
+                123 Main Street, City, Country
+              </span>
             </div>
             <div className="flex items-center space-x-1">
-              <span className="font-medium  flex justify-center items-center gap-2">
+              <span className="font-medium  flex justify-center items-center gap-2 text-green-500">
                 <FaUser className="text-green-500"></FaUser>Contact:
               </span>
               <a
                 href="tel:+123456789"
-                className="text-green-500 hover:underline"
+                className="text-gray-500 font-bold hover:underline"
               >
                 +1 234 567 89
               </a>
@@ -379,43 +465,53 @@ const Navbar = () => {
         </div>
 
         {/* Top Navbar - Small Screens */}
-        <div className="lg:hidden px-4 py-2 border-4 flex justify-center items-center text-center">
-          <span className="font-medium text-center text-green-500">
-            Top Menu
-          </span>
+        {/* <div className="lg:hidden px-4 py-2 border-4 flex justify-center items-center text-center">
           <button
             onClick={toggleDropdown}
             className="text-gray-600 focus:outline-none"
           >
             {isDropdownOpen ? (
-              <FaChevronUp
-                className="font-medium text-center text-green-500"
-                size={18}
-              />
+              <>
+                <span className="font-medium text-center text-green-500">
+                  Top Menu
+                </span>
+                <FaChevronUp
+                  className="font-medium text-center text-green-500"
+                  size={18}
+                />
+              </>
             ) : (
-              <FaChevronDown
+              <>
+                <span className="font-medium text-center text-green-500">
+                  Top Menu
+                </span>
+                <FaChevronDown
                 className="font-medium text-center text-green-500"
                 size={18}
               />
+              </>
+
             )}
           </button>
-        </div>
+        </div> */}
         {isDropdownOpen && (
           <div className="px-4 py-2 space-y-2 bg-gray-100">
-            <div className="flex items-center space-x-1">
-              <span className="font-medium">Location:</span>
-              <span>123 Main Street, City, Country</span>
+            <div className="flex items-center space-x-1 justify-center">
+              <span className="font-medium text-green-500">Location:</span>
+              <span className="text-gray-500 font-bold">
+                123 Main Street, City, Country
+              </span>
             </div>
-            <div className="flex items-center space-x-1">
-              <span className="font-medium">Contact:</span>
+            <div className="flex items-center space-x-1 justify-center">
+              <span className="font-medium text-green-500">Contact:</span>
               <a
                 href="tel:+123456789"
-                className="text-green-500 hover:underline"
+                className="text-gray-500 font-bold hover:underline"
               >
                 +1 234 567 89
               </a>
             </div>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 text-green-500 justify-center">
               {/* Social Media Icons */}
               <a
                 href="https://facebook.com"
@@ -442,9 +538,15 @@ const Navbar = () => {
                 <FaInstagram size={18} />
               </a>
             </div>
-            <button className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition w-full">
-              Get in Touch
-            </button>
+            <div className="flex justify-center">
+              <Link
+                onClick={toggleDropdown}
+                to="/contract"
+                className="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition transform hover:scale-105 w-full sm:w-1/3 mx-auto text-center"
+              >
+                Get in Touch
+              </Link>
+            </div>
           </div>
         )}
       </div>
@@ -459,51 +561,19 @@ const Navbar = () => {
           {/* if medium device */}
           <img
             className="h-20 hidden md:block lg:hidden xl:hidden"
-            src={logoI}
+            src={logo}
             alt="FC"
           />
 
           {/* if small device */}
-          <img className="h-20 block md:hidden" src={logoI} alt="FC" />
+          <img className="h-20 block md:hidden" src={logo} alt="FC" />
         </div>
 
-        <div className="flex items-center space-x-4">
-          {/* Search Bar */}
-          <div className="relative lg:hidden">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
-            />
-            <button
-              type="submit"
-              className="absolute inset-y-0 right-0 flex items-center px-3 text-white bg-green-500 rounded-r-lg hover:bg-green-600"
-            >
-              <FaSearch />
-            </button>
-          </div>
-        </div>
         <div className="block lg:hidden" onClick={toggleSidebar}>
           <button className="text-3xl focus:outline-none">☰</button>
         </div>
         <div className="hidden lg:flex justify-center space-x-2">{list1}</div>
         <div className="hidden lg:flex items-center space-x-4">
-          <div className="flex items-center space-x-4">
-            {/* Search Bar */}
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search..."
-                className="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
-              />
-              <button
-                type="submit"
-                className="absolute inset-y-0 right-0 flex items-center px-3 text-white bg-green-500 rounded-r-lg hover:bg-green-600"
-              >
-                <FaSearch />
-              </button>
-            </div>
-          </div>
           {user ? (
             <>
               <div className="relative ">
@@ -520,7 +590,7 @@ const Navbar = () => {
                 {dashboard && (
                   <div className="absolute right-0 mt-2 w-48 bg-green-600 text-white rounded-md shadow-lg z-10">
                     <Link
-                      to="/profile"
+                      to="/dashboard"
                       className="block px-4 py-2 hover:bg-green-700"
                       onClick={() => setDashboard(false)}
                     >
@@ -551,14 +621,34 @@ const Navbar = () => {
             <>
               <Link
                 to="/register"
-                className="text-green-500 hover:text-white hover:bg-green-600 py-2 px-4 transition duration-300 transform hover:scale-105"
+                className={`py-4 px-8 text-xl font-serif rounded-full transition flex justify-center items-center gap-3 ${
+                  activeLink === "register"
+                    ? "text-green-400 font-bold transform scale-110"
+                    : "bg-white text-gray-500"
+                }`}
+                onClick={() => handleSetActive("register")}
               >
+                <h1
+                  className={`h-2 w-2 rounded-full ${
+                    activeLink === "register" ? "bg-gray-300" : "bg-green-500"
+                  }`}
+                ></h1>
                 Register
               </Link>
               <Link
                 to="/login"
-                className="text-green-500 hover:text-white hover:bg-green-600 py-2 px-4 transition duration-300 transform hover:scale-105"
+                className={`py-4 px-8 text-xl font-serif rounded-full transition flex justify-center items-center gap-3 ${
+                  activeLink === "login"
+                    ? "text-green-400 font-bold transform scale-110"
+                    : "bg-white text-gray-500"
+                }`}
+                onClick={() => handleSetActive("login")}
               >
+                <h1
+                  className={`h-2 w-2 rounded-full ${
+                    activeLink === "login" ? "bg-gray-300" : "bg-green-500"
+                  }`}
+                ></h1>
                 Login
               </Link>
             </>
@@ -568,16 +658,18 @@ const Navbar = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full mt-16 bg-gray-800 text-white w-64 p-6 transition-transform transform ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
+  className={`fixed top-0 left-0 h-screen mt-28 bg-gray-800 text-white w-80 rounded-r-lg p-6 transition-transform transform ${
+    isOpen ? "translate-x-0" : "-translate-x-full"
+  } overflow-y-auto`} // Add overflow-y-auto for scrolling
+>
+        <div className="flex justify-end">
         <button
-          className="text-3xl mb-4 focus:outline-none"
+          className="text-5xl mb-4 px-2 border-r-4 border-b-2 border-green-500 text-green-600 rounded-full focus:outline-none"
           onClick={toggleSidebar}
         >
           ×
         </button>
+        </div>
         {list2}
       </div>
     </div>

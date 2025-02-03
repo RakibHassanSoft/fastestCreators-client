@@ -4,10 +4,11 @@ import useAuth from "../hooks/useAuth";
 
 const AdminProtectedRoute = ({ children }) => {
     const { user, loading: authLoading } = useAuth();
-    const { data, loading, isError ,error} = useAdmin();
-
     
-  if (loading) {
+    const { data, loading} = useAdmin();
+  
+    
+  if (loading || authLoading) {
     return (
       <div className="flex items-center justify-center h-screen bg-gray-100">
         <h1 className="text-xl font-semibold text-blue-600">

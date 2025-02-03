@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const Preloader = () => {
   const [text, setText] = useState('');
-  const message = "Welcome to our service!";
+  const message = "Welcome to FastestCreators!";
 
   useEffect(() => {
     let index = 0;
@@ -15,18 +15,19 @@ const Preloader = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center h-screen bg-green-100">
-      <div className="text-center">
-        {/* Typing Effect */}
-        <h1 className="text-3xl md:text-5xl font-bold text-green-600">
-          {text}
-          <span className="animate-pulse">|</span> {/* Blinking cursor */}
-        </h1>
-        {/* Subtext */}
-        <p className="mt-4 text-lg md:text-xl text-green-500">
-          Bringing your ideas to life
-        </p>
-      </div>
+    <div className="flex flex-col justify-center items-center h-screen bg-black text-white">
+      {/* Typing Effect */}
+      <h1 className="text-4xl md:text-6xl font-extrabold text-green-500">
+        {text}
+        <span className="animate-pulse">|</span> {/* Blinking cursor */}
+      </h1>
+      {/* Subtext */}
+      <p className="mt-6 text-xl md:text-2xl text-gray-300">
+        Our website is for IT services, web, app, and video solutions.
+      </p>
+      <p className="mt-2 text-lg md:text-xl font-semibold text-green-400">
+        Bringing your ideas to life, faster than ever.
+      </p>
     </div>
   );
 };

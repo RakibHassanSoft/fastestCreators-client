@@ -108,7 +108,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8 w-full lg:w-[60%] mt-44 ">
+    <div className="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8 w-full lg:w-[60%] mt-16 lg:mt-32 mb-16 lg:mb-32 ">
       {/* Form Section */}
       <div className="p-8 border rounded-lg shadow-xl bg-white border-r-4 border-r-green-400 border-b-4 border-b-green-400 h-[36rem]">
         <h2 className="text-4xl font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif">
@@ -116,7 +116,7 @@ const ContactUs = () => {
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
           <div className="flex justify-between gap-3">
-            <div className="w-1/2">
+            <div className="lg:w-1/2">
               <label
                 htmlFor="name"
                 className="block text-lg font-medium text-gray-700"
@@ -135,7 +135,7 @@ const ContactUs = () => {
               )}
             </div>
 
-            <div className="w-1/2">
+            <div className="lg:w-1/2">
               <label
                 htmlFor="email"
                 className="block text-lg font-medium text-gray-700"
@@ -180,18 +180,18 @@ const ContactUs = () => {
           </div>
           {/* Country Input Section */}
           <div className="flex  justify-between">
-            <div className="w-1/3">
+            <div className="lg:w-1/3">
               <label
                 htmlFor="country"
                 className="block text-lg font-medium text-gray-700"
               >
-                Select Country
+                Country
               </label>
               <Select
                 options={countries}
                 onChange={handleCountryChange}
                 className="text-sm mt-2 "
-                placeholder="Select country"
+                placeholder="Select"
               />
               {errors.country && (
                 <p className="text-red-500 text-sm">{errors.country.message}</p>
@@ -199,7 +199,7 @@ const ContactUs = () => {
             </div>
 
             {/* contract  */}
-            <div className="w-7/12">
+            <div className="lg:w-7/12">
               <label
                 htmlFor="contractNumber"
                 className="block text-lg font-medium text-gray-700"
@@ -241,7 +241,9 @@ const ContactUs = () => {
       <div className="flex justify-center items-center rounded-lg bg-green-700 p-8 shadow-lg">
         <div>
           {/* Section Title */}
-          <h2 className="text-3xl font-bold text-white mb-6">Get In Touch</h2>
+          <h2 className="text-4xl font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-white text-green-600 mb-6 text-center font-serif">
+          Get In Touch
+        </h2>
           <p className="text-white mb-6">
             It is a long established fact that a reader will be distracted by
             the readable content of a page when looking at its layout.
