@@ -110,12 +110,12 @@ const ContactUs = () => {
   return (
     <div className="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8 w-full lg:w-[60%] mt-16 lg:mt-32 mb-16 lg:mb-32 ">
       {/* Form Section */}
-      <div className="p-8 border rounded-lg shadow-xl bg-white border-r-4 border-r-green-400 border-b-4 border-b-green-400 h-[36rem]">
+      <div className="p-8 border rounded-lg shadow-xl bg-white border-r-4 border-r-green-400 border-b-4 border-b-green-400 h-[49rem] lg:h-[40rem]">
         <h2 className="text-4xl font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif">
           Contact Us
         </h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
-          <div className="flex justify-between gap-3">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <div className="flex flex-col lg:flex-row gap-6">
             <div className="lg:w-1/2">
               <label
                 htmlFor="name"
@@ -160,6 +160,7 @@ const ContactUs = () => {
               )}
             </div>
           </div>
+
           <div>
             <label
               htmlFor="message"
@@ -178,8 +179,9 @@ const ContactUs = () => {
               <p className="text-red-500 text-sm">{errors.message.message}</p>
             )}
           </div>
+
           {/* Country Input Section */}
-          <div className="flex  justify-between">
+          <div className="flex flex-col lg:flex-row gap-6">
             <div className="lg:w-1/3">
               <label
                 htmlFor="country"
@@ -190,7 +192,7 @@ const ContactUs = () => {
               <Select
                 options={countries}
                 onChange={handleCountryChange}
-                className="text-sm mt-2 "
+                className="text-sm mt-2"
                 placeholder="Select"
               />
               {errors.country && (
@@ -198,8 +200,8 @@ const ContactUs = () => {
               )}
             </div>
 
-            {/* contract  */}
-            <div className="lg:w-7/12">
+            {/* Contract Number */}
+            <div className="lg:w-2/3">
               <label
                 htmlFor="contractNumber"
                 className="block text-lg font-medium text-gray-700"
@@ -207,7 +209,7 @@ const ContactUs = () => {
                 Contract Number
               </label>
               <input
-                type="text" // Use text input to allow formatting flexibility
+                type="text"
                 id="contractNumber"
                 name="contractNumber"
                 {...register("contractNumber", {
@@ -226,6 +228,7 @@ const ContactUs = () => {
               )}
             </div>
           </div>
+
           <div className="flex justify-center items-center">
             <button
               type="submit"
@@ -242,11 +245,14 @@ const ContactUs = () => {
         <div>
           {/* Section Title */}
           <h2 className="text-4xl font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-white text-green-600 mb-6 text-center font-serif">
-          Get In Touch
-        </h2>
+            Get In Touch
+          </h2>
           <p className="text-white mb-6">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout.
+            Fastest Creators is a leading digital service provider specializing
+            in video editing, web development, app development, video animation,
+            and logo design. With a passion for creativity and innovation, we
+            deliver high-quality, customized solutions to bring your vision to
+            life.
           </p>
 
           {/* Contact List */}
@@ -258,9 +264,7 @@ const ContactUs = () => {
               </span>
               <div>
                 <h3 className="font-semibold text-white">Address</h3>
-                <p className="text-white">
-                  Dhaka 102, utl 1216, road 45 house, Shantighar Rahuta, 1213
-                </p>
+                <p className="text-white">Badda,Link Road,Dhaka-1212</p>
               </div>
             </li>
 
@@ -271,7 +275,7 @@ const ContactUs = () => {
               </span>
               <div>
                 <h3 className="font-semibold text-white">Email Address</h3>
-                <p className="text-white">ijmnnhasan000@yourmail.com</p>
+                <p className="text-white">fastestcreators@yourmail.com</p>
               </div>
             </li>
 
@@ -281,8 +285,11 @@ const ContactUs = () => {
                 <i className="fc-icon fc-phone-alt text-green-700 text-xl"></i>
               </span>
               <div>
-                <h3 className="font-semibold text-white">Phone Number</h3>
-                <p className="text-white">0000-0000-00-000</p>
+                <h3 className="font-semibold text-white">Phone Numbers</h3>
+                <p className="text-white">+880179159595</p>
+                <p className="text-white">+8801997360403</p>
+                
+                {/* Add your second number here */}
               </div>
             </li>
           </ul>

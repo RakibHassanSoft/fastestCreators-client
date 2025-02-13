@@ -1,42 +1,35 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Error.css'; // Import custom CSS for animations
+import { FaBackward } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Error = () => {
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white relative px-6 sm:px-12 lg:px-24 overflow-hidden ">
-      <div className="text-center w-full bg-transparent text-gray-800 rounded-full  p-8 z-20 shadow-xl ">
-        {/* 404 Title with Animation */}
-        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[23rem] font-extrabold text-green-500 mb-6 animate-crash">
-          <span className="animate-shatter">4</span>
-          <span className="animate-shatter delay-200">0</span>
-          <span className="animate-shatter delay-400">4</span>
-        </h1>
+    <div className="relative h-screen bg-black overflow-hidden">
+      {/* Animated Background - Optional, but adds a lot of visual flair */}
+      <div className="absolute inset-0 bg-cover bg-center animate-pulse" style={{ backgroundImage: "url('https://source.unsplash.com/random/1920x1080/?grayscale')" }}></div> {/* Grayscale Background Image */}
 
-        {/* Description */}
-        <p className="text-xl font-medium mb-6 text-gray-600 animate-fadeIn delay-600">
-          We can't seem to find the page you're looking for. It might have been moved or deleted.
-        </p>
-
-        {/* Main Button - Go Back */}
-        <div className="mb-8 animate-fadeIn delay-800">
-          <Link to="/">
-            <button className="px-8 py-4 bg-green-600 text-white font-semibold rounded-full shadow-lg hover:bg-green-700 transition duration-300 transform hover:scale-105">
-              Go Back Home
-            </button>
-          </Link>
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center">
+        <div className="bg-white/70 p-12 rounded-3xl shadow-xl backdrop-blur-lg backdrop-filter max-w-md">
+          <h1 className="text-center font-extrabold text-black tracking-wide mb-6 drop-shadow-lg text-7xl">404</h1>
+          <p className="text-2xl font-semibold text-gray-800 mb-8">Oops! Page Not Found</p>
+          <p className="text-gray-600 mb-12 text-center">The page you're looking for doesn't exist or has been moved.</p>
+        <div className='flex justify-center items-center gap-4'>
+        <button
+            onClick={goBack}
+            className="flex justify-center items-center gap-4 w-1/2 px-8 py-4 bg-black hover:bg-gray-800 text-white font-bold rounded-3xl transition duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
+          >
+            <FaBackward/>
+            Go Back
+          </button>
+        </div>
         </div>
       </div>
-
-      {/* Balls */}
-    
-      
-      <div className="absolute w-12 h-12 bg-sky-300 rounded-full ball-animation-top"></div>
-      <div className="absolute w-12 h-12 bg-yellow-500 rounded-full ball-animation-bottom"></div>
-      <div className="absolute w-12 h-12 bg-red-600 rounded-full ball-animation-top-left"></div>
-      <div className="absolute w-12 h-12 bg-blue-600 rounded-full ball-animation-top-right"></div>
-      <div className="absolute w-12 h-12 bg-purple-700 rounded-full ball-animation-bottom-left"></div>
-      <div className="absolute w-12 h-12 bg-orange-600 rounded-full ball-animation-bottom-right"></div>
     </div>
   );
 };

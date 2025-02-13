@@ -22,7 +22,7 @@ const VideoAndSlideAndPricing = (props) => {
     <div className="">
       <div className="flex flex-col md:flex-col lg:flex-col   justify-between mt-20 gap-3">
         {/* video and image  */}
-        <div className="w-full flex flex-col lg:flex-row">
+        <div className="w-full flex flex-col lg:flex-row gap-10">
           {/* slide  */}
 
           <Slider media={media}></Slider>

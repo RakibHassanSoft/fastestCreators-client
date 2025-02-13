@@ -4,7 +4,7 @@ import axiosSecure from './axiosSecure';
 const deleteSecureData = async (endpoint) => {
   try {
     const response = await axiosSecure.delete(endpoint);
-    return response.data;
+    return response;
   } catch (error) {
     console.error('Error deleting secure data:', error);
     throw error;

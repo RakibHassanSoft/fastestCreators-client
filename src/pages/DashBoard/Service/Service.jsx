@@ -3,12 +3,13 @@ import { useForm } from "react-hook-form";
 import useService from "../../../hook/useService";
 import {
   postPublicData,
+  postSecureData,
   uploadSingleImage,
 } from "../../../BcckendConnection/postData";
 import Swal from "sweetalert2";
 import AllService from "./AllService";
 import putSecureData from "../../../BcckendConnection/putData";
-
+import  deleteSecureData  from "../../../BcckendConnection/deleteData";
 const Service = () => {
   const res = useService();
   const { data, isLoading, refetch } = res;
@@ -17,54 +18,48 @@ const Service = () => {
 
   // Modal state
   const [selectedService, setSelectedService] = useState(null);
+  const [update, setUpdate] = useState(true);
 
-  // Handle form submission
+
   const onSubmit = async (data) => {
-    // console.log("Form submitted with data:", data);
-
-    const imageFile = data.image[0];
-    const serviceImage = await uploadSingleImage(imageFile);
-
-    const newData = {
-      title: data.title,
-      description: data.description,
-      serviceImage: serviceImage.data,
-    };
-
-    const res = await postPublicData("/services/create-service", newData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    // console.log(res);
-
-    if (res?.statusCode === 200) {
-      Swal.fire({
-        title: "Success!",
-        text: "Service created successfully.",
-        icon: "success",
-        confirmButtonText: "OK",
+    setUpdate(false); // Start loading
+  
+    try {
+      const imageFile = data.image[0];
+      const serviceImage = await uploadSingleImage(imageFile);
+  
+      const newData = {
+        title: data.title,
+        description: data.description,
+        serviceImage: serviceImage?.data,
+      };
+  
+      const res = await postPublicData("/services/create-service", newData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
-      refetch();
-    } else {
-      Swal.fire({
-        title: "Error!",
-        text: "There was an issue creating the service.",
-        icon: "error",
-        confirmButtonText: "Try Again",
-      });
-    }
-
-    reset();
+  
+      if (res?.statusCode === 200) {
+        setUpdate(true);
+        Swal.fire("Success!", "Service created successfully.", "success");
+        reset();
+        refetch();
+      } else {
+        Swal.fire("Error!", "There was an issue creating the service.", "error");
+      }
+    } catch (error) {
+      Swal.fire("Error!", "Something went wrong. Please try again later.", "error");
+    } 
   };
-
+  
   // Modal state
 
   const onSubmitForUpdate = async (event) => {
     event.preventDefault(); // Prevent the default form submission
-
+    setUpdate(false);
     const formData = new FormData(event.target);
     const imageFile = formData.get("image");
 
-    console.log(imageFile); // Log the uploaded image file
+    // console.log(imageFile); // Log the uploaded image file
     const serviceImage = await uploadSingleImage(imageFile);
 
     const newData = {
@@ -77,9 +72,10 @@ const Service = () => {
         headers: { "Content-Type": "multipart/form-data" },
       }
     );
-    console.log(res);
+    // console.log(res);
 
     if (res?.statusCode === 200) {
+      setUpdate(true);
       Swal.fire({
         title: "Success!",
         text: "Service created successfully.",
@@ -89,6 +85,7 @@ const Service = () => {
       setSelectedService(null);
       refetch();
     } else {
+      setUpdate(true);
       Swal.fire({
         title: "Error!",
         text: "There was an issue creating the service.",
@@ -108,13 +105,39 @@ const Service = () => {
     setSelectedService(null);
   };
 
+  const deleteService = async (id) => {
+    try {
+      
+      const response = await deleteSecureData(`/services/delete-service/${id}`);
+      setUpdate(false)
+        // console.log(response)
+      // // Check if the deletion was successful
+      if (response?.statusCode ===200) {
+     
+        setUpdate(true);
+        refetch();
+        Swal("Success", "Service has been deleted.", "success");
+      } else {
+      
+        
+        Swal("Error", "Failed to delete the service.", "error");
+      }
+    } catch (error) {
+      setUpdate(true);
+      Swal("Error", "Something went wrong. Please try again later.", "error");
+    }
+  };
+  
   return (
     <div className="bg-white p-8 rounded-lg shadow-lg">
       <h2 className="text-2xl text-center text-teal-600 mb-6">
         Web Development Form
       </h2>
+      
       <div className="flex flex-col lg:flex-row justify-evenly">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      
+        {
+          update && <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Title Input */}
           <div className="space-y-2">
             <label
@@ -173,6 +196,17 @@ const Service = () => {
             Submit
           </button>
         </form>
+        }
+        {!update && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-1/3 flex flex-col items-center">
+            <div className="border-4 border-t-4 border-gray-300 border-t-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+            <p className="text-teal-600 text-lg mt-4">
+              Updating, please wait...
+            </p>
+          </div>
+        </div>
+      )}
 
         {/* All Services List */}
         <div>
@@ -194,6 +228,9 @@ const Service = () => {
                 </th>
                 <th className="py-3 px-6 text-left text-sm font-medium">
                   Actions
+                </th>
+                <th className="py-3 px-6 text-left text-sm font-medium">
+                  Action
                 </th>
               </tr>
             </thead>
@@ -222,6 +259,14 @@ const Service = () => {
                       className="text-teal-600 hover:text-teal-700 focus:outline-none font-medium"
                     >
                       View Full Data
+                    </button>
+                  </td>
+                  <td className="py-3 px-6 text-sm">
+                    <button
+                      onClick={() => deleteService(service?._id)}
+                      className="bg-teal-600 p-2 text-white rounded-lg hover:text-teal-700 hover:bg-white focus:outline-none font-medium"
+                    >
+                      Remove
                     </button>
                   </td>
                 </tr>
@@ -313,7 +358,17 @@ const Service = () => {
             </form>
           </div>
         </div>
-      ) }
+      )}
+      {!update && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-1/3 flex flex-col items-center">
+            <div className="border-4 border-t-4 border-gray-300 border-t-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+            <p className="text-teal-600 text-lg mt-4">
+              Updating, please wait...
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

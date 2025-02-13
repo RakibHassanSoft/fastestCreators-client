@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
 const CustomSlider = ({ media }) => {
-
-  const demoMediaData = media
+  const demoMediaData = media;
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -21,21 +20,21 @@ const CustomSlider = ({ media }) => {
   };
 
   return (
-    <div className="relative  h-auto">
+    <div className="relative w-full h-auto">
       {/* Main Slider */}
-      <div className="w-full h-full flex items-center justify-center overflow-hidden relative">
+      <div className="w-full  h-auto flex items-center justify-center overflow-hidden relative">
         {demoMediaData[currentIndex].type === "video" ? (
           <video
             src={demoMediaData[currentIndex].url}
             controls
-            className="w-full h-full object-cover"
+            className="w-full max-w-[1920px] h-auto max-h-[1080px] object-cover rounded-lg shadow-lg"
             poster={demoMediaData[currentIndex].poster || ""}
           />
         ) : (
           <img
             src={demoMediaData[currentIndex].url}
             alt={`slide-${currentIndex}`}
-            className="w-[500px] h-[400px] object-cover"
+            className="w-full max-w-[1920px] h-auto max-h-[1080px] object-cover rounded-lg shadow-lg"
           />
         )}
       </div>
@@ -43,13 +42,13 @@ const CustomSlider = ({ media }) => {
       {/* Navigation Buttons */}
       <button
         onClick={handlePrev}
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75"
+        className="absolute top-28 md:top-44 lg:top-64 left-4 transform -translate-y-1/2 bg-green-500 bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75 transition"
       >
         &#8592;
       </button>
       <button
         onClick={handleNext}
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75"
+        className="absolute top-28 md:top-44 lg:top-64 right-4 transform -translate-y-1/2 bg-green-500 bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75 transition"
       >
         &#8594;
       </button>
@@ -62,12 +61,12 @@ const CustomSlider = ({ media }) => {
             onClick={() => setCurrentIndex(index)}
             className={`cursor-pointer border-2 ${
               index === currentIndex ? "border-blue-500" : "border-transparent"
-            } rounded overflow-hidden flex-shrink-0`}
+            } rounded overflow-hidden flex-shrink-0 transition-all duration-300`}
           >
             <img
               src={media?.thumbnail || media?.url}
               alt={`thumbnail-${index}`}
-              className="h-[60px] w-[100px] object-cover"
+              className="h-[60px] w-[100px] object-cover rounded-md shadow-sm"
             />
           </div>
         ))}

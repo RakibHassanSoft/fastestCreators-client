@@ -95,6 +95,22 @@ const Tab = ({ feature, pricing }) => {
             {activePackage?.revisions}
           </p>
           {
+            activePackage?.FootageProvidedByBuyer && (
+              <p className="text-lg font-semibold text-gray-700">
+                <span className="font-bold">Footage Provided By Buyer: </span>
+                {activePackage?.FootageProvidedByBuyer}
+              </p>
+            )
+          }
+          {
+            activePackage?.RunningTime!=null && (
+              <p className="text-lg font-semibold text-gray-700">
+                <span className="font-bold">Running Time: </span>
+                {activePackage?.RunningTime}
+              </p>
+            )
+          }
+          {
             activePackage?.pages && (
               <p className="text-lg font-semibold text-gray-700">
                 <span className="font-bold">Pages: </span>

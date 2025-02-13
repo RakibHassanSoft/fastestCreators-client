@@ -55,13 +55,13 @@ const DashBoard = () => {
 
           {role === "admin" && (
             <>
-              {/* <Link
+              <Link
                 onClick={toggleSidebar}
                 to="/dashboard/users"
                 className="flex items-center py-2 px-4 rounded hover:bg-orange-600"
               >
                 <FaUsers className="mr-2" /> Users
-              </Link> */}
+              </Link>
               {/* <Link
                 onClick={toggleSidebar}
                 to="/dashboard/gig"

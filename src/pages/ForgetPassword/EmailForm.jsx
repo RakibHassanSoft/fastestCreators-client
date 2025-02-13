@@ -50,7 +50,7 @@ const EmailForm = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-white">
+    <div className="flex mt-44 justify-center items-center h-screen bg-white">
       <div className="p-6 bg-green-100 rounded-lg shadow-lg w-full max-w-md">
         <h1 className="text-2xl font-bold text-center text-green-700 mb-4">
           Enter Your Email

@@ -95,7 +95,8 @@ const PaymentTab = () => {
       />
 
       {/* Service selection buttons */}
-      <div className="flex justify-center gap-4 mb-8">
+      <div className="flex flex-wrap justify-center gap-4 mb-8">
+
         {myServices.map((service, index) => (
           <button
             key={index}

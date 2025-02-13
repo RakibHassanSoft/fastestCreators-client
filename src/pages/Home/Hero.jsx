@@ -17,7 +17,7 @@ const Hero = () => {
 
   if (isLoading) {
     return (
-      <section className="bg-blue-500 text-white py-20">
+      <section className="bg-black text-white py-20">
       <div className="container mx-auto text-center">
         <h1 className="text-4xl font-bold mb-4">Our Services</h1>
         <p className="text-lg mb-6">

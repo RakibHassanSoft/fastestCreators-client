@@ -131,8 +131,8 @@ const Navbar = () => {
         { path: "/service/web-development", title: "Web Development" },
         { path: "/service/logo-design", title: "Logo Design" },
         { path: "/service/logo-animation", title: "Logo Animation" },
-        { path: "/services/video-editing", title: "Video Editing" },
-        { path: "/services/app-development", title: "App Development" },
+        { path: "/service/video-editing", title: "Video Editing" },
+        { path: "/service/app-development", title: "App Development" },
       ],
     },
     { path: "/blogs", id: "blogs", title: "Blogs" },
@@ -146,7 +146,7 @@ const Navbar = () => {
     <>
       <Link
         to="/"
-        className={`py-4 px-8 text-xl font-serif rounded-full transition flex justify-center items-center gap-3 ${
+        className={`py-4 px-4 text-xl  rounded-full transition flex justify-center items-center gap-3 ${
           activeLink === "home"
             ? "text-green-400 font-bold transform scale-110"
             : "bg-white text-gray-500"
@@ -170,7 +170,7 @@ const Navbar = () => {
         >
           <Link
             to="/services"
-            className={`py-4 px-8 text-xl font-serif rounded-full transition flex justify-center items-center gap-3${
+            className={`py-4 px-4 text-xl  rounded-full transition flex justify-center items-center gap-3${
               activeLink === "services"
                 ? " text-green-400 font-bold transform scale-110 "
                 : " text-gray-500"
@@ -209,7 +209,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <Link
-                    to="/services/video-editing"
+                    to="/service/video-editing"
                     className="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-600"
                     onClick={() => handleSetActive("video-editing")}
                   >
@@ -228,7 +228,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <Link
-                    to="/services/app-development"
+                    to="/service/app-development"
                     className="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-600"
                     onClick={() => handleSetActive("app-development")}
                   >
@@ -243,7 +243,7 @@ const Navbar = () => {
 
       <Link
         to="/blogs"
-        className={`py-4 px-8  text-xl font-serif rounded-full transition flex justify-center items-center gap-3  ${
+        className={`py-4 px-4  text-xl  rounded-full transition flex justify-center items-center gap-3  ${
           activeLink === "blogs"
             ? "text-green-400 font-bold transform scale-110 "
             : " text-gray-500"
@@ -259,7 +259,7 @@ const Navbar = () => {
       </Link>
       <Link
         to="/about"
-        className={`py-4 px-8 text-xl font-serif rounded-full transition flex justify-center items-center gap-3${
+        className={`py-4 px-4 text-xl  rounded-full transition flex justify-center items-center gap-3${
           activeLink === "about"
             ? "text-green-400 font-bold transform scale-110 gap-3 "
             : " text-gray-500"
@@ -275,7 +275,7 @@ const Navbar = () => {
       </Link>
       <Link
         to="/contract"
-        className={`py-4 px-8 text-xl font-serif rounded-full transition flex justify-center items-center gap-3${
+        className={`py-4 px-4 text-xl  rounded-full transition flex justify-center items-center gap-3${
           activeLink === "contact"
             ? "text-green-400 font-bold transform scale-110 gap-3"
             : " text-gray-500"
@@ -291,7 +291,7 @@ const Navbar = () => {
       </Link>
       <Link
         to="/faq"
-        className={`py-4 px-8 text-xl  font-serif rounded-full transition flex justify-center items-center gap-3${
+        className={`py-4 px-4 text-xl   rounded-full transition flex justify-center items-center gap-3${
           activeLink === "portfolio"
             ? "text-green-400 font-bold transform scale-110 gap-3"
             : " text-gray-500"
@@ -330,7 +330,8 @@ const Navbar = () => {
               </div>
 
               <div className=" right-0 mt-2  text-white rounded-md shadow-lg ">
-                
+                <h1 className="mt-2 mb-2 text-center ">{user?.displayName}</h1>
+                <h1 className="mt-2 mb-6 ">{user?.email}</h1>
                 <Link
                   to="/dashboard"
                   className="block mb-2 hover:bg-green-700text-white border-b-2 border-r-4 border-green-600 py-1 px-2  transition duration-300 transform hover:scale-105 font-semibold tracking-wide uppercase rounded-md w-full"
@@ -423,7 +424,7 @@ const Navbar = () => {
                 Location:
               </span>
               <span className="text-gray-500 font-bold">
-                123 Main Street, City, Country
+                Badda,Link road, Dhaka, Bangladesh
               </span>
             </div>
             <div className="flex items-center space-x-1">
@@ -431,10 +432,10 @@ const Navbar = () => {
                 <FaUser className="text-green-500"></FaUser>Contact:
               </span>
               <a
-                href="tel:+123456789"
+                href="tel:+8801997360403"
                 className="text-gray-500 font-bold hover:underline"
               >
-                +1 234 567 89
+              +8801997360403
               </a>
             </div>
           </div>
@@ -613,7 +614,7 @@ const Navbar = () => {
             <>
               <Link
                 to="/register"
-                className={`py-4 px-8 text-xl font-serif rounded-full transition flex justify-center items-center gap-3 ${
+                className={`py-4 px-4 text-xl  rounded-full transition flex justify-center items-center gap-3 ${
                   activeLink === "register"
                     ? "text-green-400 font-bold transform scale-110"
                     : "bg-white text-gray-500"
@@ -629,7 +630,7 @@ const Navbar = () => {
               </Link>
               <Link
                 to="/login"
-                className={`py-4 px-8 text-xl font-serif rounded-full transition flex justify-center items-center gap-3 ${
+                className={`py-4 px-4 text-xl  rounded-full transition flex justify-center items-center gap-3 ${
                   activeLink === "login"
                     ? "text-green-400 font-bold transform scale-110"
                     : "bg-white text-gray-500"

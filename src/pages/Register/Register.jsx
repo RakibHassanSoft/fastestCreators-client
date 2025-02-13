@@ -1,7 +1,8 @@
 import  {  useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 import { FcGoogle } from "react-icons/fc";
 import sal from "sal.js";
 import "sal.js/dist/sal.css";
@@ -9,6 +10,8 @@ import swal from "sweetalert";
 
 import useAuth from "../../hooks/useAuth";
 import { postPublicData } from "../../BcckendConnection/postData";
+import Lottie from "lottie-react";
+import signinAnimation from "../../../public/lotti-animation/signup-animation.json"
 
 const RegisterPage = () => {
 
@@ -70,7 +73,7 @@ const RegisterPage = () => {
   
   const handleGoogleSignin = async (e) => {
     e.preventDefault();  // Prevent default form submission if inside a form
-    console.log("Google sign-in initiated");
+    // console.log("Google sign-in initiated");
   
     try {
       // Call the signInWithGoogle function from your provider
@@ -83,7 +86,7 @@ const RegisterPage = () => {
           email: user.email,
           empassword: "DefaultPassword123",
         });
-      console.log(res)
+      // console.log(res)
         // Check if the response indicates success
         if (res.statusCode === 200 || res.status === 200) {
           // Successful login
@@ -106,209 +109,258 @@ const RegisterPage = () => {
   
   // Define regions and their respective country codes
   const regions = {
-    richCountries: [
-      { code: "+1", name: "USA" },
-      { code: "+44", name: "UK" },
-      { code: "+49", name: "Germany" },
-    ],
-    asianCountries: [
-      { code: "+91", name: "India" },
+    asia: [
+      { code: "+971", name: "UAE" },
       { code: "+86", name: "China" },
       { code: "+81", name: "Japan" },
+      { code: "+82", name: "South Korea" },
+      { code: "+92", name: "Pakistan" },
+      { code: "+91", name: "India" },
+      { code: "+62", name: "Indonesia" },
+      { code: "+60", name: "Malaysia" },
+      { code: "+63", name: "Philippines" },
+      { code: "+66", name: "Thailand" },
+      { code: "+94", name: "Sri Lanka" },
+      { code: "+65", name: "Singapore" },
+      { code: "+976", name: "Mongolia" },
+      { code: "+855", name: "Cambodia" },
+      { code: "+95", name: "Myanmar" },
+      { code: "+998", name: "Uzbekistan" },
+    ],
+    europe: [
+      { code: "+44", name: "UK" },
+      { code: "+49", name: "Germany" },
+      { code: "+33", name: "France" },
+      { code: "+39", name: "Italy" },
+      { code: "+34", name: "Spain" },
+      { code: "+41", name: "Switzerland" },
+      { code: "+31", name: "Netherlands" },
+      { code: "+46", name: "Sweden" },
+      { code: "+47", name: "Norway" },
+      { code: "+358", name: "Finland" },
+      { code: "+43", name: "Austria" },
+      { code: "+32", name: "Belgium" },
+      { code: "+45", name: "Denmark" },
+    ],
+    africa: [
+      { code: "+234", name: "Nigeria" },
+      { code: "+27", name: "South Africa" },
+      { code: "+20", name: "Egypt" },
+      { code: "+233", name: "Ghana" },
+      { code: "+254", name: "Kenya" },
+      { code: "+221", name: "Senegal" },
+      { code: "+216", name: "Tunisia" },
+      { code: "+243", name: "Democratic Republic of the Congo" },
+      { code: "+212", name: "Morocco" },
+      { code: "+225", name: "Ivory Coast" },
+    ],
+    northAmerica: [
+      { code: "+1", name: "USA" }, // USA is a tricky one, as it spans multiple regions.  You may want to split this.
+    ],
+    southAmerica: [
+      { code: "+55", name: "Brazil" },
+      { code: "+52", name: "Mexico" }, // Mexico is geographically in North America
+      { code: "+57", name: "Colombia" },
+      { code: "+54", name: "Argentina" },
+      { code: "+51", name: "Peru" },
+      { code: "+56", name: "Chile" },
+      { code: "+591", name: "Bolivia" },
+      { code: "+595", name: "Paraguay" },
+      { code: "+598", name: "Uruguay" },
+      { code: "+58", name: "Venezuela" },
+    ],
+    oceania: [
+      { code: "+61", name: "Australia" },
     ],
   };
+  
 
   useEffect(() => {
     sal();
   }, []);
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center bg-gray-100"
-      style={{
-        backgroundImage:
-          'url("https://th.bing.com/th/id/R.351b2a9bd7147a0a5d2f05487ddec19a?rik=EKSEiyyWUvBUGA&riu=http%3a%2f%2fs1.picswalls.com%2fwallpapers%2f2015%2f09%2f08%2fwhite-desktop-background_021210542_265.jpg&ehk=r1Di9Ha5RrNf4TVv%2fe9LH3niHthxRR0g2Bvo9km%2fxsQ%3d&risl=&pid=ImgRaw&r=0")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="relative mt-44 max-w-md w-full bg-white p-8 shadow-lg rounded-lg">
-        <h2 className="text-3xl font-bold text-center mb-4">
-          Create an Account
-        </h2>
-        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label
-                htmlFor="firstName"
-                className="block text-sm font-medium text-gray-700"
-              >
-                First Name
-              </label>
-              <input
-                type="text"
-                id="firstName"
-                {...register("firstName", { required: true })}
-                autoComplete="given-name"
-                className="block w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              />
-              {errors.firstName && (
-                <span className="text-red-600 text-sm">
-                  First name is required
-                </span>
-              )}
-            </div>
-            <div>
-              <label
-                htmlFor="lastName"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Last Name
-              </label>
-              <input
-                type="text"
-                id="lastName"
-                {...register("lastName", { required: true })}
-                autoComplete="family-name"
-                className="block w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              />
-              {errors.lastName && (
-                <span className="text-red-600 text-sm">
-                  Last name is required
-                </span>
-              )}
-            </div>
+    <div className="min-h-screen mt-40 flex items-center justify-center bg-gradient-to-r from-green-100 to-teal-100 p-6">
+  <div className="w-full max-w-4xl bg-white p-8 shadow-xl rounded-lg flex flex-col lg:flex-row">
+    {/* Left Side - Form */}
+    <div className="w-full lg:w-1/2 p-6">
+      <h2 className="text-3xl font-bold text-center text-teal-700 mb-6">
+        Create an Account
+      </h2>
+      <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+        {/* Name Fields */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
+              First Name
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              {...register("firstName", { required: true })}
+              autoComplete="given-name"
+              className="w-full mt-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
+            {errors.firstName && <span className="text-red-600 text-sm">First name is required</span>}
           </div>
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Email Address
+            <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+              Last Name
             </label>
             <input
-              type="email"
-              id="email"
-              {...register("email", { required: true })}
-              autoComplete="email"
-              className="block w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              type="text"
+              id="lastName"
+              {...register("lastName", { required: true })}
+              autoComplete="family-name"
+              className="w-full mt-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
             />
-            {errors.email && (
-              <span className="text-red-600 text-sm">Email is required</span>
-            )}
+            {errors.lastName && <span className="text-red-600 text-sm">Last name is required</span>}
           </div>
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              {...register("password", { required: true })}
-              autoComplete="new-password"
-              className="block w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-            />
-            {errors.password && (
-              <span className="text-red-600 text-sm">Password is required</span>
-            )}
-          </div>
-
-          <div className="mb-4">
-            <label
-              htmlFor="phone"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Phone Number
-            </label>
-            <div className="flex items-center mt-1 rounded-md shadow-sm">
-              <select
-                id="countryCode"
-                {...register("countryCode")}
-                className="bg-gray-100 text-gray-600 appearance-none border border-gray-300 rounded-l-md px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                value={countryCode}
-                onChange={handleCountryCodeChange}
-              >
-                <optgroup label="Rich Countries">
-                  {regions.richCountries.map((country) => (
-                    <option
-                      key={country.code}
-                      value={country.code}
-                    >{`${country.code} (${country.name})`}</option>
-                  ))}
-                </optgroup>
-                <optgroup label="Asian Countries">
-                  {regions.asianCountries.map((country) => (
-                    <option
-                      key={country.code}
-                      value={country.code}
-                    >{`${country.code} (${country.name})`}</option>
-                  ))}
-                </optgroup>
-              </select>
-              <input
-                type="tel"
-                id="phone"
-                {...register("phone", { required: true })}
-                autoComplete="tel"
-                className="flex-1 block w-full px-3 py-2 border border-gray-300 rounded-r-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                placeholder="Enter phone number"
-              />
-              {errors.phone && (
-                <span className="text-red-600 text-sm">
-                  Phone number is required
-                </span>
-              )}
-            </div>
-          </div>
-
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="agree"
-              {...register("agree", { required: true })}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-            />
-            <label htmlFor="agree" className="ml-2 block text-sm text-gray-900">
-              I agree to the{" "}
-              <Link to="/privacy-policy" className="text-blue-600 hover:underline">
-              <span className="text-blue-600">Privacy Policy</span>
-              </Link>
-            </label>
-            {errors.agree && (
-              <span className="text-red-600 text-sm">
-                Agreement is required
-              </span>
-            )}
-          </div>
-
-          <div className="w-1/2 m-auto">
-            <button
-              type="submit"
-              className="w-full bg-blue-500 text-white p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 hover:bg-blue-600"
-            >
-              Create Account
-            </button>
-          </div>
-        </form>
-
-        <div className="text-sm text-center mt-4">
-          <Link to="/login" className="text-blue-500 hover:underline">
-            Already have an account? Login
-          </Link>
         </div>
 
-        <div className="mt-6 flex justify-center">
-          <button onClick={handleGoogleSignin} className="text-blue-600 hover:text-blue-700 focus:outline-none">
-            <span className="sr-only">Sign up with Google</span>
-            <FcGoogle className="text-3xl" />
+        {/* Email Field */}
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            Email Address
+          </label>
+          <input
+            type="email"
+            id="email"
+            {...register("email", { required: true })}
+            autoComplete="email"
+            className="w-full mt-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+          />
+          {errors.email && <span className="text-red-600 text-sm">Email is required</span>}
+        </div>
+
+        {/* Password Field */}
+        <div>
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            {...register("password", { required: true })}
+            autoComplete="new-password"
+            className="w-full mt-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+          />
+          {errors.password && <span className="text-red-600 text-sm">Password is required</span>}
+        </div>
+
+        {/* Phone Number */}
+        <div>
+          <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+            Phone Number
+          </label>
+          <div className="flex flex-row   items-center mt-1 rounded-md">
+            <select
+              id="countryCode"
+              {...register("countryCode")}
+              className=" text-green-500 lg:w-28  border border-gray-300 rounded-l-md px-3 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500"
+              value={countryCode}
+              required
+              onChange={handleCountryCodeChange}
+            >
+              <optgroup label="North America">
+                {regions.northAmerica.map((country) => (
+                  <option key={country.code} value={country.code}>
+                    {`${country.code} (${country.name})`}
+                  </option>
+                ))}
+              </optgroup>
+              <optgroup label="Europe">
+                {regions.europe.map((country) => (
+                  <option key={country.code} value={country.code}>
+                    {`${country.code} (${country.name})`}
+                  </option>
+                ))}
+              </optgroup>
+              <optgroup label="African">
+                {regions.africa.map((country) => (
+                  <option key={country.code} value={country.code}>
+                    {`${country.code} (${country.name})`}
+                  </option>
+                ))}
+              </optgroup>
+              <optgroup label="South America">
+                {regions.southAmerica.map((country) => (
+                  <option key={country.code} value={country.code}>
+                    {`${country.code} (${country.name})`}
+                  </option>
+                ))}
+              </optgroup>
+              <optgroup label="Asia">
+                {regions.asia.map((country) => (
+                  <option key={country.code} value={country.code}>
+                    {`${country.code} (${country.name})`}
+                  </option>
+                ))}
+              </optgroup>
+            </select>
+            <input
+              type="tel"
+              id="phone"
+              {...register("phone", { required: true })}
+              autoComplete="tel"
+              className="flex-1  p-3 border  border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+              placeholder="Enter phone number"
+            />
+          </div>
+          {errors.phone && <span className="text-red-600 text-sm">Phone number is required</span>}
+        </div>
+
+        {/* Agreement Checkbox */}
+        <div className="flex items-center">
+          <input
+            type="checkbox"
+            id="agree"
+            {...register("agree", { required: true })}
+            className="h-4 w-4 text-teal-600 border-gray-300 rounded focus:ring-2 focus:ring-teal-500"
+          />
+          <label htmlFor="agree" className="ml-2 text-sm text-gray-900">
+            I agree to the{" "}
+            <Link to="/privacy-policy" className="text-teal-600 hover:underline">
+              Privacy Policy
+            </Link>
+          </label>
+        </div>
+        {errors.agree && <span className="text-red-600 text-sm">Agreement is required</span>}
+
+        {/* Submit Button */}
+        <div className="w-full">
+          <button
+            type="submit"
+            className="w-full bg-teal-600 text-white p-3 rounded-md text-lg font-semibold hover:bg-teal-700 transition focus:outline-none focus:ring-2 focus:ring-teal-500"
+          >
+            Create Account
           </button>
-
         </div>
+      </form>
+
+      {/* Login Link */}
+      <div className="text-sm text-center mt-4">
+        <Link to="/login" className="text-teal-600 hover:underline">
+          Already have an account? Login
+        </Link>
+      </div>
+
+      {/* Social Signup */}
+      <div className="mt-6 flex justify-center">
+        <button onClick={handleGoogleSignin} className="text-teal-600 hover:text-teal-700 transition focus:outline-none">
+          <span className="sr-only">Sign up with Google</span>
+          <FcGoogle className="text-3xl" />
+        </button>
       </div>
     </div>
+
+    {/* Right Side - Animation */}
+    <div className="hidden lg:flex lg:w-1/2 items-center justify-center bg-gradient-to-r from-green-200 to-teal-200 p-4 rounded-lg">
+      <Lottie animationData={signinAnimation} className="w-full max-w-xs md:max-w-sm lg:max-w-md" />
+    </div>
+  </div>
+</div>
+
   );
 };
 

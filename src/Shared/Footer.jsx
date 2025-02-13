@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { FaFacebookF, FaTwitter, FaInstagram, FaEnvelope, FaPhone, FaPaperPlane } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaEnvelope,
+  FaPhone,
+  FaPaperPlane,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../public/img/fc.png";
 import { FaCalendar } from "react-icons/fa6";
@@ -39,32 +46,49 @@ const Footer = () => {
     <>
       <div className="bg-green-600 py-12 px-6 flex items-center justify-between text-white">
         <h2 className="text-2xl font-bold">
-          Stay Connected With Cutting
-          <img className="h-20 hidden xl:block lg:block" src={logo} alt="FC" />
+          Stay Connected With Fastest Creators
+          <img
+            className="h-20 bg-black rounded-lg hidden xl:block lg:block"
+            src={logo}
+            alt="FC"
+          />
         </h2>
         <button className="px-6 py-2 bg-white text-green-600 rounded-full font-semibold">
-          <Link to="/contract">
-          Talk to a Specialist →
-          </Link>
+          <Link to="/contract">Talk to a Specialist →</Link>
         </button>
       </div>
 
       <footer className="bg-green-900 py-12 px-10 grid grid-cols-1 md:grid-cols-4 gap-8 text-white">
         <div>
           <h3 className="text-2xl font-bold flex items-center space-x-2">
-            <span className="text-green-300">✦</span> <span>Extech</span>
+            <span className="text-green-300">✦</span>{" "}
+            <span>Fastest Creators</span>
           </h3>
           <p className="mt-2 text-gray-300">
-            Extech IT is a Phasellus ultricies aliquam volutpat ullamcorper laoreet neque.
+            Fastest Creators is a leading digital service provider specializing
+            in video editing, web development, app development, video animation,
+            and logo design. With a passion for creativity and innovation, we
+            deliver high-quality, customized solutions to bring your vision to
+            life.
           </p>
+
           <div className="flex space-x-4 mt-4">
-            <button onClick={() => handleIconClick("facebook")} className="p-2 bg-gray-800 rounded">
+            <button
+              onClick={() => handleIconClick("facebook")}
+              className="p-2 bg-gray-800 rounded"
+            >
               <FaFacebookF />
             </button>
-            <button onClick={() => handleIconClick("twitter")} className="p-2 bg-gray-800 rounded">
+            <button
+              onClick={() => handleIconClick("twitter")}
+              className="p-2 bg-gray-800 rounded"
+            >
               <FaTwitter />
             </button>
-            <button onClick={() => handleIconClick("instagram")} className="p-2 bg-gray-800 rounded">
+            <button
+              onClick={() => handleIconClick("instagram")}
+              className="p-2 bg-gray-800 rounded"
+            >
               <FaInstagram />
             </button>
           </div>
@@ -73,11 +97,31 @@ const Footer = () => {
         <div>
           <h4 className="text-xl font-semibold">Quick Links</h4>
           <ul className="mt-2 space-y-2">
-            <li><Link to="/about" className="text-gray-300">About Us</Link></li>
-            <li><Link to="/services" className="text-gray-300">Our Services</Link></li>
-            <li><Link to="/blogs" className="text-gray-300">Our Blogs</Link></li>
-            <li><Link to="/FAQ" className="text-gray-300">FAQ's</Link></li>
-            <li><Link to="/contact" className="text-gray-300">Contact Us</Link></li>
+            <li>
+              <Link to="/about" className="text-gray-300">
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link to="/services" className="text-gray-300">
+                Our Services
+              </Link>
+            </li>
+            <li>
+              <Link to="/blogs" className="text-gray-300">
+                Our Blogs
+              </Link>
+            </li>
+            <li>
+              <Link to="/FAQ" className="text-gray-300">
+                FAQ's
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="text-gray-300">
+                Contact Us
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -86,7 +130,9 @@ const Footer = () => {
           <ul className="mt-2 space-y-2">
             <li className="flex items-center space-x-2 text-gray-300">
               <FaCalendar />
-              <span>15th April, 2024 - Top 5 Most Famous Technology Trend In 2024</span>
+              <span>
+                15th April, 2024 - Top 5 Most Famous Technology Trend In 2024
+              </span>
             </li>
             <li className="flex items-center space-x-2 text-gray-300">
               <FaCalendar />
@@ -111,12 +157,18 @@ const Footer = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <button className="px-4 py-2 bg-green-600 rounded" onClick={handleSendEmail}>
+            <button
+              className="px-4 py-2 bg-green-600 rounded"
+              onClick={handleSendEmail}
+            >
               <FaPaperPlane />
             </button>
           </div>
           <div className="mt-2 text-gray-300 flex items-center">
-            <input type="checkbox" className="mr-2" /> I agree to the <Link to="/privacy-policy" className="text-green-400 underline">Privacy Policy</Link>
+            <input type="checkbox" className="mr-2" /> I agree to the{" "}
+            <Link to="/privacy-policy" className="text-green-400 underline">
+              Privacy Policy
+            </Link>
           </div>
         </div>
       </footer>

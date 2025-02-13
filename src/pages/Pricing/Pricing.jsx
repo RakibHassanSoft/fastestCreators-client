@@ -48,7 +48,7 @@ const Pricing = () => {
     // console.log(gig?.feature)
 
     return (
-        <div className='w-full md:w-[90%] lg:w-[70%] m-auto mt-44'>
+        <div className='w-full md:w-[95%] lg:w-[90%] m-auto mt-44'>
             {/* gigtile sone  */}
            {/* <GigTitle title={gig?.title} owner ={gig?.owner}/> */}
              {/* this secton is also done  */}
