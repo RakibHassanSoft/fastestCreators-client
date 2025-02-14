@@ -34,6 +34,7 @@ import OrderForm from "../pages/Order/OrderForm";
 import BlogPage from "../pages/Blog/BlogPage";
 import Orders from "../pages/DashBoard/Order/Orders";
 import MyOrder from "../pages/MyOrder/MyOrder";
+import TermsConditions from "../pages/TermsConditions/TermsConditions";
 
   const Router = createBrowserRouter([
     {
@@ -131,6 +132,10 @@ import MyOrder from "../pages/MyOrder/MyOrder";
         {
             path:"/privacy-policy",
             element:<PrivacyPolicy/>
+        },
+        {
+            path:"/terms-conditions",
+            element:<TermsConditions/>
         },
         {
             path:"/order-for-payment",

@@ -144,10 +144,10 @@ const Footer = () => {
         <div>
           <h4 className="text-xl font-semibold">Contact Us</h4>
           <p className="mt-2 text-gray-300 flex items-center">
-            <FaEnvelope className="mr-2" /> info@example.com
+            <FaEnvelope className="mr-2" /> support.fastestcreators@gmail.com
           </p>
           <p className="text-gray-300 flex items-center">
-            <FaPhone className="mr-2" /> +208-6666-0112
+            <FaPhone className="mr-2" /> +8801997360403
           </p>
           <div className="mt-4 flex">
             <input
@@ -165,9 +165,15 @@ const Footer = () => {
             </button>
           </div>
           <div className="mt-2 text-gray-300 flex items-center">
-            <input type="checkbox" className="mr-2" /> I agree to the{" "}
+           
             <Link to="/privacy-policy" className="text-green-400 underline">
               Privacy Policy
+            </Link>
+          </div>
+          <div className="mt-2 text-gray-300 flex items-center">
+            
+            <Link to="/terms-conditions" className="text-green-400 underline">
+            Terms & Conditions
             </Link>
           </div>
         </div>

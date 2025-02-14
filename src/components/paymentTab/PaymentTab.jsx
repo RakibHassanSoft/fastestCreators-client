@@ -104,7 +104,7 @@ const PaymentTab = () => {
             className={`px-6 py-2 rounded-full ${
               selectedService?.title === service?.title
                 ? "bg-green-500 text-white"
-                : "bg-from-slate-50 text-green-500"
+                : "bg-from-slate-50 text-green-500 font-bold"
             }`}
           >
             {service.title}
