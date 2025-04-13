@@ -2,7 +2,78 @@ import React from "react";
 import { RxCross1 } from "react-icons/rx";
 import { MdCheck } from "react-icons/md";
 
+// Skeleton block with adjustable size
+const SkeletonBox = ({ className }) => (
+  <div className={`bg-green-200 rounded-md animate-pulse ${className}`}></div>
+);
+
+// Skeleton layout that mimics the actual component structure
+const SkeletonLoader = () => {
+  return (
+    <div className="w-full m-auto bg-gradient-to-b from-green-100 via-white to-green-50 rounded-lg shadow-lg overflow-hidden">
+      <div className="flex sm:flex-row md:flex-row">
+        {/* Left Column */}
+        <div className="flex flex-col w-full md:w-1/4 mb-12 border-r border-green-300">
+          <div className="h-20 flex justify-center items-center bg-gradient-to-r from-green-500 to-green-600">
+            <SkeletonBox className="h-6 w-1/3" />
+          </div>
+          <div className="flex flex-col text-center text-lg text-green-800">
+            <SkeletonBox className="h-20 w-full mb-2" />
+            <SkeletonBox className="h-20 w-full mb-2" />
+            <SkeletonBox className="h-20 w-full mb-2" />
+            <SkeletonBox className="h-20 w-full mb-2" />
+          </div>
+        </div>
+
+        {/* Right Column */}
+        <div className="w-full md:w-3/4 overflow-x-auto">
+          <table className="w-full text-center border-collapse border border-green-300">
+            <thead>
+              <tr className="bg-gradient-to-r from-green-500 text-center to-green-600 text-white text-xl h-20 font-bold">
+                <th className="px-4 py-2">
+                  <SkeletonBox className="h-6 w-20" />
+                </th>
+                <th className="px-4 py-2">
+                  <SkeletonBox className="h-6 w-20" />
+                </th>
+                <th className="px-4 py-2">
+                  <SkeletonBox className="h-6 w-20" />
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="h-20 border-b border-green-300">
+                <td className="text-center text-lg font-medium px-4 py-2">
+                  <SkeletonBox className="h-6 w-6 mx-auto" />
+                </td>
+                <td className="text-center text-lg font-medium px-4 py-2">
+                  <SkeletonBox className="h-6 w-6 mx-auto" />
+                </td>
+                <td className="text-center text-lg font-medium px-4 py-2">
+                  <SkeletonBox className="h-6 w-6 mx-auto" />
+                </td>
+              </tr>
+              <tr className="h-20 border-b border-green-300">
+                <td className="text-center text-lg font-medium px-4 py-2">
+                  <SkeletonBox className="h-6 w-6 mx-auto" />
+                </td>
+                <td className="text-center text-lg font-medium px-4 py-2">
+                  <SkeletonBox className="h-6 w-6 mx-auto" />
+                </td>
+                <td className="text-center text-lg font-medium px-4 py-2">
+                  <SkeletonBox className="h-6 w-6 mx-auto" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const MainPrice = ({ feature }) => {
+ 
   return (
     <div className="w-full m-auto bg-gradient-to-b from-green-100 via-white to-green-50 rounded-lg shadow-lg overflow-hidden">
       <div className="flex sm:flex-row md:flex-row">

@@ -1,24 +1,29 @@
+import React from "react";
+import { FaBackward } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
 const TermsConditions = () => {
+    const navigate = useNavigate();
+    
     return (
-        <div className="max-w-7xl mt-44 mx-auto p-8 bg-white shadow-lg rounded-lg ">
+        <div className="max-w-7xl mt-44 mx-auto p-8 bg-white shadow-lg rounded-lg">
             <h2 className="text-4xl font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif max-w-5xl md:w-1/2 lg:w-1/2 mx-auto">
-            Terms & Conditions
-        </h2>
-           
+                Terms & Conditions
+            </h2>
             
             <p className="mb-6 text-lg text-gray-700">Welcome to Fastest Creators! These terms and conditions outline the rules and regulations for using our services. By accessing and using our services, you agree to comply with the following terms.</p>
             
             {[
-                { title: "1. Acceptance of Terms", content: "By using our services, you acknowledge that you have read, understood, and agree to abide by these Terms & Conditions." },
-                { title: "2. Services Offered", content: "We provide high-quality web development, app development, video editing, logo editing, and logo animation services. All services are tailored to meet the specific needs of our clients." },
-                { title: "3. Payment & Refund Policy", content: "Payments must be made in advance for all services. We provide a \"money-back guarantee\" if we fail to satisfy the customer. Refund requests must be made within 7 days of service delivery.", highlight: true },
-                { title: "4. Intellectual Property", content: "All content, designs, and work created by Fastest Creators remain our intellectual property unless otherwise agreed upon in writing." },
-                { title: "5. User Responsibilities", content: "Users must provide accurate and complete information when requesting services. Any misuse or violation of these terms may result in termination of services without a refund." },
-                { title: "6. Limitation of Liability", content: "Fastest Creators is not responsible for any indirect, incidental, or consequential damages resulting from the use of our services. Clients must ensure proper use of delivered services." },
-                { title: "7. Privacy Policy", content: "We respect your privacy and ensure that all personal data is handled securely. Your information will never be shared with third parties without consent." },
-                { title: "8. Termination of Services", content: "We reserve the right to terminate services if a client violates any of our terms or engages in unethical practices." },
-                { title: "9. Modifications", content: "We may update these terms at any time. Continued use of our services implies acceptance of the updated terms." },
-                { title: "10. Contact Us", content: "If you have any questions about our Terms & Conditions, please contact us at support@fastestcreators.com." }
+                { title: "1. Acceptance of Terms", content: "By using our services, you acknowledge that you have read, understood, and agree to abide by these Terms & Conditions. Our platform ensures quality services, and by accessing it, you commit to following our policies. If you do not agree with any of these terms, you should not use our services. We reserve the right to modify or update these terms at any time, and continued use of our services implies acceptance of any changes. Users are responsible for regularly reviewing the terms to stay informed about any updates or modifications." },
+                { title: "2. Services Offered", content: "We provide high-quality web development, app development, video editing, logo editing, and logo animation services. All services are tailored to meet the specific needs of our clients. Our team is dedicated to ensuring that every project we undertake meets the highest industry standards. Whether you require a customized website, engaging videos, or unique logo animations, we are committed to delivering outstanding results. Clients can request modifications based on their specific preferences, ensuring complete satisfaction. However, any request beyond the initially agreed-upon scope may require additional charges. We strive to offer the best services with complete transparency." },
+                { title: "3. Payment & Refund Policy", content: "Payments must be made in advance for all services. We provide a \"money-back guarantee\" if we fail to satisfy the customer. Refund requests must be made within 7 days of service delivery. Refunds will only be processed if the client provides valid reasons for dissatisfaction. If a project has been significantly worked on, a partial refund may be considered instead of a full refund. Once a refund is approved, it may take up to 7-10 business days to process. Our primary goal is customer satisfaction, and we always ensure that concerns are addressed professionally.", highlight: true },
+                { title: "4. Intellectual Property", content: "All content, designs, and work created by Fastest Creators remain our intellectual property unless otherwise agreed upon in writing. Clients receive a license to use the delivered work, but ownership rights are retained by our company unless explicitly transferred. Unauthorized reproduction, resale, or distribution of our work is strictly prohibited. If a client wishes to obtain full rights, a separate agreement must be arranged. We respect the intellectual property of others and expect our clients to do the same. Any violations may result in legal actions to protect our original work and creative efforts." },
+                { title: "5. User Responsibilities", content: "Users must provide accurate and complete information when requesting services. Any misuse or violation of these terms may result in termination of services without a refund. Clients should ensure that all provided details, including project requirements and deadlines, are clear and precise. Miscommunication can lead to delays or unsatisfactory results. Additionally, users must not engage in unethical practices such as plagiarism or fraudulent activities while using our services. If any violations are detected, we reserve the right to take necessary actions, including service suspension. Our aim is to maintain a professional and respectful business environment." },
+                { title: "6. Limitation of Liability", content: "Fastest Creators is not responsible for any indirect, incidental, or consequential damages resulting from the use of our services. Clients must ensure proper use of delivered services. We strive to provide the highest quality solutions, but we cannot be held liable for losses incurred due to misinterpretation or misuse. Additionally, while we take all necessary precautions, we cannot guarantee that our services will be completely error-free. If any issues arise, we encourage clients to report them promptly so that we can resolve them efficiently. Our liability is limited to the service fees paid by the client." },
+                { title: "7. Privacy Policy", content: "We respect your privacy and ensure that all personal data is handled securely. Your information will never be shared with third parties without consent. All sensitive details, including payment information, are protected through advanced security measures. We collect only the necessary data required to fulfill service requests and improve our offerings. Users have the right to request access to their stored data and request modifications or deletions if necessary. By using our services, you agree to our privacy policies and consent to the collection of essential details required for smooth transactions and service delivery." },
+                { title: "8. Termination of Services", content: "We reserve the right to terminate services if a client violates any of our terms or engages in unethical practices. If any user is found misusing our services, submitting fraudulent payment details, or engaging in unlawful activities, their access will be revoked immediately. Additionally, clients who repeatedly request unwarranted modifications or cause disruption may also have their services terminated. Any such termination will be communicated to the client with an explanation. In cases of termination due to violations, refunds will not be issued. We uphold integrity and fairness in all our professional engagements." },
+                { title: "9. Modifications", content: "We may update these terms at any time. Continued use of our services implies acceptance of the updated terms. Clients will be notified of significant changes through emails or website announcements. However, it is the user's responsibility to stay informed about updates by reviewing this section periodically. If any user disagrees with the modifications, they may discontinue using our services. Our commitment is to ensure that these terms remain relevant, fair, and aligned with industry standards. We encourage all users to reach out for clarifications whenever needed to maintain transparency." },
+                { title: "10. Contact Us", content: "If you have any questions about our Terms & Conditions, please contact us at support@fastestcreators.com. Our customer support team is available to address any concerns, provide clarifications, and ensure a seamless experience. We value open communication and are always ready to assist with any inquiries related to our services, policies, or project requirements. Your feedback helps us improve, and we appreciate your trust in Fastest Creators. Feel free to reach out to us through email, chat, or our support portal for prompt assistance and resolution of your concerns." }
             ].map((item, index) => (
                 <div key={index} className="border-l-4 border-green-600 pl-4 mb-6 p-4 transition duration-300 ease-in-out hover:bg-green-100 rounded-lg">
                     <h2 className="text-2xl font-semibold text-green-600">{item.title}</h2>
@@ -26,7 +31,9 @@ const TermsConditions = () => {
                 </div>
             ))}
             
-            <p className="text-gray-500 text-center mt-8">Last updated: February 2025</p>
+            <button onClick={() => navigate(-1)} className="mt-6 bg-green-500 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:bg-green-600 transition duration-300 ease-in-out flex justify-center items-center gap-2">
+                <FaBackward /> Back
+            </button>
         </div>
     );
 };

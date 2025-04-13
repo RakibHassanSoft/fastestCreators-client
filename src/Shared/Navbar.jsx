@@ -135,7 +135,7 @@ const Navbar = () => {
         { path: "/service/app-development", title: "App Development" },
       ],
     },
-    { path: "/blogs", id: "blogs", title: "Blogs" },
+    // { path: "/blogs", id: "blogs", title: "Blogs" },
     { path: "/about", id: "about", title: "About" },
     { path: "/contract", id: "contact", title: "Contact" },
     { path: "/faq", id: "portfolio", title: "FAQ" },
@@ -241,7 +241,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <Link
+      {/* <Link
         to="/blogs"
         className={`py-4 px-4  text-xl  rounded-full transition flex justify-center items-center gap-3  ${
           activeLink === "blogs"
@@ -256,7 +256,7 @@ const Navbar = () => {
           }`}
         ></h1>
         Blogs
-      </Link>
+      </Link> */}
       <Link
         to="/about"
         className={`py-4 px-4 text-xl  rounded-full transition flex justify-center items-center gap-3${
