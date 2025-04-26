@@ -108,7 +108,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8 w-full lg:w-[60%] mt-16 lg:mt-32 mb-16 lg:mb-32 ">
+    <div className="container mx-auto p-1 lg:p-6 grid grid-cols-1 md:grid-cols-2 gap-8 w-full lg:w-[60%] mt-16 lg:mt-32 mb-16 lg:mb-32 ">
       {/* Form Section */}
       <div className="p-8 border rounded-lg shadow-xl bg-white border-r-4 border-r-green-400 border-b-4 border-b-green-400 h-[49rem] lg:h-[40rem]">
         <h2 className="text-4xl font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif">

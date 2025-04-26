@@ -285,7 +285,7 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
-      console.log("current user:", currentUser);
+      // console.log("current user:", currentUser);
 
       if (currentUser) {
         // Set a 5-hour (18000 seconds) timeout for automatic logout

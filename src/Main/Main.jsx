@@ -32,7 +32,7 @@ const Main = () => {
             <Navbar />
             
             {/* Main Content Area */}
-            <div className={`flex-grow ${loading ? 'hidden' : 'block'} px-4 py-6`}>
+            <div className={`flex-grow ${loading ? 'hidden' : 'block'} lg:px-4 py-6`}>
                 {/* Outlet renders the nested routes/components */}
                 <Outlet />
             </div>

@@ -39,7 +39,7 @@ const PaymentTab = () => {
   // Handle loading state
   if (isLoading) {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white pt-44 pb-44">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 text-gray-700 pt-44 pb-44">
       <h2 className="text-3xl font-bold mb-6">Loading Pricing...</h2>
       <div className="flex flex-col md:flex-row gap-6 w-full max-w-4xl px-4">
         {[1, 2, 3].map((item) => (
@@ -107,7 +107,7 @@ const PaymentTab = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 mt-16 lg:mt-32 mb-16 lg:mb-32">
+    <div className="container mx-auto p-1 lg:p-6 mt-16 lg:mt-32 mb-16 lg:mb-32">
       <Header
         title={"Payment Plans"}
         description={"This is the best choice for you"}
@@ -167,7 +167,7 @@ const PaymentTab = () => {
               <div className=" bg-green-400 border-2"></div>
 
               {/* Price */}
-              <p className="mt-4 font-extrabold text-green-600 text-center">
+              <p className="mt-4 font-extrabold text-green-600 text-r">
                 <div className="gap-2 flex items-center justify-center">
                   <span className="ml-2 text-5xl">
                     {selectedService?.pricing?.[plan]?.price || "N/A"}

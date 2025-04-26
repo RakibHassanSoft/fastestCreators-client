@@ -167,7 +167,7 @@ const About = () => {
         </section>
 
         {/* Our Process Section */}
-        <section className="max-w-6xl mx-auto px-6 py-16 bg-gray-800 rounded-lg ">
+        <section className="max-w-6xl mx-auto px-6 py-16 bg-gray-800 bg-opacity-40 rounded-lg ">
           <h2 className="text-4xl font-bold font-serif text-white mb-12 bg-gradient-to-r from-green-400 to-green-600 w-fit px-6 py-2 text-center rounded-r-full shadow-xl">
             Our Process
           </h2>

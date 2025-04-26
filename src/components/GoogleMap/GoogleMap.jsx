@@ -1,81 +1,97 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-const GoogleMap = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+// Fix for default marker icon issue
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+});
+
+const ChangeView = ({ center }) => {
+  const map = useMap();
+  map.setView(center);
+  return null;
 };
 
-export default GoogleMap;
+const MapComponent = () => {
+  const [location, setLocation] = useState([23.7862, 90.4254]); // Default location (Gulshan 2, Dhaka)
+  const [geoError, setGeoError] = useState("");
+
+  const handleGeoError = (error) => {
+    if (error.code === error.PERMISSION_DENIED) {
+      setGeoError("You denied location access. Showing default location.");
+    } else {
+      setGeoError("Failed to get your location. Showing default location.");
+    }
+  };
+
+  const retryLocation = () => {
+    setGeoError(""); // Clear previous error message
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords }) => setLocation([coords.latitude, coords.longitude]),
+        handleGeoError
+      );
+    }
+  };
+
+  useEffect(() => {
+    AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords }) => setLocation([coords.latitude, coords.longitude]),
+        handleGeoError
+      );
+    } else {
+      setGeoError("Geolocation is not supported by this browser.");
+    }
+  }, []);
+
+  return (
+    <div data-aos="fade-up" className="mt-28 mb-28">
+      {geoError && (
+        <div className="text-red-500 mb-4 text-center">
+          {/* {geoError} */}
+        </div>
+      )}
+
+      {/* Retry Button for location access */}
+      {geoError && (
+        <div className="text-center">
+          <button 
+            onClick={retryLocation}
+            className="bg-teal-600 text-white py-2 px-4 rounded mt-4 hover:bg-teal-700"
+          >
+            Retry Location Access
+          </button>
+        </div>
+      )}
+
+      <MapContainer center={location} zoom={13} scrollWheelZoom={true} style={{ height: "400px", width: "100%" }}>
+        <ChangeView center={location} />
+        <TileLayer
+  attribution='&copy; OpenStreetMap contributors | Map data &copy; <a href="https://carto.com/">CartoDB</a>'
+  url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
+/>
 
 
-// import React, { useState, useEffect } from 'react';
-// import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-// import 'leaflet/dist/leaflet.css';
+        <Marker position={location}>
+          <Popup>
+            {geoError ? "Using Default Location:" : "You are here!"}<br />
+            Latitude: {location[0]} <br />
+            Longitude: {location[1]}
+          </Popup>
+        </Marker>
+      </MapContainer>
+    </div>
+  );
+};
 
-// import AOS from 'aos';
-// import 'aos/dist/aos.css';
-
-// const MapComponent = () => {
-//   const [location, setLocation] = useState([23.7862, 90.4254]); // Default: Gulshan 2, Dhaka
-//   const [geoError, setGeoError] = useState(null); // State to store geolocation errors
-
-//   useEffect(() => {
-//     // Initialize AOS when component mounts
-//     AOS.init({
-//       duration: 800, // Default duration for all animations
-//       easing: 'ease-in-out', // Default easing for all animations
-//       once: true // Only run animations once
-//     });
-
-//     // Get the user's current location using the Geolocation API (if available)
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(
-//         (position) => {
-//           const { latitude, longitude } = position.coords;
-//           setLocation([latitude, longitude]); // Update location state
-//         },
-//         (error) => {
-//           console.error("Error getting location: ", error);
-//           setGeoError(error); // Set the error state
-//         }
-//       );
-//     } else {
-//       console.log("Geolocation is not supported by this browser.");
-//       setGeoError(new Error("Geolocation is not supported by this browser."));
-//     }
-//   }, []);
-
-//   return (
-//     <div data-aos="zoom-in" className='mt-28 mb-28'>
-//       {geoError && (
-//         <div style={{ marginBottom: "1rem", color: "red" }}>
-//           {geoError.message || "Unable to retrieve your location. Using default location."}
-//         </div>
-//       )}
-
-//       {/* MapContainer: Center on the user's location if available, otherwise default */}
-//       <MapContainer center={location} zoom={13} style={{ height: "400px", width: "100%" }}>
-//         <TileLayer
-//           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-//           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-//         />
-
-//         {/* Marker at the current location */}
-//         <Marker position={location}>
-//           <Popup>
-//             {geoError
-//               ? `Default Location: Gulshan 2, Dhaka
-//                  \nLatitude: ${location[0]}, Longitude: ${location[1]}`
-//               : `Your Location:
-//                  \nLatitude: ${location[0]}, Longitude: ${location[1]}`}
-//           </Popup>
-//         </Marker>
-//       </MapContainer>
-//     </div>
-//   );
-// };
-
-// export default MapComponent;
+export default MapComponent;

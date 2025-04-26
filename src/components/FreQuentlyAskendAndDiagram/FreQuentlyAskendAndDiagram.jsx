@@ -72,7 +72,7 @@ const FreQuentlyAskendAndDiagram = () => {
   };
 
   return (
-    <div className="container mx-auto p-8">
+    <div className="container mx-auto p-4 lg:p-8">
       {/* Header */}
       <div className="text-center py-8">
         <h1 className="text-3xl lg:text-4xl font-extrabold text-gray-600 hover:text-green-400">

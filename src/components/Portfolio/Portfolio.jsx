@@ -19,7 +19,7 @@ const PortfolioTab = () => {
   };
 
   if (isLoading) {
-    return   <div className="container mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 w-full ">
+    return   <div className="container mx-auto p-1 lg:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 w-full ">
     {/* Skeleton Item 1 */}
     <div className="animate-pulse">
       <div className="w-full h-48 bg-gray-300 rounded-md"></div>
@@ -84,7 +84,7 @@ const PortfolioTab = () => {
       : data.filter((item) => item.title === activeTab);
 
   return (
-    <div className="p-6 mt-16 lg:mt-32 mb-16 lg:mb-32">
+    <div className="p-1 lg:p-6 mt-16 lg:mt-32 mb-16 lg:mb-32">
       <Header
         title={"Portfolio"}
         description={"This is the best choice for you"}

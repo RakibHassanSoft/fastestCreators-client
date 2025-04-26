@@ -1,0 +1,67 @@
+  // Define regions and their respective country codes
+  export const regions = {
+    asia: [
+      { code: "+971", name: "UAE" },
+      { code: "+86", name: "China" },
+      { code: "+81", name: "Japan" },
+      { code: "+82", name: "South Korea" },
+      { code: "+92", name: "Pakistan" },
+      { code: "+91", name: "India" },
+      { code: "+62", name: "Indonesia" },
+      { code: "+60", name: "Malaysia" },
+      { code: "+63", name: "Philippines" },
+      { code: "+66", name: "Thailand" },
+      { code: "+94", name: "Sri Lanka" },
+      { code: "+65", name: "Singapore" },
+      { code: "+976", name: "Mongolia" },
+      { code: "+855", name: "Cambodia" },
+      { code: "+95", name: "Myanmar" },
+      { code: "+998", name: "Uzbekistan" },
+    ],
+    europe: [
+      { code: "+44", name: "UK" },
+      { code: "+49", name: "Germany" },
+      { code: "+33", name: "France" },
+      { code: "+39", name: "Italy" },
+      { code: "+34", name: "Spain" },
+      { code: "+41", name: "Switzerland" },
+      { code: "+31", name: "Netherlands" },
+      { code: "+46", name: "Sweden" },
+      { code: "+47", name: "Norway" },
+      { code: "+358", name: "Finland" },
+      { code: "+43", name: "Austria" },
+      { code: "+32", name: "Belgium" },
+      { code: "+45", name: "Denmark" },
+    ],
+    africa: [
+      { code: "+234", name: "Nigeria" },
+      { code: "+27", name: "South Africa" },
+      { code: "+20", name: "Egypt" },
+      { code: "+233", name: "Ghana" },
+      { code: "+254", name: "Kenya" },
+      { code: "+221", name: "Senegal" },
+      { code: "+216", name: "Tunisia" },
+      { code: "+243", name: "Democratic Republic of the Congo" },
+      { code: "+212", name: "Morocco" },
+      { code: "+225", name: "Ivory Coast" },
+    ],
+    northAmerica: [
+      { code: "+1", name: "USA" }, // USA is a tricky one, as it spans multiple regions.  You may want to split this.
+    ],
+    southAmerica: [
+      { code: "+55", name: "Brazil" },
+      { code: "+52", name: "Mexico" }, // Mexico is geographically in North America
+      { code: "+57", name: "Colombia" },
+      { code: "+54", name: "Argentina" },
+      { code: "+51", name: "Peru" },
+      { code: "+56", name: "Chile" },
+      { code: "+591", name: "Bolivia" },
+      { code: "+595", name: "Paraguay" },
+      { code: "+598", name: "Uruguay" },
+      { code: "+58", name: "Venezuela" },
+    ],
+    oceania: [
+      { code: "+61", name: "Australia" },
+    ],
+  };
+  
