@@ -38,8 +38,27 @@ const PaymentTab = () => {
 
   // Handle loading state
   if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white pt-44 pb-44">
+      <h2 className="text-3xl font-bold mb-6">Loading Pricing...</h2>
+      <div className="flex flex-col md:flex-row gap-6 w-full max-w-4xl px-4">
+        {[1, 2, 3].map((item) => (
+          <div
+            key={item}
+            className="flex-1 animate-pulse bg-green-300 p-6 rounded-2xl shadow-md"
+          >
+            <div className="h-6 bg-green-300 rounded w-1/2 mb-4"></div>
+            <div className="h-4 bg-green-300 rounded w-2/3 mb-2"></div>
+            <div className="h-4 bg-green-300 rounded w-3/4 mb-2"></div>
+            <div className="h-4 bg-green-300 rounded w-1/3 mb-4"></div>
+            <div className="h-10 bg-green-300 rounded w-full"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 
   // Handle error state
   if (isError || error) {

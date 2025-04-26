@@ -270,204 +270,203 @@ const FAQ = () => {
 
   return (
     <div>
-      {/* Header Section */}
-      <header className="bg-gradient-to-r mt-11 lg:mt-32 from-green-500 to-teal-400 text-white text-center py-24">
-        <h1 className=" text-3xl lg:text-6xl font-extrabold tracking-tight transform hover:scale-110 transition-all duration-300">
-          Transforming Ideas into Reality
-        </h1>
-        <p className="mt-4  text-xl lg:text-2xl">
-          Expert Video Editing & Web Development Solutions
-        </p>
-      </header>
+        <header className="bg-gradient-to-r mt-11 lg:mt-32 from-green-500 to-teal-400 text-white text-center py-24 ">
+          <h1 className=" text-3xl lg:text-6xl font-extrabold tracking-tight transform hover:scale-110 transition-all duration-300">
+            Transforming Ideas into Reality
+          </h1>
+          <p className="mt-4  text-xl lg:text-2xl">
+            Expert Video Editing & Web Development Solutions
+          </p>
+        </header>
+      <div className="w-11/12 mx-auto">
+     
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-white">
-        <h2 className="text-4xl font-semibold text-white text-center mb-12">
-          Frequently Asked Questions
-        </h2>
-
-        {/* Logo Animation Section */}
-        <div className="space-y-10 mt-10">
-          <h2 className="text-4xl font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif">
-          Logo Animation
+        {/* FAQ Section */}
+        <section className="py-20 bg-white">
+          <h2 className="text-4xl font-semibold text-white text-center mb-12">
+            Frequently Asked Questions
           </h2>
-          <div className="max-w-3xl mx-auto space-y-6">
-            {faqData[3].questions.map((item, index) => (
-              <div key={index} className="border-b border-gray-300">
-                <button
-                  className="flex justify-between w-full py-5 text-left text-green-700 font-medium"
-                  onClick={() => toggleFAQ(index, 0)}
-                >
-                  <div className="flex items-center m-2">
-                    {item.icon}
-                    <span className="ml-3 text-xl lg:text-2xl">
-                      {item.question}
-                    </span>
-                  </div>
-                  <span>
-                    {openFAQ === index ? (
-                      <FaChevronUp size={20} />
-                    ) : (
-                      <FaChevronDown size={20} />
-                    )}
-                  </span>
-                </button>
-                {openFAQ === index && (
-                  <div className="text-gray-600 py-4 text-2xl">
-                    {item.answer}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Logo Editing Section */}
-        <div className="space-y-10 mt-10">
-          <h2 className="text-4xl font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif">
-          Logo Editing
-          </h2>
-          <div className="max-w-3xl mx-auto space-y-6">
-            {faqData[4].questions.map((item, index) => (
-              <div key={index} className="border-b border-gray-300">
-                <button
-                  className="flex justify-between w-full py-5 text-left text-green-700 font-medium"
-                  onClick={() => toggleFAQ(index, 0)}
-                >
-                  <div className="flex items-center m-2">
-                    {item.icon}
-                    <span className="ml-3 text-xl lg:text-2xl">
-                      {item.question}
+          {/* Logo Animation Section */}
+          <div className="space-y-10 mt-10 md:flex md:flex-col md:items-end justify-center ">
+            <h2 className="text-4xl w-1/2 m-auto md:mr-0 md:ml-auto font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif">
+              Logo Animation
+            </h2>
+            <div className="max-w-3xl mx-auto md:ml-auto md:mr-0 space-y-6 md:text-center">
+              {faqData[3].questions.map((item, index) => (
+                <div key={index} className="border-b border-gray-300 ">
+                  <button
+                    className="flex justify-between w-full py-5 text-left md:text-right text-green-700 font-medium"
+                    onClick={() => toggleFAQ(index, 0)}
+                  >
+                    <div className="flex items-center m-2 md:ml-auto">
+                      {item.icon}
+                      <span className="ml-3 text-xl lg:text-2xl">
+                        {item.question}
+                      </span>
+                    </div>
+                    <span>
+                      {openFAQ === index ? (
+                        <FaChevronUp size={20} />
+                      ) : (
+                        <FaChevronDown size={20} />
+                      )}
                     </span>
-                  </div>
-                  <span>
-                    {openFAQ === index ? (
-                      <FaChevronUp size={20} />
-                    ) : (
-                      <FaChevronDown size={20} />
-                    )}
-                  </span>
-                </button>
-                {openFAQ === index && (
-                  <div className="text-gray-600 py-4 text-2xl">
-                    {item.answer}
-                  </div>
-                )}
-              </div>
-            ))}
+                  </button>
+                  {openFAQ === index && (
+                    <div className="text-gray-600 py-4 text-2xl">
+                      {item.answer}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Web Development Section */}
-        <div className="space-y-10">
-          <h2 className="text-4xl font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif">
-            Web Development
-          </h2>
-          <div className="max-w-3xl mx-auto space-y-6">
-            {faqData[0].questions.map((item, index) => (
-              <div key={index} className="border-b border-gray-300">
-                <button
-                  className="flex justify-between w-full py-5 text-left text-green-700 font-medium"
-                  onClick={() => toggleFAQ(index, 0)}
-                >
-                  <div className="flex items-center m-2">
-                    {item.icon}
-                    <span className="ml-3 text-xl lg:text-2xl">
-                      {item.question}
+          {/* Logo Editing Section */}
+          <div className="space-y-10 mt-10 md:flex md:flex-col md:items-start">
+            <h2 className="text-4xl w-1/2 m-auto md:ml-0 md:mr-auto font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif">
+              Logo Editing
+            </h2>
+            <div className="max-w-3xl mx-auto md:mr-auto md:ml-0 space-y-6 md:text-left">
+              {faqData[4].questions.map((item, index) => (
+                <div key={index} className="border-b border-gray-300">
+                  <button
+                    className="flex justify-between w-full py-5 text-left md:text-left text-green-700 font-medium"
+                    onClick={() => toggleFAQ(index, 0)}
+                  >
+                    <div className="flex items-center m-2 md:mr-auto">
+                      {item.icon}
+                      <span className="ml-3 text-xl lg:text-2xl">
+                        {item.question}
+                      </span>
+                    </div>
+                    <span>
+                      {openFAQ === index ? (
+                        <FaChevronUp size={20} />
+                      ) : (
+                        <FaChevronDown size={20} />
+                      )}
                     </span>
-                  </div>
-                  <span>
-                    {openFAQ === index ? (
-                      <FaChevronUp size={20} />
-                    ) : (
-                      <FaChevronDown size={20} />
-                    )}
-                  </span>
-                </button>
-                {openFAQ === index && (
-                  <div className="text-gray-600 py-4 text-2xl">
-                    {item.answer}
-                  </div>
-                )}
-              </div>
-            ))}
+                  </button>
+                  {openFAQ === index && (
+                    <div className="text-gray-600 py-4 text-2xl">
+                      {item.answer}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Video Editing Section */}
-        <div className="space-y-10 mt-10">
-          <h2 className="text-4xl font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif">
-            Video Editing
-          </h2>
-          <div className="max-w-3xl mx-auto space-y-6">
-            {faqData[1].questions.map((item, index) => (
-              <div key={index} className="border-b border-gray-300">
-                <button
-                  className="flex justify-between w-full py-5 text-left text-green-700 font-medium"
-                  onClick={() => toggleFAQ(index, 0)}
-                >
-                  <div className="flex items-center m-2">
-                    {item.icon}
-                    <span className="ml-3 text-xl lg:text-2xl">
-                      {item.question}
+          {/* Web Development Section */}
+          <div className="space-y-10 flex flex-col items-end mt-10">
+            <h2 className="text-4xl w-1/2 m-auto font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif">
+              Web Development
+            </h2>
+            <div className="max-w-3xl mx-auto space-y-6">
+              {faqData[0].questions.map((item, index) => (
+                <div key={index} className="border-b border-gray-300">
+                  <button
+                    className="flex justify-between w-full py-5 text-left text-green-700 font-medium"
+                    onClick={() => toggleFAQ(index, 0)}
+                  >
+                    <div className="flex items-center m-2">
+                      {item.icon}
+                      <span className="ml-3 text-xl lg:text-2xl">
+                        {item.question}
+                      </span>
+                    </div>
+                    <span>
+                      {openFAQ === index ? (
+                        <FaChevronUp size={20} />
+                      ) : (
+                        <FaChevronDown size={20} />
+                      )}
                     </span>
-                  </div>
-                  <span>
-                    {openFAQ === index ? (
-                      <FaChevronUp size={20} />
-                    ) : (
-                      <FaChevronDown size={20} />
-                    )}
-                  </span>
-                </button>
-                {openFAQ === index && (
-                  <div className="text-gray-600 py-4 text-2xl">
-                    {item.answer}
-                  </div>
-                )}
-              </div>
-            ))}
+                  </button>
+                  {openFAQ === index && (
+                    <div className="text-gray-600 py-4 text-2xl">
+                      {item.answer}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* App Development Section */}
-        <div className="space-y-10 mt-10">
-          <h2 className="text-4xl font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif">
-          App Development
-          </h2>
-          <div className="max-w-3xl mx-auto space-y-6">
-            {faqData[2].questions.map((item, index) => (
-              <div key={index} className="border-b border-gray-300">
-                <button
-                  className="flex justify-between w-full py-5 text-left text-green-700 font-medium"
-                  onClick={() => toggleFAQ(index, 0)}
-                >
-                  <div className="flex items-center m-2">
-                    {item.icon}
-                    <span className="ml-3 text-xl lg:text-2xl">
-                      {item.question}
+          {/* Video Editing Section */}
+          <div className="space-y-10 mt-10 md:flex md:flex-col md:items-end justify-center">
+            <h2 className="text-4xl w-1/2 m-auto md:mr-0 md:ml-auto font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif">
+              Video Editing
+            </h2>
+            <div className="max-w-3xl mx-auto md:ml-auto md:mr-0 space-y-6 md:text-center">
+              {faqData[1].questions.map((item, index) => (
+                <div key={index} className="border-b border-gray-300">
+                  <button
+                    className="flex justify-between w-full py-5 text-left md:text-right text-green-700 font-medium"
+                    onClick={() => toggleFAQ(index, 0)}
+                  >
+                    <div className="flex items-center m-2 md:ml-auto">
+                      {item.icon}
+                      <span className="ml-3 text-xl lg:text-2xl">
+                        {item.question}
+                      </span>
+                    </div>
+                    <span>
+                      {openFAQ === index ? (
+                        <FaChevronUp size={20} />
+                      ) : (
+                        <FaChevronDown size={20} />
+                      )}
                     </span>
-                  </div>
-                  <span>
-                    {openFAQ === index ? (
-                      <FaChevronUp size={20} />
-                    ) : (
-                      <FaChevronDown size={20} />
-                    )}
-                  </span>
-                </button>
-                {openFAQ === index && (
-                  <div className="text-gray-600 py-4 text-2xl">
-                    {item.answer}
-                  </div>
-                )}
-              </div>
-            ))}
+                  </button>
+                  {openFAQ === index && (
+                    <div className="text-gray-600 py-4 text-2xl">
+                      {item.answer}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-
-        
-      </section>
+          {/* App Development Section */}
+          <div className="space-y-10 mt-10 md:flex md:flex-col md:items-start">
+            <h2 className="text-4xl w-1/2 m-auto md:ml-0 md:mr-auto font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif">
+              App Development
+            </h2>
+            <div className="max-w-3xl mx-auto md:mr-auto md:ml-0 space-y-6 md:text-left">
+              {faqData[2].questions.map((item, index) => (
+                <div key={index} className="border-b border-gray-300">
+                  <button
+                    className="flex justify-between w-full py-5 text-left md:text-left text-green-700 font-medium"
+                    onClick={() => toggleFAQ(index, 0)}
+                  >
+                    <div className="flex items-center m-2 md:mr-auto">
+                      {item.icon}
+                      <span className="ml-3 text-xl lg:text-2xl">
+                        {item.question}
+                      </span>
+                    </div>
+                    <span>
+                      {openFAQ === index ? (
+                        <FaChevronUp size={20} />
+                      ) : (
+                        <FaChevronDown size={20} />
+                      )}
+                    </span>
+                  </button>
+                  {openFAQ === index && (
+                    <div className="text-gray-600 py-4 text-2xl">
+                      {item.answer}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };

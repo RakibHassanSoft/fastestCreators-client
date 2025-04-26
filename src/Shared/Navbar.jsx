@@ -553,13 +553,13 @@ const Navbar = () => {
 
           {/* if medium device */}
           <img
-            className="h-20 hidden md:block lg:hidden xl:hidden"
+            className="h-16 hidden md:block lg:hidden xl:hidden"
             src={logo}
             alt="FC"
           />
 
           {/* if small device */}
-          <img className="h-20 block md:hidden" src={logo} alt="FC" />
+          <img className="h-10 block md:hidden" src={logo} alt="FC" />
         </div>
 
         <div className="block lg:hidden" onClick={toggleSidebar}>

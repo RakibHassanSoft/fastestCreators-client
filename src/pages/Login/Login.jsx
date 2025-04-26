@@ -109,10 +109,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen mt-40 flex items-center justify-center bg-gradient-to-r from-green-100 to-teal-100 p-6">
+    <div className="min-h-screen mt-40 flex items-center justify-center bg-gradient-to-r from-green-100 to-teal-100 lg:p-6">
     <div className="w-full max-w-4xl bg-white p-8 shadow-xl rounded-lg flex flex-col lg:flex-row">
       {/* Left Side - Form */}
-      <div className="w-full lg:w-1/2 p-6">
+      <div className="w-full lg:w-1/2 lg:p-6">
         <h2 className="text-3xl font-bold text-center text-teal-700 mb-6">
           Login
         </h2>

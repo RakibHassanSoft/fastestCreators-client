@@ -7,7 +7,7 @@ import { ImCross } from "react-icons/im";
 import { FaLeftLong, FaRightLong } from "react-icons/fa6";
 
 const ServiceGrid = ({ services, onServiceClick }) => {
-    // console.log(services)
+  // console.log(services)
   return (
     <div className="flex flex-wrap justify-center gap-4 mt-6">
       {services.length > 0
@@ -75,12 +75,31 @@ const ServiceTab = () => {
       : services.filter((service) => service.title === selectedTab);
 
   // Loading and Error UI
+  // Loading and Error UI
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white pt-44 pb-44">
+        <h2 className="text-3xl font-bold mb-8">Loading Cards...</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl px-4">
+          {[1, 2, 3, 4].map((item) => (
+            <div
+              key={item}
+              className="animate-pulse bg-green300 p-6 rounded-2xl shadow-lg flex flex-col gap-4"
+            >
+              <div className="h-40 bg-green300 rounded w-full"></div>
+              <div className="h-6 bg-green300 rounded w-3/4"></div>
+              <div className="h-4 bg-green300 rounded w-full"></div>
+              <div className="h-4 bg-green300 rounded w-5/6"></div>
+              <div className="h-10 bg-green300 rounded w-1/2 mt-auto"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   }
 
   if (isError) {
-    return <div>Error: {error.message}</div>;
+    return <div>Please wait a minute and reload the page</div>;
   }
 
   // Open the sidebar and set the selected service

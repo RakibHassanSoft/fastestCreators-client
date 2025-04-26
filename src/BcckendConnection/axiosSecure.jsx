@@ -1,9 +1,6 @@
 import axios from 'axios';
 
 const axiosSecure = axios.create({
-  // Render : https://fastestcreators-server.onrender.com/api/v1
-  //Vercel: https://fastest-creators-server.vercel.app/api/v1
-  // baseURL: 'http://localhost:3000/api/v1',
   
   
   baseURL: 'https://fastest-creators-server.vercel.app/api/v1',  

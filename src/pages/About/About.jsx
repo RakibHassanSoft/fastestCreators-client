@@ -1,205 +1,198 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import sal from "sal.js"; // Import sal.js
-import { FaPencilAlt, FaCog, FaCheckCircle } from "react-icons/fa";
-import bgImg from "../../../public/img/download.jpeg"
+import sal from "sal.js";
+import { FaPencilAlt, FaCog, FaCheckCircle, FaCalendarCheck, FaCogs } from "react-icons/fa";
+import bgImg from "../../../public/img/download.jpeg";
+
 const About = () => {
   useEffect(() => {
-    sal(); // Initialize sal.js when the component mounts
+    sal();
   }, []);
 
-  // Dummy data for members
   const members = [
     {
       id: 2,
       name: "Rifat Sajid Khan",
       role: "CEO & Co-Founder",
       description:
-        "Passionate about crafting user-centric solutions and driving the company towards new heights.",
+        "Rifat is a visionary leader committed to innovation, efficiency, and team excellence. With a deep understanding of business strategies and user-centered design, he ensures the company's growth through collaborative decision-making and continuous improvement. His leadership fosters a culture of innovation and integrity, inspiring the team to deliver impactful results and exceed expectations.",
       image:
-        "https://th.bing.com/th/id/OIP.tYLyE2JaQxPBh4G99AhCHQHaJ4?rs=1&pid=ImgDetMain",
-      rating: 4,
+        "https://res.cloudinary.com/dvdyfyryz/image/upload/v1745561354/427905412_1856075261519206_4098036675401975123_n_zffbyx_vbahdr.jpg",
     },
     {
       id: 1,
       name: "MD Rakibul Islam",
-      role: "COO & Co-Founder",
+      role: "COO, CTO & Co-Founder",
       description:
-        "A dedicated leader with a passion for bringing innovative ideas to life and a focus on organizational success.",
+        "Rakibul brings strong technical expertise and strategic foresight to the team. As COO & CTO, he ensures smooth operations and leads development with a focus on modern technologies and scalable solutions. His hands-on approach, dedication to innovation, and results-driven mindset help translate complex ideas into high-performing, user-friendly digital products.",
       image:
-        "https://th.bing.com/th/id/OIP.tYLyE2JaQxPBh4G99AhCHQHaJ4?rs=1&pid=ImgDetMain",
-      rating: 5,
-    },
-    {
-      id: 3,
-      name: "John Doe",
-      role: "Lead Developer",
-      description:
-        "Experienced developer focused on delivering efficient and scalable code for large applications.",
-      image:
-        "https://th.bing.com/th/id/OIP.tYLyE2JaQxPBh4G99AhCHQHaJ4?rs=1&pid=ImgDetMain",
-      rating: 4,
+        "https://res.cloudinary.com/dvdyfyryz/image/upload/v1745561279/474126757_1742769009628063_7491725414084458000_n_nxvx0r.jpg",
     },
   ];
   const processSteps = [
     {
       title: "Planning",
-      description:
-        "We start by understanding your goals and needs, creating a roadmap for your project.",
-      icon: <FaPencilAlt className="text-2xl" />,
-      alignment: "self-start", // left-aligned for odd index
+      description: "We start by understanding your goals and needs, creating a roadmap for your project.",
+      icon: <FaCalendarCheck className="text-3xl" />, // React Icon for Planning
     },
     {
       title: "Execution",
-      description:
-        "Our team works hard to bring your vision to life, with attention to detail at every stage.",
-      icon: <FaCog className="text-2xl" />,
-      alignment: "self-end", // right-aligned for even index
+      description: "Our team works hard to bring your vision to life, with attention to detail at every stage.",
+      icon: <FaCogs className="text-3xl" />, // React Icon for Execution
     },
     {
       title: "Delivery",
-      description:
-        "We ensure that your project is delivered on time with high-quality results and precision.",
-      icon: <FaCheckCircle className="text-2xl" />,
-      alignment: "self-start", // left-aligned for odd index
+      description: "We ensure that your project is delivered on time with high-quality results and precision.",
+      icon: <FaCheckCircle className="text-3xl" />, // React Icon for Delivery
     },
   ];
+  
 
   return (
-    <div className=" text-gray-800 mt-44  "
-    style={{
-      background:`url(${bgImg})`
-    }}
-    >
-      {/* Hero Section */}
-      <section className="flex flex-col items-center py-16 text-green-500"
-      
+    <div className="relative text-gray-800 pt-32  ">
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-white/10 z-0"></div>
+
+      {/* Content Layer with Background Image */}
+      <div
+        className="relative z-0 bg-black bg-opacity-70"
+        style={{
+          backgroundOpacity: 1,
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          backgroundImage: `url(${bgImg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
       >
-        <h2 className="text-4xl font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif w-1/3 m-auto">
-        About Us
+        {/* Hero Section */}
+        <section className="flex flex-col items-center px-6 text-center text-white py-20">
+          <h2 className="text-5xl font-bold font-serif bg-green-500 px-6 py-2 rounded-full shadow-lg mb-6">
+            About Fastest Creators
           </h2>
-        
-        <p className="text-xl text-white bg-black rounded-xl bg-opacity-60 text-center max-w-2xl mb-8">
-          We specialize in Video Editing (VFX) and Web Development. Our goal is
-          to deliver stunning visual effects and robust, interactive web
-          applications tailored to your needs.
-        </p>
-        <Link to={"/contract"}>
-          <button className="px-8 py-3 bg-white opacity-60 text-green-500 rounded-full font-semibold shadow-lg hover:bg-green-100 transition duration-300">
-            Get in Touch
-          </button>
-        </Link>
-      </section>
+         
+          <Link to="/contract">
+            <button className="bg-white text-green-600 px-8 py-3 rounded-full font-semibold hover:bg-green-100 transition duration-300 shadow-md">
+              Get in Touch
+            </button>
+          </Link>
+        </section>
 
-      {/* Our Members Section */}
-      <section className="py-20">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif w-1/3 m-auto">
-            Our Members
+        {/* Detailed Explanation of Services */}
+        <section className="max-w-6xl mx-auto px-6 py-16 bg-black bg-opacity-50 rounded-3xl ">
+          <h2 className="text-4xl font-bold font-serif text-center text-white mb-12 bg-green-500 w-fit px-6 py-2 rounded-full m-auto shadow-xl">
+            Our Services
           </h2>
-          <div className="w-full px-4 sm:px-6 lg:px-20 ">
-            <div className="flex flex-col gap-16 relative max-w-5xl mx-auto ">
-              {/* Loop through the members and create cards */}
-              {members.map((member, index) => (
-    
-                <div
-                  key={member.id}
-                  className={`relative bg-green-600 text-white rounded-lg shadow-lg p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 ${
-                    index % 2 === 0 ? "sm:self-start" : "sm:self-end"
-                  }`}
-                  data-sal="fade"
-                  data-sal-duration="800"
-                  data-sal-easing="ease-out"
-                >
-                  {/* Connecting Line */}
-                  {index < members.length - 1 && (
-                    <div
-                      className={`absolute hidden sm:block ${
-                        index % 2 === 0 ? "right-0 top-1/2" : "left-0 top-1/2"
-                      } w-[2px] h-32 bg-green-500`}
-                    />
-                  )}
-
-                  {/* Image Section */}
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-36 h-36 sm:w-48 sm:h-48 rounded-md object-cover"
-                  />
-
-                  {/* Content Section */}
-                  <div className="text-center sm:text-left">
-                    {/* Name and Role */}
-                    <h2 className="text-2xl font-bold">{member.name}</h2>
-                    <p className="text-lg text-green-300">{member.role}</p>
-
-                    {/* Stars */}
-                    <div className="flex justify-center sm:justify-start space-x-1 my-4">
-                      {[...Array(member.rating)].map((_, index) => (
-                        <span key={index} className="text-green-400">
-                          &#9733;
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-base leading-relaxed">
-                      {member.description}
-                    </p>
-                  </div>
-
-                  {/* Quote Icon */}
-                  <div className="absolute -bottom-6 left-10 bg-green-500 text-white w-14 h-14 sm:w-16 sm:h-16 rounded-full flex justify-center items-center shadow-lg">
-                    <span className="text-5xl sm:text-7xl text-center">"</span>
-                  </div>
-                </div>
-              ))}
+          <div className="space-y-12">
+            <div>
+              <h3 className="text-3xl text-white font-semibold mb-4">
+                1. Web Development
+              </h3>
+              <p className="text-lg text-white">
+                We create responsive, fast, and secure websites using modern
+                technologies like React, Next.js, and Vue.js for the frontend
+                and Node.js, Express, and MongoDB for the backend. Our
+                e-commerce solutions are custom-tailored to integrate payment
+                gateways, product catalogs, and more.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-3xl text-white font-semibold mb-4">
+                2. App Development
+              </h3>
+              <p className="text-lg text-white">
+                Whether for iOS or Android, we create intuitive,
+                high-performance apps using React Native, Flutter, and native
+                tools. Our apps are optimized for performance and security,
+                ensuring a seamless experience for users.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-3xl text-white font-semibold mb-4">
+                3. Logo Design
+              </h3>
+              <p className="text-lg text-white">
+                We craft unique, memorable logos that align with your brand
+                identity. Our design process focuses on creativity, simplicity,
+                and versatility across different mediums.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-3xl text-white font-semibold mb-4">
+                4. Logo Animation
+              </h3>
+              <p className="text-lg text-white">
+                Our team animates logos to add dynamic and professional touches
+                to your brand. We create 2D and 3D animations for website
+                headers, social media ads, video intros, and promotional videos.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-3xl text-white font-semibold mb-4">
+                5. Video Editing (VFX)
+              </h3>
+              <p className="text-lg text-white">
+                We specialize in video editing and visual effects, creating
+                compelling stories and stunning visuals for promotional videos,
+                social media content, and full-length films.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Our Process Section */}
-      <section className="py-20 ">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif w-1/3 m-auto">
-            Our Process
+        {/* Our Members Section */}
+        <section className="max-w-6xl mx-auto px-6 py-16 bg-black bg-opacity-30 rounded-3xl  mt-24 mb-24">
+          <h2 className="text-4xl font-bold font-serif text-center text-white mb-12 bg-green-500 w-fit px-6 py-2 rounded-full m-auto shadow-xl">
+            Our Members
           </h2>
-
-          <p className="text-lg text-gray-700 mb-12">
-            Our approach to video editing and web development is methodical,
-            creative, and tailored to meet your specific needs. We ensure
-            quality and deliver your project on time.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-            {processSteps.map((step, index) => (
+          <div className="grid md:grid-cols-2 gap-12">
+            {members.map((member) => (
               <div
-                key={index}
-                className={`bg-green-500 text-white rounded-lg p-6 shadow-lg hover:shadow-2xl transition-all duration-300 ${
-                  index % 2 === 0 ? "self-start" : "self-end"
-                }`}
-                data-sal="zoom-in"
+                key={member.id}
+                className="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-xl text-white flex flex-col items-center text-center"
+                data-sal="fade-up"
                 data-sal-duration="800"
-                data-sal-easing="ease-out"
               >
-                {/* Icon */}
-                <div
-                  className="mb-4 p-4 bg-green-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto"
-                  data-sal="fade"
-                  data-sal-duration="1000"
-                  data-sal-easing="ease-out"
-                >
-                  {step.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-4">
-                  {step.title}
-                </h3>
-                <p className="text-white">{step.description}</p>
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-52 h-52 object-cover rounded-full border-4 border-green-400 mb-4"
+                />
+                <h3 className="text-3xl font-semibold">{member.name}</h3>
+                <p className="text-green-300 text-xl">{member.role}</p>
+                <p className="text-lg mt-4">{member.description}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* Our Process Section */}
+        <section className="max-w-6xl mx-auto px-6 py-16 bg-gray-800 rounded-lg ">
+          <h2 className="text-4xl font-bold font-serif text-white mb-12 bg-gradient-to-r from-green-400 to-green-600 w-fit px-6 py-2 text-center rounded-r-full shadow-xl">
+            Our Process
+          </h2>
+          <div className="grid md:grid-cols-3 gap-10">
+            {processSteps.map((step, i) => (
+              <div
+                key={i}
+                className="bg-white text-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all transform hover:scale-105"
+                data-sal="zoom-in"
+                data-sal-duration="700"
+              >
+                <div className="bg-gradient-to-r from-green-500 to-green-700 text-white w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-6 shadow-xl">
+                  {step.icon} {/* Render the appropriate React Icon here */}
+                </div>
+                <h4 className="text-xl font-semibold mb-2 text-center text-gray-800">
+                  {step.title}
+                </h4>
+                <p className="text-sm text-center text-gray-600">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   );
 };

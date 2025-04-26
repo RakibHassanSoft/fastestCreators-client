@@ -180,10 +180,10 @@ const RegisterPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen mt-40 flex items-center justify-center bg-gradient-to-r from-green-100 to-teal-100 p-6">
+    <div className="min-h-screen mt-40 flex items-center justify-center bg-gradient-to-r from-green-100 to-teal-100 lg:p-6">
   <div className="w-full max-w-4xl bg-white p-8 shadow-xl rounded-lg flex flex-col lg:flex-row">
     {/* Left Side - Form */}
-    <div className="w-full lg:w-1/2 p-6">
+    <div className="w-full md:w-11/12 lg:w-1/2 p-6">
       <h2 className="text-3xl font-bold text-center text-teal-700 mb-6">
         Create an Account
       </h2>
@@ -257,7 +257,7 @@ const RegisterPage = () => {
             <select
               id="countryCode"
               {...register("countryCode")}
-              className=" text-green-500 lg:w-28  border border-gray-300 rounded-l-md px-3 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className=" text-green-500 w-24  lg:w-28  border border-gray-300 rounded-l-md px-3 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500"
               value={countryCode}
               required
               onChange={handleCountryCodeChange}
@@ -303,7 +303,7 @@ const RegisterPage = () => {
               id="phone"
               {...register("phone", { required: true })}
               autoComplete="tel"
-              className="flex-1  p-3 border  border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className="flex-1 mg:w-64 w-full p-3 border  border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-teal-500"
               placeholder="Enter phone number"
             />
           </div>
