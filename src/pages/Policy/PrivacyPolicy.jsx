@@ -1,6 +1,7 @@
 import React from "react";
 import { FaBackward } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header/Header";
 const data  =[
   { title: "1. Information We Collect", content: "We may collect your name, contact information, demographic details, and other relevant information for surveys or offers. Our platform ensures that the data collected is only used for legitimate purposes. The personal data you provide is stored securely and will never be shared without consent. Understanding what information we collect and why is crucial to maintaining trust and transparency between us and our users." },
   { title: "2. How We Use Your Information", content: "We use the collected data for record-keeping, service improvements, promotional emails, and market research. Your data helps us personalize and enhance your experience by offering tailored solutions and recommendations. Additionally, we analyze trends and user behavior to improve our platform, ensuring that we meet your needs efficiently and responsibly." },
@@ -15,11 +16,12 @@ const data  =[
 const PrivacyPolicy = () => {
   const navigate = useNavigate();
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 md:px-8 py-8 bg-white shadow-lg rounded-lg mt-44">
+    <div className="w-full max-w-6xl mx-auto px-4 md:px-8 py-8 bg-white shadow-lg rounded-lg mt-12">
       
-      <h2 className="text-4xl font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif max-w-5xl md:w-1/2 lg:w-1/2 mx-auto">
-      Privacy Policy
-      </h2>
+      <Header
+        title="Privacy Policy"
+        description="Your privacy is important to us" 
+      />
       
       <p className="mb-6 text-base md:text-lg text-gray-700">This privacy policy sets out how Fastest Creators uses and protects any information that you give us when using this website.</p>
       

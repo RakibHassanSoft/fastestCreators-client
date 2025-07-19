@@ -6,14 +6,20 @@ import useAuth from "../hooks/useAuth";
 import logo from "../../public/img/fc.png";
 import logoI from "../../public/img/fcI.png";
 import {
+  FaBolt,
   FaChevronDown,
   FaChevronUp,
+  FaCode,
   FaFacebook,
   FaInstagram,
+  FaLayerGroup,
   FaLocationArrow,
+  FaMobileAlt,
+  FaPaintBrush,
   FaSearch,
   FaTwitter,
   FaUser,
+  FaVideo,
 } from "react-icons/fa";
 import { postPublicData } from "../BcckendConnection/postData";
 
@@ -137,179 +143,156 @@ const Navbar = () => {
     },
     // { path: "/blogs", id: "blogs", title: "Blogs" },
     { path: "/about", id: "about", title: "About" },
-    { path: "/contract", id: "contact", title: "Contact" },
+    { path: "/contact", id: "contact", title: "Contact" },
     { path: "/faq", id: "portfolio", title: "FAQ" },
     // { path: "/login", id: "login", title: "login" },
     // { path: "/register", id: "register", title: "register" },
+  ];
+  const serviceData = [
+    {
+      icon: <FaLayerGroup className="text-green-700 text-2xl" />,
+      label: "All Services",
+      path: "/services",
+      desc: `Browse the full range of creative and development services we offer. 
+                 Centralized access to design, branding, dev, and more. 
+                 Perfect for startups and growing businesses.`,
+    },
+    {
+      icon: <FaPaintBrush className="text-green-700 text-2xl" />,
+      label: "Logo Design",
+      path: "/service/logo-design",
+      desc: `Craft a memorable identity with unique, versatile logo designs. 
+                 Aligns perfectly with your brand's tone and vision. 
+                 Ideal for rebrands, startups, and personal brands.`,
+    },
+    {
+      icon: <FaBolt className="text-green-700 text-2xl" />,
+      label: "Logo Animation",
+      path: "/service/logo-animation",
+      desc: `Turn static logos into powerful animated assets that captivate. 
+                 Boosts brand presence on websites and social content. 
+                 Used in intros, reels, and pitch decks.`,
+    },
+    {
+      icon: <FaVideo className="text-green-700 text-2xl" />,
+      label: "Video Editing",
+      path: "/service/video-editing",
+      desc: `Edit raw footage into polished video content with smooth cuts, SFX, and pacing. 
+                 Built for storytelling and conversion. 
+                 Great for agencies, creators, and ads.`,
+    },
+    {
+      icon: <FaCode className="text-green-700 text-2xl" />,
+      label: "Web Development",
+      path: "/service/web-development",
+      desc: `Custom websites using MERN, Next.js or WordPress tailored to business goals. 
+                 Fast, responsive, and SEO-friendly. 
+                 Ideal for SaaS, eCommerce, and portfolios.`,
+    },
+    {
+      icon: <FaMobileAlt className="text-green-700 text-2xl" />,
+      label: "App Development",
+      path: "/service/app-development",
+      desc: `Cross-platform mobile & desktop apps using Flutter or React Native. 
+                 Seamless UX for your customers, high performance for scale. 
+                 Suitable for MVPs, startups, and internal tools.`,
+    },
   ];
   const list1 = (
     <>
       <Link
         to="/"
-        className={`py-4 px-4 text-xl  rounded-full transition flex justify-center items-center gap-3 ${
-          activeLink === "home"
-            ? "text-green-400 font-bold transform scale-110"
-            : "bg-white text-gray-500"
+        className={`py-2 px-3 text-[16px] rounded-full transition flex justify-center items-center gap-2 ${
+          activeLink === "home" ? "text-green-400" : "text-white"
         }`}
         onClick={() => handleSetActive("home")}
       >
-        <h1
-          className={`h-2 w-2 rounded-full ${
-            activeLink === "home" ? "bg-gray-300" : "bg-green-500"
-          }`}
-        ></h1>
         Home
       </Link>
 
       <div className="relative">
-        {/* Services Link with Active State */}
         <div
           onMouseEnter={openServicesMenu}
           onMouseLeave={closeServicesMenu}
           className="relative"
         >
           <Link
-            to="/services"
-            className={`py-4 px-4 text-xl  rounded-full transition flex justify-center items-center gap-3${
-              activeLink === "services"
-                ? " text-green-400 font-bold transform scale-110 "
-                : " text-gray-500"
+            className={`py-2 px-3 text-[16px] rounded-full transition flex justify-center items-center gap-2 ${
+              activeLink === "services" ? "text-green-400" : "text-white"
             }`}
-            onClick={() => handleSetActive("services")}
           >
-            <h1
-              className={`h-2 w-2 rounded-full ${
-                activeLink === "services" ? "bg-gray-300" : "bg-green-500"
-              }`}
-            ></h1>
             Services
           </Link>
 
-          {/* Dropdown Menu */}
           {isServicesMenuOpen && (
-            <div className="absolute left-0 mt-0 pt-3 bg-white border border-gray-200 rounded-md shadow-lg w-48">
-              <ul className="py-2">
-                <li>
+            <div
+              onMouseEnter={openServicesMenu}
+              onMouseLeave={closeServicesMenu}
+              className="absolute top-12 left-[50%] transform -translate-x-1/2 w-[70vw] bg-white text-black z-50 shadow-2xl rounded-xl border border-green-200"
+            >
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 px-10  py-10">
+                {serviceData.map((item) => (
                   <Link
-                    to="/service/logo-design"
-                    className="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-600"
-                    onClick={() => handleSetActive("logo-design")}
+                    key={item.path}
+                    to={item.path}
+                    onClick={() =>
+                      handleSetActive(
+                        item.label.toLowerCase().replace(/\s/g, "-")
+                      )
+                    }
+                    className="flex items-start gap-4 border p-6 hover:text-green-700 transition-colors rounded-sm duration-200"
                   >
-                    Logo Design
+                    {item.icon}
+                    <div>
+                      <h3 className="text-md font-semibold mb-2">
+                        {item.label}
+                      </h3>
+                      <p className="text-sm text-gray-600 leading-snug whitespace-pre-line">
+                        {item.desc}
+                      </p>
+                    </div>
                   </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/service/logo-animation"
-                    className="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-600"
-                    onClick={() => handleSetActive("video-editing")}
-                  >
-                    Logo animation
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/service/video-editing"
-                    className="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-600"
-                    onClick={() => handleSetActive("video-editing")}
-                  >
-                    Video Editing
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
-                    to="/service/web-development"
-                    className="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-600"
-                    onClick={() => handleSetActive("web-development")}
-                  >
-                    Web Development
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/service/app-development"
-                    className="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-600"
-                    onClick={() => handleSetActive("app-development")}
-                  >
-                    App Development
-                  </Link>
-                </li>
-              </ul>
+                ))}
+              </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* <Link
-        to="/blogs"
-        className={`py-4 px-4  text-xl  rounded-full transition flex justify-center items-center gap-3  ${
-          activeLink === "blogs"
-            ? "text-green-400 font-bold transform scale-110 "
-            : " text-gray-500"
-        }`}
-        onClick={() => handleSetActive("blogs")}
-      >
-        <h1
-          className={`h-2 w-2  rounded-full ${
-            activeLink === "blogs" ? "bg-gray-300 " : "bg-green-500"
-          }`}
-        ></h1>
-        Blogs
-      </Link> */}
       <Link
         to="/about"
-        className={`py-4 px-4 text-xl  rounded-full transition flex justify-center items-center gap-3${
-          activeLink === "about"
-            ? "text-green-400 font-bold transform scale-110 gap-3 "
-            : " text-gray-500"
+        className={`py-2 px-3 text-[16px] rounded-full transition flex justify-center items-center gap-2 ${
+          activeLink === "about" ? "text-green-400" : "text-white"
         }`}
         onClick={() => handleSetActive("about")}
       >
-        <h1
-          className={`h-2 w-2  rounded-full ${
-            activeLink === "about" ? "bg-gray-300 " : "bg-green-500"
-          }`}
-        ></h1>
         About
       </Link>
+
       <Link
-        to="/contract"
-        className={`py-4 px-4 text-xl  rounded-full transition flex justify-center items-center gap-3${
-          activeLink === "contact"
-            ? "text-green-400 font-bold transform scale-110 gap-3"
-            : " text-gray-500"
+        to="/contact"
+        className={`py-2 px-3 text-[16px] rounded-full transition flex justify-center items-center gap-2 ${
+          activeLink === "contact" ? "text-green-400" : "text-white"
         }`}
         onClick={() => handleSetActive("contact")}
       >
-        <h1
-          className={`h-2 w-2  rounded-full ${
-            activeLink === "contact" ? "bg-gray-300 " : "bg-green-500"
-          }`}
-        ></h1>
         Contact
       </Link>
+
       <Link
         to="/faq"
-        className={`py-4 px-4 text-xl   rounded-full transition flex justify-center items-center gap-3${
-          activeLink === "portfolio"
-            ? "text-green-400 font-bold transform scale-110 gap-3"
-            : " text-gray-500"
+        className={`py-2 px-3 text-[16px] rounded-full transition flex justify-center items-center gap-2 ${
+          activeLink === "portfolio" ? "text-green-400" : "text-white"
         }`}
         onClick={() => handleSetActive("portfolio")}
       >
-        <h1
-          className={`h-2 w-2  rounded-full ${
-            activeLink === "portfolio" ? "bg-gray-300  " : "bg-green-500"
-          }`}
-        ></h1>
         FAQ
       </Link>
     </>
   );
 
   const list2 = (
-    <div className="flex flex-col justify-between gap-3">
+    <div className="flex flex-col justify-between gap-2">
       {/* left part  */}
       <div className=" lg:flex w-8/12 m-auto text-center  items-center space-x-4">
         {user && (
@@ -412,260 +395,259 @@ const Navbar = () => {
   );
 
   return (
-    <div className="fixed  z-10 w-full m-auto ">
-      {/* Top Navbar */}
-      <div className="bg-gray-50  text-gray-800 text-lg w-full m-auto">
-        {/* Top Navbar - Large Screens */}
-        <div className="hidden lg:flex justify-evenly items-center px-4 py-2 ">
-          <div className="flex space-x-4">
-            <div className="flex items-center mx-auto">
-              <span className="font-medium flex justify-center items-center gap-2 text-green-500">
-                <FaLocationArrow className="text-green-500"></FaLocationArrow>
-                Location:
-              </span>
-              <span className="text-gray-500 font-bold">
-                Badda,Link road, Dhaka, Bangladesh
-              </span>
-            </div>
-            <div className="flex items-center space-x-1">
-              <span className="font-medium  flex justify-center items-center gap-2 text-green-500">
-                <FaUser className="text-green-500"></FaUser>Contact:
-              </span>
-              <a
-                href="tel:+8801997360403"
-                className="text-gray-500 font-bold hover:underline"
-              >
-              +8801997360403
-              </a>
-            </div>
-          </div>
-          <div className="flex items-center space-x-4 ">
-            {/* Social Media Icons */}
-            <Link to="https://facebook.com" rel="noopener noreferrer">
-              <FaFacebook className="text-green-500 text-2xl" />
-            </Link>
-            <Link to="https://twitter.com" rel="noopener noreferrer">
-              <FaTwitter className="text-green-500 text-2xl" />
-            </Link>
-            <Link to="https://instagram.com" rel="noopener noreferrer">
-              <FaInstagram className="text-green-500 text-2xl" />
-            </Link>
-            {/* Get in Touch Button */}
-            <button className="bg-green-400 text-white px-3 py-1 rounded hover:bg-green-600 transition">
-              Get in Touch
-            </button>
-          </div>
-        </div>
-
-        {/* Top Navbar - Small Screens */}
-        {/* <div className="lg:hidden px-4 py-2 border-4 flex justify-center items-center text-center">
-          <button
-            onClick={toggleDropdown}
-            className="text-gray-600 focus:outline-none"
-          >
-            {isDropdownOpen ? (
-              <>
-                <span className="font-medium text-center text-green-500">
-                  Top Menu
+    <div className="bg-green-950 ">
+      <div className="    w-full m-auto ">
+        {/* Top Navbar */}
+        <div className=" max-w-7xl text-gray-800 text-lg w-full m-auto">
+          {/* Top Navbar - Large Screens */}
+          <div className="hidden lg:flex text-sm justify-evenly items-center px-4  ">
+            <div className="flex space-x-4">
+              <div className="flex items-center gap-2 mx-auto">
+                <span className=" flex justify-center items-center gap-2 text-white">
+                  <FaLocationArrow className="text-white"></FaLocationArrow>
                 </span>
-                <FaChevronUp
-                  className="font-medium text-center text-green-500"
-                  size={18}
-                />
-              </>
-            ) : (
-              <>
-                <span className="font-medium text-center text-green-500">
-                  Top Menu
+                <span className="text-white ">
+                  Badda,Link road, Dhaka, Bangladesh
                 </span>
-                <FaChevronDown
-                className="font-medium text-center text-green-500"
-                size={18}
-              />
-              </>
-
-            )}
-          </button>
-        </div> */}
-        {isDropdownOpen && (
-          <div className="px-4 py-2 space-y-2 bg-gray-100">
-            <div className="flex items-center space-x-1 justify-center">
-              <span className="font-medium text-green-500">Location:</span>
-              <span className="text-gray-500 font-bold">
-                123 Main Street, City, Country
-              </span>
-            </div>
-            <div className="flex items-center space-x-1 justify-center">
-              <span className="font-medium text-green-500">Contact:</span>
-              <a
-                href="tel:+123456789"
-                className="text-gray-500 font-bold hover:underline"
-              >
-                +1 234 567 89
-              </a>
-            </div>
-            <div className="flex space-x-4 text-green-500 justify-center">
-              {/* Social Media Icons */}
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-green-500"
-              >
-                <FaFacebook size={18} />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-green-500"
-              >
-                <FaTwitter size={18} />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-green-500"
-              >
-                <FaInstagram size={18} />
-              </a>
-            </div>
-            <div className="flex justify-center">
-              <Link
-                onClick={toggleDropdown}
-                to="/contract"
-                className="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition transform hover:scale-105 w-full sm:w-1/3 mx-auto text-center"
-              >
-                Get in Touch
-              </Link>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Main Navbar */}
-      <nav className="flex  w-full items-center justify-between p-4 bg-white text-green-500 border-b border-gray-200">
-        {/* logo here  */}
-        <div className="font-semibold text-green-600">
-          {/* if extra large or large device */}
-          <img className="h-20 hidden xl:block lg:block" src={logo} alt="FC" />
-
-          {/* if medium device */}
-          <img
-            className="h-16 hidden md:block lg:hidden xl:hidden"
-            src={logo}
-            alt="FC"
-          />
-
-          {/* if small device */}
-          <img className="h-10 block md:hidden" src={logo} alt="FC" />
-        </div>
-
-        <div className="block lg:hidden" onClick={toggleSidebar}>
-          <button className="text-3xl focus:outline-none">☰</button>
-        </div>
-        <div className="hidden lg:flex justify-center space-x-2">{list1}</div>
-        <div className="hidden lg:flex items-center space-x-4">
-          {user ? (
-            <>
-              <div className="relative ">
-                <div
-                  onClick={() => setDashboard(!dashboard)}
-                  className="cursor-pointer flex items-center space-x-2"
-                >
-                  <img
-                    src="https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_0.jpg"
-                    alt="Avatar"
-                    className="w-8 h-8 rounded-full"
-                  />
-                </div>
-                {dashboard && (
-                  <div className="absolute right-0 mt-2 w-48 bg-green-600 text-white rounded-md shadow-lg z-10">
-                    <Link
-                      to="/dashboard"
-                      className="block px-4 py-2 hover:bg-green-700"
-                      onClick={() => setDashboard(false)}
-                    >
-                      Profile
-                    </Link>
-                    <Link
-                      to="/dashboard"
-                      className="block px-4 py-2 hover:bg-green-700"
-                      onClick={() => setDashboard(false)}
-                    >
-                      Dashboard
-                    </Link>
-                    <Link
-                      to="/logout"
-                      onClick={() => {
-                        setDashboard(false);
-                        handleLogOut();
-                      }}
-                      className="block px-4 py-2 hover:bg-green-700"
-                    >
-                      Logout
-                    </Link>
-                  </div>
-                )}
               </div>
-            </>
-          ) : (
-            <>
-              <Link
-                to="/register"
-                className={`py-4 px-4 text-xl  rounded-full transition flex justify-center items-center gap-3 ${
-                  activeLink === "register"
-                    ? "text-green-400 font-bold transform scale-110"
-                    : "bg-white text-gray-500"
-                }`}
-                onClick={() => handleSetActive("register")}
-              >
-                <h1
-                  className={`h-2 w-2 rounded-full ${
-                    activeLink === "register" ? "bg-gray-300" : "bg-green-500"
-                  }`}
-                ></h1>
-                Register
+              <div className="flex items-center gap-2 space-x-1">
+                <span className=" flex justify-center items-center gap-2 text-white">
+                  <FaUser className="text-white"></FaUser>
+                </span>
+                <a
+                  href="tel:+8801997360403"
+                  className="text-white  hover:underline"
+                >
+                  +8801997360403
+                </a>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4 ">
+              {/* Social Media Icons */}
+              <Link to="https://facebook.com" rel="noopener noreferrer">
+                <FaFacebook className="text-green-400 text-2xl" />
               </Link>
-              <Link
-                to="/login"
-                className={`py-4 px-4 text-xl  rounded-full transition flex justify-center items-center gap-3 ${
-                  activeLink === "login"
-                    ? "text-green-400 font-bold transform scale-110"
-                    : "bg-white text-gray-500"
-                }`}
-                onClick={() => handleSetActive("login")}
-              >
-                <h1
-                  className={`h-2 w-2 rounded-full ${
-                    activeLink === "login" ? "bg-gray-300" : "bg-green-500"
-                  }`}
-                ></h1>
-                Login
+              <Link to="https://twitter.com" rel="noopener noreferrer">
+                <FaTwitter className="text-green-400 text-2xl" />
               </Link>
-            </>
+              <Link to="https://instagram.com" rel="noopener noreferrer">
+                <FaInstagram className="text-green-400 text-2xl" />
+              </Link>
+              {/* Get in Touch Button */}
+              {!user && (
+                <div className="flex justify-center gap-1 m-1">
+                  <Link
+                    to="/register"
+                    className={`py-1 px-3 text-[16px] rounded-full transition flex justify-center items-center gap-2 ${
+                      activeLink === "register"
+                        ? "text-green-400 transform scale-110"
+                        : " text-white"
+                    }`}
+                    onClick={() => handleSetActive("register")}
+                  >
+                    Register
+                  </Link>
+
+                  <Link
+                    to="/login"
+                    className={`py-1 px-3 text-[16px] rounded-full transition flex justify-center items-center gap-2 ${
+                      activeLink === "login"
+                        ? "text-green-400 transform scale-110"
+                        : " text-white"
+                    }`}
+                    onClick={() => handleSetActive("login")}
+                  >
+                    Login
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {isDropdownOpen && (
+            <div className="px-4 py-2 space-y-2 bg-gray-100">
+              <div className="flex items-center space-x-1 justify-center">
+                <span className="font-medium text-green-500">Location:</span>
+                <span className="text-gray-500 ">
+                  123 Main Street, City, Country
+                </span>
+              </div>
+              <div className="flex items-center space-x-1 justify-center">
+                <span className="font-medium text-green-500">Contact:</span>
+                <a
+                  href="tel:+123456789"
+                  className="text-gray-500  hover:underline"
+                >
+                  +1 234 567 89
+                </a>
+              </div>
+              <div className="flex space-x-4 text-green-500 justify-center">
+                {/* Social Media Icons */}
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-green-500"
+                >
+                  <FaFacebook size={18} />
+                </a>
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-green-500"
+                >
+                  <FaTwitter size={18} />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-green-500"
+                >
+                  <FaInstagram size={18} />
+                </a>
+              </div>
+              <div className="flex justify-center">
+                <>
+                  <Link
+                    to="/register"
+                    className={`py-2 px-3 text-[16px]   rounded-full transition flex justify-center items-center gap-2 ${
+                      activeLink === "register"
+                        ? "text-green-400  transform scale-110"
+                        : "bg-white text-gray-500"
+                    }`}
+                    onClick={() => handleSetActive("register")}
+                  >
+                    <h1
+                      className={`h-2 w-2 rounded-full ${
+                        activeLink === "register"
+                          ? "bg-gray-300"
+                          : "bg-green-500"
+                      }`}
+                    ></h1>
+                    Register
+                  </Link>
+                  <Link
+                    to="/login"
+                    className={`py-2 px-3 text-[16px]   rounded-full transition flex justify-center items-center gap-3 ${
+                      activeLink === "login"
+                        ? "text-green-400  transform scale-110"
+                        : "bg-white text-gray-500"
+                    }`}
+                    onClick={() => handleSetActive("login")}
+                  >
+                    <h1
+                      className={`h-2 w-2 rounded-full ${
+                        activeLink === "login" ? "bg-gray-300" : "bg-green-500"
+                      }`}
+                    ></h1>
+                    Login
+                  </Link>
+                </>
+              </div>
+            </div>
           )}
         </div>
-      </nav>
 
-      {/* Sidebar */}
-      <div
-        className={`fixed top-0 left-0 h-screen  bg-gray-800 text-white w-80 rounded-r-lg p-6 transition-transform transform ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } overflow-y-auto`} // Add overflow-y-auto for scrolling
-      >
-        <div className="flex justify-end">
-          <button
-            className="text-5xl mb-4 px-2 border-r-4 border-b-2 border-green-500 text-green-600 rounded-full focus:outline-none"
-            onClick={toggleSidebar}
-          >
-            ×
-          </button>
-        </div>
-        <div>
+        {/* Main Navbar */}
+        <nav className="flex  max-w-[1320px] m-auto items-center justify-between p-1 bg-green-950 text-green-500  border-gray-200">
+          {/* logo here  */}
+          <div className="font-semibold text-white">
+            {/* if extra large or large device */}
+            <img
+              className="h-12 hidden xl:block lg:block"
+              src={logo}
+              alt="FC"
+            />
 
-        {list2}
+            {/* if medium device */}
+            <img
+              className="h-12 hidden md:block lg:hidden xl:hidden"
+              src={logo}
+              alt="FC"
+            />
+
+            {/* if small device */}
+            <img className="h-8 block md:hidden" src={logo} alt="FC" />
+          </div>
+
+          <div className="block lg:hidden" onClick={toggleSidebar}>
+            <button className="text-3xl focus:outline-none">☰</button>
+          </div>
+          <div className="hidden lg:flex justify-center space-x-2">{list1}</div>
+          <div className="hidden  lg:flex items-center space-x-4">
+            {user ? (
+              <>
+                <div className="relative ">
+                  <div
+                    onClick={() => setDashboard(!dashboard)}
+                    className="cursor-pointer flex items-center space-x-2"
+                  >
+                    <img
+                      src="https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_0.jpg"
+                      alt="Avatar"
+                      className="w-8 h-8 rounded-full"
+                    />
+                  </div>
+                  {dashboard && (
+                    <div className="absolute right-0 mt-2 w-48 bg-green-600 text-white rounded-md shadow-lg z-10">
+                      <Link
+                        to="/dashboard"
+                        className="block px-4 py-2 hover:bg-green-700"
+                        onClick={() => setDashboard(false)}
+                      >
+                        Profile
+                      </Link>
+                      <Link
+                        to="/dashboard"
+                        className="block px-4 py-2 hover:bg-green-700"
+                        onClick={() => setDashboard(false)}
+                      >
+                        Dashboard
+                      </Link>
+                      <Link
+                        to="/logout"
+                        onClick={() => {
+                          setDashboard(false);
+                          handleLogOut();
+                        }}
+                        className="block px-4 py-2 hover:bg-green-700"
+                      >
+                        Logout
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </>
+            ) : (
+              <div className="flex justify-center">
+                <Link
+                  to="/contact"
+                  className="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition transform hover:scale-105 mx-auto text-center"
+                >
+                  Get in Touch
+                </Link>
+              </div>
+            )}
+          </div>
+        </nav>
+
+        {/* Sidebar */}
+        <div
+          className={`fixed top-0 left-0 h-screen  bg-gray-800 text-white w-80 rounded-r-lg p-6 transition-transform transform z-30 ${
+            isOpen ? "translate-x-0" : "-translate-x-full"
+          } overflow-y-auto`} // Add overflow-y-auto for scrolling
+        >
+          <div className="flex justify-end">
+            <button
+              className="text-5xl mb-4 px-2 border-r-4 border-b-2 border-green-500 text-white rounded-full focus:outline-none"
+              onClick={toggleSidebar}
+            >
+              ×
+            </button>
+          </div>
+          <div>{list2}</div>
         </div>
       </div>
     </div>

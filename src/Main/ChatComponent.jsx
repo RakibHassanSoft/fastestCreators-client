@@ -62,7 +62,7 @@ const ChatComponent = () => {
       {isOpen && (
         <div
           ref={chatRef}
-          className="fixed bottom-16 right-4 bg-white shadow-lg rounded-lg p-4 transition-all duration-300 ease-in-out"
+          className="fixed bottom-16 right-4 bg-white shadow-lg rounded-lg p-1 mb-1 transition-all duration-300 ease-in-out"
         >
           <div className="flex flex-col items-center gap-4">
             {/* Messenger */}

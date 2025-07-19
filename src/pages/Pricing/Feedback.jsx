@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { FaStar, FaCheckCircle } from "react-icons/fa"; // For rating stars and verified symbol
-import Flag from "react-world-flags"; // For displaying flags based on country code
+import { FaStar, FaCheckCircle, FaQuoteLeft } from "react-icons/fa";
+import Flag from "react-world-flags";
+import { motion, AnimatePresence } from "framer-motion";
+import Header from "../../components/Header/Header";
 
 const DemoData = [
   {
     id: 1,
     name: "John Doe",
     rating: 4,
-    country: "US", // Country code (ISO 3166-1 alpha-2)
+    country: "US",
     comment:
       "The web development service was seamless, and the website turned out exactly as I envisioned!",
     isVerified: true,
@@ -16,7 +18,7 @@ const DemoData = [
     id: 2,
     name: "Jane Smith",
     rating: 5,
-    country: "GB", // Country code (ISO 3166-1 alpha-2)
+    country: "GB",
     comment:
       "Absolutely loved the logo design! It's modern and professional, perfectly reflecting our brand.",
     isVerified: true,
@@ -25,7 +27,7 @@ const DemoData = [
     id: 3,
     name: "Tom Lee",
     rating: 3,
-    country: "CA", // Country code (ISO 3166-1 alpha-2)
+    country: "CA",
     comment:
       "App development was decent, but there were some minor delays in delivery. However, the final result was functional.",
     isVerified: false,
@@ -34,7 +36,7 @@ const DemoData = [
     id: 4,
     name: "Alice Brown",
     rating: 4,
-    country: "AU", // Country code (ISO 3166-1 alpha-2)
+    country: "AU",
     comment:
       "The video editing service was great. The final video met our expectations, though a few more revisions would have been helpful.",
     isVerified: true,
@@ -43,7 +45,7 @@ const DemoData = [
     id: 5,
     name: "Mark Taylor",
     rating: 5,
-    country: "DE", // Country code (ISO 3166-1 alpha-2)
+    country: "DE",
     comment:
       "Highly recommend for web development projects. The team is professional and always delivers on time!",
     isVerified: false,
@@ -52,80 +54,226 @@ const DemoData = [
     id: 6,
     name: "Sarah Connor",
     rating: 2,
-    country: "FR", // Country code (ISO 3166-1 alpha-2)
+    country: "FR",
     comment:
       "The app development service did not meet my expectations. The user interface was not intuitive enough for my audience.",
     isVerified: true,
   },
+  {
+    id: 7,
+    name: "Luis Martinez",
+    rating: 5,
+    country: "ES",
+    comment:
+      "Fantastic experience! The design team captured our vision perfectly and delivered on schedule.",
+    isVerified: true,
+  },
+  {
+    id: 8,
+    name: "Hiroshi Tanaka",
+    rating: 4,
+    country: "JP",
+    comment:
+      "The software solution improved our workflow dramatically. Support was responsive and helpful.",
+    isVerified: true,
+  },
+  {
+    id: 9,
+    name: "Amina Ibrahim",
+    rating: 5,
+    country: "NG",
+    comment:
+      "Very professional and talented team. They exceeded our expectations in every aspect of the project.",
+    isVerified: true,
+  },
+  {
+    id: 10,
+    name: "Olivia Johnson",
+    rating: 3,
+    country: "NZ",
+    comment:
+      "Overall good service, but some communication gaps delayed the project slightly.",
+    isVerified: false,
+  },
+  {
+    id: 11,
+    name: "David Kim",
+    rating: 4,
+    country: "KR",
+    comment:
+      "Creative and efficient, they helped us launch our app faster than planned.",
+    isVerified: true,
+  },
+  {
+    id: 12,
+    name: "Mia Chen",
+    rating: 5,
+    country: "TW",
+    comment:
+      "The branding package was exactly what our company needed. Very happy with the results.",
+    isVerified: true,
+  },
+  {
+    id: 13,
+    name: "Carlos Silva",
+    rating: 4,
+    country: "BR",
+    comment:
+      "Good communication and solid technical skills. Would hire again for future projects.",
+    isVerified: true,
+  },
+  {
+    id: 14,
+    name: "Sophia Müller",
+    rating: 5,
+    country: "CH",
+    comment:
+      "The UI/UX design transformed our website. The team was attentive to every detail.",
+    isVerified: true,
+  },
+  {
+    id: 15,
+    name: "Ethan Williams",
+    rating: 4,
+    country: "IE",
+    comment:
+      "Highly skilled developers who delivered a great product. Support could be a bit faster though.",
+    isVerified: false,
+  },
 ];
+
 
 const Feedback = () => {
   const [feedbackData, setFeedbackData] = useState(DemoData);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  // Function to cycle through items every 4 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setFeedbackData((prevData) => {
-        // Move the last item to the front of the array
-        const newData = [...prevData];
-        const lastItem = newData.pop(); // Remove the last item
-        newData.unshift(lastItem); // Add the last item to the front
-        return newData;
-      });
-    }, 4000); // Change order every 4 seconds
-
-    return () => clearInterval(interval); // Cleanup interval on unmount
+      setActiveIndex((prev) => (prev + 1) % DemoData.length);
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
+  const activeItems = [
+    feedbackData[activeIndex],
+    feedbackData[(activeIndex + 1) % feedbackData.length],
+    feedbackData[(activeIndex + 2) % feedbackData.length],
+    feedbackData[(activeIndex + 3) % feedbackData.length],
+  ];
+
   return (
-    <div className="w-full bg-gray-50 p-6">
-      <h1 className="text-center font-bold text-2xl text-green-600 border-2 border-green-500 rounded-2xl p-4 mb-6">
-        Feedback
-      </h1>
+    <div className="w-full bg-gray-50 py-16 px-6">
+      <div className="text-center mb-10">
+        <Header
+          title="Client Feedback"
+          description="What our clients say about us"
+          icon={<FaQuoteLeft className="text-3xl text-green-700" />}
+        />
+      </div>
+
       <div className="overflow-hidden">
-        <div className="flex flex-wrap justify-center gap-6">
-          {feedbackData.slice(0, 4).map((item) => (
-            <div
-              key={item.id}
-              className="flex-shrink-0 flex flex-col items-center p-6 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 w-72 sm:w-1/4 mx-2 mb-6 bg-white border border-gray-200 transform hover:scale-105"
-            >
-              {/* Flag */}
-              <Flag code={item.country} style={{ width: "50px", height: "50px" }} className="mb-4" />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeIndex}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-wrap justify-center gap-8"
+          >
+            {activeItems.map((item) => {
+              const isRed = item.rating >= 4;
+              const primaryColor = isRed ? "green" : "green"; // red or purple
+              const bgLight = isRed ? "white" : "white";
 
-              {/* Name with Verified Badge */}
-              <div className="flex items-center mb-3">
-                <h3 className="text-lg font-semibold text-green-800 mr-2">
-                  {item.name}
-                </h3>
-                {item.isVerified && (
-                  <FaCheckCircle className="text-blue-500 text-xl" />
-                )}
-              </div>
+              return (
+                <motion.div
+                  key={item.id}
+                  className="relative w-[330px] overflow-visible"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  {/* Top Wave */}
+                  <div className="relative w-full h-20 bg-white">
+                    <svg
+                      viewBox="0 0 500 150"
+                      preserveAspectRatio="none"
+                      className="absolute top-0 left-0 w-full h-full"
+                    >
+                      <path
+                        d="M0.00,49.98 C150.00,150.00 349.47,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                        style={{
+                          stroke: "none",
+                          fill: primaryColor,
+                        }}
+                      />
+                    </svg>
+                  </div>
 
-              {/* Rating */}
-              <div className="flex items-center space-x-1 mb-3">
-                {[...Array(5)].map((_, index) => (
-                  <FaStar
-                    key={index}
-                    className={`${
-                      index < item.rating ? "text-yellow-500" : "text-gray-300"
-                    } text-lg`}
-                  />
-                ))}
-              </div>
+                  {/* Card Body */}
+                  <div
+                    className="relative rounded-xl shadow-lg border p-5 pt-10 mt-[-20px] z-10"
+                    style={{ backgroundColor: bgLight }}
+                  >
+                    {/* Avatar */}
+                    <div
+                      className="absolute -left-5 -top-10 w-16 h-16 border-4 bg-white z-20"
+                      style={{
+                        borderColor: primaryColor,
+                        borderRadius: "50%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: "1.5rem",
+                        color: primaryColor,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {item.name[0]}
+                    </div>
 
-              {/* Comment */}
-              <p className="text-sm text-green-800 text-center mb-4 px-3">
-                {item.comment}
-              </p>
+                    <FaQuoteLeft className="text-xl mb-2" style={{ color: primaryColor }} />
+                    <p className="text-sm text-gray-800 italic mb-4">{item.comment}</p>
 
-              {/* Country */}
-              <div className="text-xs text-gray-500 mt-2">
-                <span className="font-semibold">Country: </span>{item.country}
-              </div>
-            </div>
-          ))}
-        </div>
+                    {/* Stars */}
+                    <div className="flex justify-center mb-3">
+                      {[...Array(5)].map((_, index) => (
+                        <FaStar
+                          key={index}
+                          className={`mx-0.5 ${
+                            index < item.rating
+                              ? "text-yellow-500"
+                              : "text-gray-300"
+                          }`}
+                        />
+                      ))}
+                    </div>
+
+                    {/* Name & Status */}
+                    <div className="text-center mt-2">
+                      <h4 className="text-md font-semibold" style={{ color: primaryColor }}>
+                        {item.name}
+                      </h4>
+                      <span className="text-xs text-gray-500">Client</span>
+                      {item.isVerified && (
+                        <FaCheckCircle className="inline ml-1 text-sm text-green-500" />
+                      )}
+                    </div>
+
+                    {/* Country */}
+                    <div className="flex items-center justify-center mt-2 text-lg text-gray-500">
+                      <Flag
+                        code={item.country}
+                        style={{ width: "20px", height: "14px", marginRight: "6px" }}
+                        className="rounded"
+                      />
+                      <span>{item.country}</span>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );

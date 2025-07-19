@@ -5,35 +5,30 @@ import useStore from "../../zustand/useStore";
 const Tab = ({ feature, pricing }) => {
   const [activeTab, setActiveTab] = useState(0);
   const { data, setData } = useStore();
- const navigete = useNavigate();
+  const navigete = useNavigate();
   const handleTabClick = (index) => {
     setActiveTab(index);
   };
 
   // Creating the active features based on the active tab
   const activeFeatures = feature?.map((item) => ({
-    feature: item?.title,  // Using the title for the feature name
-    value: item?.features[activeTab],  // Access features based on the activeTab index
+    feature: item?.title, // Using the title for the feature name
+    value: item?.features[activeTab], // Access features based on the activeTab index
   }));
-  
 
   // Extracting the active package (pricing) based on the tab
   const activePackageKey = ["basic", "standard", "premium"][activeTab];
   const activePackage = pricing[activePackageKey];
 
-
-  const handleSubmitForPayment= (data)=>{
+  const handleSubmitForPayment = (data) => {
     // console.log(data)
-    setData(data)
+    setData(data);
 
-      navigete("/order-for-payment");
-  
-   
-  }
-  
- 
+    navigete("/order-for-payment");
+  };
+
   return (
-    <div className="w-full md:w-full mt-12 md:mt-0 lg:mt-0  lg:w-1/3">
+    <div className="w-full md:w-full mt-12 md:mt-0 lg:mt-0  ">
       {/* Tab Headers */}
       <div className="flex w-full justify-center shadow-lg rounded-t-lg overflow-hidden">
         {["Basic", "Standard", "Premium"].map((tab, index) => (
@@ -94,47 +89,47 @@ const Tab = ({ feature, pricing }) => {
             <span className="font-bold">Revisions: </span>
             {activePackage?.revisions}
           </p>
-          {
-            activePackage?.FootageProvidedByBuyer && (
-              <p className="text-lg font-semibold text-gray-700">
-                <span className="font-bold">Footage Provided By Buyer: </span>
-                {activePackage?.FootageProvidedByBuyer}
-              </p>
-            )
-          }
-          {
-            activePackage?.RunningTime!=null && (
-              <p className="text-lg font-semibold text-gray-700">
-                <span className="font-bold">Running Time: </span>
-                {activePackage?.RunningTime}
-              </p>
-            )
-          }
-          {
-            activePackage?.pages && (
-              <p className="text-lg font-semibold text-gray-700">
-                <span className="font-bold">Pages: </span>
-                {activePackage?.pages}
-              </p>
-            )
-          }
+          {activePackage?.FootageProvidedByBuyer && (
+            <p className="text-lg font-semibold text-gray-700">
+              <span className="font-bold">Footage Provided By Buyer: </span>
+              {activePackage?.FootageProvidedByBuyer}
+            </p>
+          )}
+          {activePackage?.RunningTime != null && (
+            <p className="text-lg font-semibold text-gray-700">
+              <span className="font-bold">Running Time: </span>
+              {activePackage?.RunningTime}
+            </p>
+          )}
+          {activePackage?.pages && (
+            <p className="text-lg font-semibold text-gray-700">
+              <span className="font-bold">Pages: </span>
+              {activePackage?.pages}
+            </p>
+          )}
           <p className="text-lg font-semibold text-gray-700">
             <span className="font-bold">Delivery Time: </span>
             {activePackage?.deliveryTime}
           </p>
           <div className="mt-6 text-center">
-          <button onClick={()=>handleSubmitForPayment(activePackage)} className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg shadow-md transition-all">
-            Continue
-          </button>
-          <Link to="/privacy-policy">
-          <button className="ml-4 bg-blue-400 text-white hover:bg-black py-2 px-4 rounded-lg shadow-md transition-all">
-             privacy & policy
-          </button>
-          </Link>
-        </div>
-        </div>
+            <div className="flex flex-wrap justify-center items-center gap-4 mt-6">
+              {/* Primary Continue Button */}
+              <button
+                onClick={() => handleSubmitForPayment(activePackage)}
+                className="bg-green-600 hover:bg-black text-white  font-semibold py-2 px-2 rounded-lg shadow-lg transition-all duration-300"
+              >
+                Continue
+              </button>
 
-        
+              {/* Privacy Policy Link Button */}
+              <Link to="/privacy-policy">
+                <button className="bg-blue-500 hover:bg-black text-white font-medium py-2 px-2 rounded-lg shadow-md transition-all duration-300">
+                  Privacy & Policy
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

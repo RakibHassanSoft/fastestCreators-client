@@ -212,7 +212,7 @@ const Service = () => {
         <div>
           {/* <AllService data={data} isLoading={isLoading} /> */}
 
-          {/* Service Table */}
+    
           {/* Service Table */}
           <table className="min-w-full mt-6 bg-white shadow-lg rounded-lg overflow-hidden">
             <thead className="bg-teal-600 text-white">

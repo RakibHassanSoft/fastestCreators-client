@@ -25,14 +25,16 @@ const Main = () => {
     }, []);
 
     return (
-        <div className="flex flex-col min-h-screen bg-gray-50 font-montserrat">
-            {loading && <Preloader />} {/* Show Preloader while loading */}
+        <div>
+             {loading ? <Preloader /> :
+             <div className="flex flex-col min-h-screen bg-gray-50 font-montserrat">
+          
             
             {/* Navbar */}
             <Navbar />
             
             {/* Main Content Area */}
-            <div className={`flex-grow ${loading ? 'hidden' : 'block'} lg:px-4 py-6`}>
+            <div className={`flex-grow ${loading ? 'hidden' : 'block'} `}>
                 {/* Outlet renders the nested routes/components */}
                 <Outlet />
             </div>
@@ -46,6 +48,9 @@ const Main = () => {
             </div>
 
             {/* <BackButton /> */}
+        </div>
+             } {/* Show Preloader while loading */}
+        
         </div>
     );
 };

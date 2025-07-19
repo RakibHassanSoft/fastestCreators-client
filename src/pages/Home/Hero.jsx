@@ -1,97 +1,73 @@
-import React, { useState, useEffect } from "react";
-import useService from "../../hook/useService";
+import React from "react";
+import { motion } from "framer-motion";
+import { CalendarDays } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
-  const { data, isLoading, isError, error } = useService();
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) =>
-        data && data.length > 0 ? (prevSlide + 1) % data.length : 0
-      );
-    }, 3000); // Change slide every 3 seconds
-    return () => clearInterval(interval);
-  }, [data]);
-
-  // Loading Skeleton
-  if (isLoading) {
-    return (
-      <section className="bg-black text-white py-20">
-        <div className="container mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-4">Our Services</h1>
-          <p className="text-lg mb-6">
-            We offer a range of services to help your business succeed.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Skeleton Loader */}
-            <div className="flex flex-col items-center space-y-4 animate-pulse">
-              <div className="w-20 h-20 bg-green-200 rounded-full mb-2"></div>
-              <div className="w-32 h-6 bg-green-200 rounded-md"></div>
-            </div>
-            <div className="flex flex-col items-center space-y-4 animate-pulse">
-              <div className="w-20 h-20 bg-green-200 rounded-full mb-2"></div>
-              <div className="w-32 h-6 bg-green-200 rounded-md"></div>
-            </div>
-            <div className="flex flex-col items-center space-y-4 animate-pulse">
-              <div className="w-20 h-20 bg-green-200 rounded-full mb-2"></div>
-              <div className="w-32 h-6 bg-green-200 rounded-md"></div>
-            </div>
-            <div className="flex flex-col items-center space-y-4 animate-pulse">
-              <div className="w-20 h-20 bg-green-200 rounded-full mb-2"></div>
-              <div className="w-32 h-6 bg-green-200 rounded-md"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  // If data is available, render the actual content
-  if (!data || data.length === 0) {
-    return <p className="text-gray-600 text-center">No images available.</p>;
-  }
-  
   return (
-    <div className="relative h-64 md:h-80 lg:h-screen bg-gray-800">
-      {/* Slider */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        {data.map((item, index) => (
-          <img
-            key={item._id || Math.random()}
-            src={item.serviceImage}
-            alt={item.title || "Portfolio Image"}
-            className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
-              index === currentSlide ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        ))}
-      </div>
+    <div
+      className="relative w-full min-h-screen lg:min-h-[calc(100vh-320px)]  overflow-hidden bg-cover bg-center"
+      style={{
+        backgroundImage:
+          "url('https://i.ibb.co/d4CBvHT3/GPP066.jpg')",
+      }}
+    >
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-60" />
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center text-white">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          Welcome to My Portfolio
-        </h1>
-        <p className="text-lg md:text-xl">
-          Showcasing Creativity and Expertise
-        </p>
-      </div>
+      {/* Content */}
+      <div className="relative z-5 max-w-7xl mx-auto px-6 md:px-10 py-24 flex flex-col lg:flex-row items-center justify-between gap-12">
+        {/* Left side */}
+        <motion.div
+          initial={{ opacity: 0, x: -60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+          className="flex-1 text-center lg:text-left"
+        >
+          <div className="inline-block text-sm font-medium bg-green-100 text-green-800 px-3 py-1 rounded-full mb-4">
+            Built for Ambitious Startups
+          </div>
 
-      {/* Navigation Buttons */}
-      <div className="absolute w-full bottom-8 flex justify-center gap-4">
-        {data.map((_, index) => (
-          <button
-            key={index}
-            className={`w-4 h-4 rounded-full ${
-              index === currentSlide ? "bg-teal-600" : "bg-gray-400"
-            }`}
-            onClick={() => setCurrentSlide(index)}
-          ></button>
-        ))}
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-6">
+            Power Up Your Product with
+            <span className="text-green-400"> Bangladeshi Talent</span>
+          </h1>
+
+          <p className="text-lg text-gray-300 mb-8 max-w-xl mx-auto lg:mx-0">
+            From MVP to enterprise — we design, build, and scale your digital products with agility and quality.
+          </p>
+
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition"
+          >
+            <CalendarDays className="w-5 h-5" />
+            Schedule a Call
+          </Link>
+        </motion.div>
+
+        {/* Right stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="grid grid-cols-2 gap-6 flex-1 w-full max-w-lg"
+        >
+          <StatBox title="25+ Projects" subtitle="Delivered Worldwide" />
+          <StatBox title="10+ Experts" subtitle="MERN, DevOps, UI/UX" />
+          <StatBox title="4.9/5 Rating" subtitle="Across Platforms" />
+          <StatBox title="Based in Dhaka" subtitle="Serving Clients Globally" />
+        </motion.div>
       </div>
     </div>
   );
 };
+
+const StatBox = ({ title, subtitle }) => (
+  <div className="bg-green-500 bg-opacity-90 text-white p-6 rounded-xl shadow-md hover:shadow-xl transition text-center backdrop-blur-sm">
+    <h3 className="text-xl font-semibold">{title}</h3>
+    <p className="text-sm mt-1">{subtitle}</p>
+  </div>
+);
 
 export default Hero;

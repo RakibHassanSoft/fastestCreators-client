@@ -55,7 +55,7 @@ const MapComponent = () => {
   }, []);
 
   return (
-    <div data-aos="fade-up" className="mt-28 mb-28">
+    <div data-aos="fade-up" className="p-4 lg:p-8 mt-16  lg:mt-32 mb-16 lg:mb-32 max-w-7xl mx-auto">
       {geoError && (
         <div className="text-red-500 mb-4 text-center">
           {/* {geoError} */}

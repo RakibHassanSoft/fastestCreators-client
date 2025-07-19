@@ -35,6 +35,10 @@ import BlogPage from "../pages/Blog/BlogPage";
 import Orders from "../pages/DashBoard/Order/Orders";
 import MyOrder from "../pages/MyOrder/MyOrder";
 import TermsConditions from "../pages/TermsConditions/TermsConditions";
+import PaymentSuccess from "../pages/Payment/PaymentSuccess";
+import PaymentFail from "../pages/Payment/PaymentFail";
+import Contact from "../pages/Contact/Contact";
+import MainService from "../pages/MainService/MainService";
 
   const Router = createBrowserRouter([
     {
@@ -47,12 +51,21 @@ import TermsConditions from "../pages/TermsConditions/TermsConditions";
             element:<Home></Home>
         },
         {
+            path:'/payment-success',
+            element:<PaymentSuccess/>
+        },
+        {
+            path:'/payment-fail',
+            element:<PaymentFail/>
+        },
+       
+        {
             path:'/about',
             element:<About></About>
         },
         {
-            path:'/contract',
-            element:<ContactUs></ContactUs>
+            path:'/contact',
+            element:<Contact/>
         },
       
         {
@@ -101,7 +114,7 @@ import TermsConditions from "../pages/TermsConditions/TermsConditions";
         },
         {
             path:'/services', 
-            element:<ServiceTab></ServiceTab>
+            element:<MainService></MainService>
         },
         {
             path:'/service/:slug',

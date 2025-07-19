@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import sal from "sal.js";
-import { FaPencilAlt, FaCog, FaCheckCircle, FaCalendarCheck, FaCogs } from "react-icons/fa";
-import bgImg from "../../../public/img/download.jpeg";
+import { FaCheckCircle, FaCalendarCheck, FaCogs } from "react-icons/fa";
+import OurProcess from "../../components/OurProcess/OurProcess";
+import Header from "../../components/Header/Header";
 
 const About = () => {
   useEffect(() => {
@@ -29,169 +30,138 @@ const About = () => {
         "https://res.cloudinary.com/dvdyfyryz/image/upload/v1745561279/474126757_1742769009628063_7491725414084458000_n_nxvx0r.jpg",
     },
   ];
+
   const processSteps = [
     {
       title: "Planning",
-      description: "We start by understanding your goals and needs, creating a roadmap for your project.",
-      icon: <FaCalendarCheck className="text-3xl" />, // React Icon for Planning
+      description:
+        "We start by understanding your goals and needs, creating a clear roadmap for your project.",
+      icon: <FaCalendarCheck className="text-green-900 text-4xl" />,
     },
     {
       title: "Execution",
-      description: "Our team works hard to bring your vision to life, with attention to detail at every stage.",
-      icon: <FaCogs className="text-3xl" />, // React Icon for Execution
+      description:
+        "Our team brings your vision to life with precision, focusing on quality at every step.",
+      icon: <FaCogs className="text-green-900 text-4xl" />,
     },
     {
       title: "Delivery",
-      description: "We ensure that your project is delivered on time with high-quality results and precision.",
-      icon: <FaCheckCircle className="text-3xl" />, // React Icon for Delivery
+      description:
+        "We deliver your project on time with top quality and ongoing support to ensure success.",
+      icon: <FaCheckCircle className="text-green-900 text-4xl" />,
     },
   ];
-  
 
   return (
-    <div className="relative text-gray-800 pt-32  ">
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-white/10 z-0"></div>
-
-      {/* Content Layer with Background Image */}
-      <div
-        className="relative z-0 bg-black bg-opacity-70"
-        style={{
-          backgroundOpacity: 1,
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-          backgroundImage: `url(${bgImg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-        }}
-      >
+    <div className="bg-white min-h-screen text-gray-800">
+      <div className="max-w-7xl mx-auto px-6 py-20">
         {/* Hero Section */}
-        <section className="flex flex-col items-center px-6 text-center text-white py-20">
-          <h2 className="text-5xl font-bold font-serif bg-green-500 px-6 py-2 rounded-full shadow-lg mb-6">
-            About Fastest Creators
-          </h2>
-         
-          <Link to="/contract">
-            <button className="bg-white text-green-600 px-8 py-3 rounded-full font-semibold hover:bg-green-100 transition duration-300 shadow-md">
+        <section className="text-center max-w-3xl mx-auto mb-20">
+          <Header
+            title="About Us"
+            description="Your trusted partner for innovative digital solutions"
+          />
+
+          <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+            We are a cutting-edge digital solutions company dedicated to
+            delivering innovative and tailored services including web
+            development, app development, branding, and video editing that
+            empower your business to thrive in the digital era.
+          </p>
+          <Link to="/contact">
+            <button className="bg-green-900 hover:bg-green-800 transition duration-300 text-white font-semibold rounded-full px-8 py-3 shadow-lg">
               Get in Touch
             </button>
           </Link>
         </section>
 
-        {/* Detailed Explanation of Services */}
-        <section className="max-w-6xl mx-auto px-6 py-16 bg-black bg-opacity-50 rounded-3xl ">
-          <h2 className="text-4xl font-bold font-serif text-center text-white mb-12 bg-green-500 w-fit px-6 py-2 rounded-full m-auto shadow-xl">
-            Our Services
-          </h2>
-          <div className="space-y-12">
-            <div>
-              <h3 className="text-3xl text-white font-semibold mb-4">
-                1. Web Development
-              </h3>
-              <p className="text-lg text-white">
-                We create responsive, fast, and secure websites using modern
-                technologies like React, Next.js, and Vue.js for the frontend
-                and Node.js, Express, and MongoDB for the backend. Our
-                e-commerce solutions are custom-tailored to integrate payment
-                gateways, product catalogs, and more.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-3xl text-white font-semibold mb-4">
-                2. App Development
-              </h3>
-              <p className="text-lg text-white">
-                Whether for iOS or Android, we create intuitive,
-                high-performance apps using React Native, Flutter, and native
-                tools. Our apps are optimized for performance and security,
-                ensuring a seamless experience for users.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-3xl text-white font-semibold mb-4">
-                3. Logo Design
-              </h3>
-              <p className="text-lg text-white">
-                We craft unique, memorable logos that align with your brand
-                identity. Our design process focuses on creativity, simplicity,
-                and versatility across different mediums.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-3xl text-white font-semibold mb-4">
-                4. Logo Animation
-              </h3>
-              <p className="text-lg text-white">
-                Our team animates logos to add dynamic and professional touches
-                to your brand. We create 2D and 3D animations for website
-                headers, social media ads, video intros, and promotional videos.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-3xl text-white font-semibold mb-4">
-                5. Video Editing (VFX)
-              </h3>
-              <p className="text-lg text-white">
-                We specialize in video editing and visual effects, creating
-                compelling stories and stunning visuals for promotional videos,
-                social media content, and full-length films.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Our Members Section */}
-        <section className="max-w-6xl mx-auto px-6 py-16 bg-black bg-opacity-30 rounded-3xl  mt-24 mb-24">
-          <h2 className="text-4xl font-bold font-serif text-center text-white mb-12 bg-green-500 w-fit px-6 py-2 rounded-full m-auto shadow-xl">
-            Our Members
-          </h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            {members.map((member) => (
-              <div
-                key={member.id}
-                className="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-xl text-white flex flex-col items-center text-center"
-                data-sal="fade-up"
-                data-sal-duration="800"
-              >
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-52 h-52 object-cover rounded-full border-4 border-green-400 mb-4"
-                />
-                <h3 className="text-3xl font-semibold">{member.name}</h3>
-                <p className="text-green-300 text-xl">{member.role}</p>
-                <p className="text-lg mt-4">{member.description}</p>
+        {/* Services Section */}
+        <section className="rounded-3xl p-10 mb-24 border border-green-900/30">
+          <Header
+            title="Our Services"
+            description="Explore our wide range of services designed to meet your needs."
+          />
+          <div className="grid md:grid-cols-2 gap-14 max-w-5xl mx-auto text-gray-700">
+            {[
+              {
+                title: "Web Development",
+                desc: `Responsive, secure websites using React, Next.js, Vue.js, Node.js, Express, and MongoDB. Custom e-commerce with payment integration.`,
+              },
+              {
+                title: "App Development",
+                desc: `High-performance iOS & Android apps using React Native and Flutter optimized for security and user experience.`,
+              },
+              {
+                title: "Logo Design",
+                desc: `Unique, memorable logos that align perfectly with your brand identity for versatile usage.`,
+              },
+              {
+                title: "Logo Animation",
+                desc: `Dynamic 2D & 3D animated logos for website headers, social media, and promotional videos.`,
+              },
+              {
+                title: "Video Editing (VFX)",
+                desc: `Professional video editing and VFX for promotional content, social media, and films.`,
+              },
+            ].map(({ title, desc }) => (
+              <div key={title}>
+                <h3 className="text-2xl font-semibold mb-3 text-green-900">
+                  {title}
+                </h3>
+                <p className="leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Our Process Section */}
-        <section className="max-w-6xl mx-auto px-6 py-16 bg-gray-800 bg-opacity-40 rounded-lg ">
-          <h2 className="text-4xl font-bold font-serif text-white mb-12 bg-gradient-to-r from-green-400 to-green-600 w-fit px-6 py-2 text-center rounded-r-full shadow-xl">
-            Our Process
-          </h2>
-          <div className="grid md:grid-cols-3 gap-10">
-            {processSteps.map((step, i) => (
-              <div
-                key={i}
-                className="bg-white text-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all transform hover:scale-105"
-                data-sal="zoom-in"
+        {/* Team Section */}
+        <section className="max-w-6xl mx-auto mb-2 px-2">
+          <Header
+            title="Meet Our Team"
+            description="A dedicated team of professionals committed to your success"
+          />
+
+          <div className="grid md:grid-cols-2 gap-16">
+            {members.map(({ id, name, role, description, image }) => (
+              <article
+                key={id}
+                className="bg-green-950 text-white rounded-3xl p-8 flex flex-col items-center text-center shadow-lg border border-green-100 transition-all duration-500 ease-in-out group hover:bg-black hover:text-white hover:shadow-2xl"
+                data-sal="fade-up"
                 data-sal-duration="700"
               >
-                <div className="bg-gradient-to-r from-green-500 to-green-700 text-white w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-6 shadow-xl">
-                  {step.icon} {/* Render the appropriate React Icon here */}
+                {/* Image container with gradient ring and shadow */}
+                <div className="relative w-48 h-48 mb-6 rounded-full overflow-hidden border-[6px] border-green-700 shadow-md transition-transform duration-500 group-hover:scale-105">
+                  <img
+                    src={image}
+                    alt={name}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-t from-green-800/60 via-transparent to-transparent opacity-70"></div>
                 </div>
-                <h4 className="text-xl font-semibold mb-2 text-center text-gray-800">
-                  {step.title}
-                </h4>
-                <p className="text-sm text-center text-gray-600">
-                  {step.description}
+
+                {/* Name */}
+                <h3 className="text-2xl font-bold  group-hover:text-white mb-1 leading-tight tracking-tight transition-colors duration-300">
+                  {name}
+                </h3>
+
+                {/* Role */}
+                <p className="text-green-600 group-hover:text-green-300 font-medium mb-4 uppercase tracking-wide text-sm transition-colors duration-300">
+                  {role}
                 </p>
-              </div>
+
+                {/* Description */}
+                <p className="text-gray-50 group-hover:text-gray-200 text-sm leading-relaxed max-w-sm transition-colors duration-300">
+                  {description}
+                </p>
+              </article>
             ))}
           </div>
         </section>
+
+        {/* Process Section */}
+        <OurProcess />
       </div>
     </div>
   );

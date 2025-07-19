@@ -1,13 +1,16 @@
 import React from "react";
+import Header from "../../components/Header/Header";
 
 const AboutGig = ({ whyChooseUs, offerings, highlights }) => {
   // console.log(offerings)
 
   return (
-    <div className="mx-auto p-6 lg:mt-32">
-      <h1 className="text-3xl font-bold text-center text-green-800 mb-6">
-        About Our Gig
-      </h1>
+    <div className="mx-auto p-6 lg:mt-12  ">
+      <Header
+        title="About This Gig"
+        description="Learn more about our services and what makes us the best choice for your
+        project."
+      />
 
       <p className="text-lg text-green-800 mb-4">
         Welcome to our amazing gig where you get the highest quality video
@@ -93,11 +96,7 @@ const AboutGig = ({ whyChooseUs, offerings, highlights }) => {
         </ul>
       </div>
 
-      <div className="text-center">
-        <button className="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600 transition-all duration-300">
-          Get Started
-        </button>
-      </div>
+    
     </div>
   );
 };

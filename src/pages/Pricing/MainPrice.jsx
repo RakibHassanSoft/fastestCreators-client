@@ -2,136 +2,57 @@ import React from "react";
 import { RxCross1 } from "react-icons/rx";
 import { MdCheck } from "react-icons/md";
 
-// Skeleton block with adjustable size
-const SkeletonBox = ({ className }) => (
-  <div className={`bg-green-200 rounded-md animate-pulse ${className}`}></div>
-);
-
-// Skeleton layout that mimics the actual component structure
-const SkeletonLoader = () => {
-  return (
-    <div className="w-full m-auto bg-gradient-to-b from-green-100 via-white to-green-50 rounded-lg shadow-lg overflow-hidden">
-      <div className="flex sm:flex-row md:flex-row">
-        {/* Left Column */}
-        <div className="flex flex-col w-full md:w-1/4 mb-12 border-r border-green-300">
-          <div className="h-20 flex justify-center items-center bg-gradient-to-r from-green-500 to-green-600">
-            <SkeletonBox className="h-6 w-1/3" />
-          </div>
-          <div className="flex flex-col text-center text-lg text-green-800">
-            <SkeletonBox className="h-20 w-full mb-2" />
-            <SkeletonBox className="h-20 w-full mb-2" />
-            <SkeletonBox className="h-20 w-full mb-2" />
-            <SkeletonBox className="h-20 w-full mb-2" />
-          </div>
-        </div>
-
-        {/* Right Column */}
-        <div className="w-full md:w-3/4 overflow-x-auto">
-          <table className="w-full text-center border-collapse border border-green-300">
-            <thead>
-              <tr className="bg-gradient-to-r from-green-500 text-center to-green-600 text-white text-xl h-20 font-bold">
-                <th className="px-4 py-2">
-                  <SkeletonBox className="h-6 w-20" />
-                </th>
-                <th className="px-4 py-2">
-                  <SkeletonBox className="h-6 w-20" />
-                </th>
-                <th className="px-4 py-2">
-                  <SkeletonBox className="h-6 w-20" />
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="h-20 border-b border-green-300">
-                <td className="text-center text-lg font-medium px-4 py-2">
-                  <SkeletonBox className="h-6 w-6 mx-auto" />
-                </td>
-                <td className="text-center text-lg font-medium px-4 py-2">
-                  <SkeletonBox className="h-6 w-6 mx-auto" />
-                </td>
-                <td className="text-center text-lg font-medium px-4 py-2">
-                  <SkeletonBox className="h-6 w-6 mx-auto" />
-                </td>
-              </tr>
-              <tr className="h-20 border-b border-green-300">
-                <td className="text-center text-lg font-medium px-4 py-2">
-                  <SkeletonBox className="h-6 w-6 mx-auto" />
-                </td>
-                <td className="text-center text-lg font-medium px-4 py-2">
-                  <SkeletonBox className="h-6 w-6 mx-auto" />
-                </td>
-                <td className="text-center text-lg font-medium px-4 py-2">
-                  <SkeletonBox className="h-6 w-6 mx-auto" />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const MainPrice = ({ feature }) => {
- 
   return (
-    <div className="w-full m-auto bg-gradient-to-b from-green-100 via-white to-green-50 rounded-lg shadow-lg overflow-hidden">
-      <div className="flex sm:flex-row md:flex-row">
-        {/* Left Column */}
-        <div className="flex flex-col w-full md:w-1/4 mb-12 border-r border-green-300">
-          <div className="h-20 flex justify-center items-center bg-gradient-to-r from-green-500 to-green-600">
-            <h1 className="text-2xl text-white font-bold uppercase tracking-wide">
+    <div className="w-full mx-auto bg-gradient-to-b from-[#042a0f] via-[#064213] to-[#0a5e1c] rounded-lg shadow-lg overflow-x-auto">
+     
+      <table className="min-w-[700px] w-full text-center border-collapse border border-green-700 rounded-md">
+        <thead>
+          <tr className="bg-gradient-to-r from-green-800 to-green-900 text-white text-xl h-20 font-bold">
+            <th className="sticky left-0 bg-green-900 z-20 px-6 py-3 text-left rounded-l-md">
               Features
-            </h1>
-          </div>
-          <div className="flex flex-col text-center text-lg text-green-800">
-            {feature?.length > 0 &&
-              feature.map((item, index) => (
-                <div
-                  key={index}
-                  className="h-20 flex justify-center items-center border-b border-green-300 bg-white hover:bg-green-50 transition-all duration-300"
+            </th>
+            <th className="px-6 py-3">Basic</th>
+            <th className="px-6 py-3">Standard</th>
+            <th className="px-6 py-3 rounded-r-md">Premium</th>
+          </tr>
+        </thead>
+        <tbody>
+          {feature?.map((item, idx) => (
+            <tr
+              key={idx}
+              className="
+                border-t border-green-700 
+                hover:bg-black hover:text-white 
+                group
+                transition-colors duration-300
+              "
+            >
+              <td
+                className="
+                  sticky left-0 bg-green-900 text-left text-green-300 font-semibold px-6 py-4 whitespace-nowrap z-10
+                  group-hover:bg-black group-hover:text-white
+                  transition-colors duration-300
+                "
+              >
+                {item.title}
+              </td>
+              {item.features?.map((hasFeature, i) => (
+                <td
+                  key={i}
+                  className="px-6 py-4 text-lg font-medium"
                 >
-                  <h1>{item.title}</h1>
-                </div>
+                  {hasFeature ? (
+                    <MdCheck className="mx-auto text-green-400 group-hover:text-white text-2xl transition-colors duration-300" />
+                  ) : (
+                    <RxCross1 className="mx-auto text-red-500 group-hover:text-white text-2xl transition-colors duration-300" />
+                  )}
+                </td>
               ))}
-          </div>
-        </div>
-
-        {/* Right Column */}
-        <div className="w-full md:w-3/4 overflow-x-auto">
-          <table className="w-full text-center border-collapse border border-green-300">
-            <thead>
-              <tr className="bg-gradient-to-r from-green-500 text-center to-green-600 text-white text-xl h-20 font-bold">
-                <th className="px-4 py-2">Basic</th>
-                <th className="px-4 py-2">Standard</th>
-                <th className="px-4 py-2">Premium</th>
-              </tr>
-            </thead>
-            <tbody>
-              {feature.map((item, index) => (
-                <tr
-                  key={index}
-                  className="h-20 border-b border-green-300 hover:bg-green-100 transition-all duration-300"
-                >
-                  {item?.features?.length > 0 &&
-                    item.features.map((pkg, pkgIndex) => (
-                      <td
-                        key={pkgIndex}
-                        className="text-center text-lg font-medium px-4 py-2"
-                      >
-                        {pkg === false ? (
-                          <RxCross1 className="inline-block text-red-500 font-bold text-2xl" />
-                        ) : (
-                          <MdCheck className="inline-block text-green-500 font-bold text-2xl" />
-                        )}
-                      </td>
-                    ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

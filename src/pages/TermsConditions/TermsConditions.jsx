@@ -1,15 +1,17 @@
 import React from "react";
 import { FaBackward } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header/Header";
 
 const TermsConditions = () => {
     const navigate = useNavigate();
     
     return (
-        <div className="max-w-7xl mt-44 mx-auto p-8 bg-white shadow-lg rounded-lg">
-            <h2 className="text-4xl font-bold p-4 rounded-tl-full rounded-br-full shadow-lg bg-green-500 text-white mb-6 text-center font-serif max-w-5xl md:w-1/2 lg:w-1/2 mx-auto">
-                Terms & Conditions
-            </h2>
+        <div className="max-w-7xl mt-12 mx-auto p-8 bg-white shadow-lg rounded-lg">
+            <Header
+                title="Terms & Conditions"
+                description="Please read these terms carefully before using our services"
+            />
             
             <p className="mb-6 text-lg text-gray-700">Welcome to Fastest Creators! These terms and conditions outline the rules and regulations for using our services. By accessing and using our services, you agree to comply with the following terms.</p>
             

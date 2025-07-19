@@ -1,132 +1,115 @@
-import { Bar } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
-  Title,
+  ArcElement,
   Tooltip,
   Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale,
+  Title,
 } from "chart.js";
 import { FaQuestionCircle } from "react-icons/fa";
+import Header from "../Header/Header";
 
-// Registering Chart.js components
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
+ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 const FreQuentlyAskendAndDiagram = () => {
-  // Bar chart data
   const data = {
     labels: ["Satisfied", "Dissatisfied", "Pending"],
     datasets: [
       {
-        label: "Customer Satisfaction",
-        data: [80, 15, 5],
-        backgroundColor: ["#34D399", "#EF4444", "#F59E0B"],
+        label: "Customer Feedback",
+        data: [92, 3, 5],
+        backgroundColor: ["#10B981", "#EF4444", "#F59E0B"],
         borderColor: "#fff",
         borderWidth: 2,
       },
     ],
   };
 
-  // Bar chart options
   const options = {
     responsive: true,
+    cutout: "70%", // thinner ring
     plugins: {
-      title: {
-        display: true,
-        text: "Customer Satisfaction Breakdown",
-        font: {
-          size: 20,
-          weight: "bold",
-        },
-        color: "#34D399",
-      },
       legend: {
-        position: "top",
+        position: "bottom",
         labels: {
-          fontSize: 14,
+          font: {
+            size: 14,
+            family: "Inter, sans-serif",
+          },
+          color: "#374151",
         },
       },
-    },
-    scales: {
-      x: {
-        grid: {
-          display: false,
-        },
-        ticks: {
-          font: {
-            size: 16,
-          },
-        },
-      },
-      y: {
-        beginAtZero: true,
-        ticks: {
-          font: {
-            size: 16,
-          },
-          stepSize: 10,
+      tooltip: {
+        callbacks: {
+          label: (ctx) => `${ctx.label}: ${ctx.raw}%`,
         },
       },
     },
   };
 
+  const faqs = [
+    {
+      question: "What if I am not satisfied with the product?",
+      answer:
+        "If you're not satisfied with your purchase, we offer a 30-day return policy and a full refund.",
+    },
+    {
+      question: "How can I request a refund?",
+      answer:
+        "Simply contact our support team, and we will process your refund within 3-5 business days.",
+    },
+    {
+      question: "How do I track my order?",
+      answer:
+        "We send tracking details to your email once your order is shipped. You can track it via the link provided.",
+    },
+  ];
+
   return (
-    <div className="container mx-auto p-4 lg:p-8">
-      {/* Header */}
-      <div className="text-center py-8">
-        <h1 className="text-3xl lg:text-4xl font-extrabold text-gray-600 hover:text-green-400">
-          ~Frequently Asked~
-        </h1>
-      </div>
+    <section className="w-full px-6 py-12 bg-gray-50">
+      <div className="max-w-7xl mx-auto">
+       <Header
+          title="Frequently Asked Questions"
+          description="Find answers to common questions about our products and services"
+        />
 
-      {/* Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* FAQ Section */}
-        <div className="space-y-6">
-          {[
-            {
-              question: "What if I am not satisfied with the product?",
-              answer:
-                "If you're not satisfied with your purchase, we offer a 30-day return policy and a full refund.",
-            },
-            {
-              question: "How can I request a refund?",
-              answer:
-                "Simply contact our support team, and we will process your refund within 3-5 business days.",
-            },
-            {
-              question: "How do I track my order?",
-              answer:
-                "We send tracking details to your email once your order is shipped. You can track it via the link provided.",
-            },
-          ].map((faq, index) => (
-            <div
-              key={index}
-              className="bg-gradient-to-r from-blue-500 to-teal-500 p-4 rounded-lg shadow-lg hover:scale-105 transform transition"
-            >
-              <div className="flex items-center space-x-3">
-                <FaQuestionCircle className="text-3xl text-white" />
-                <h3 className="text-xl font-semibold text-white">
-                  Q{index + 1}: {faq.question}
-                </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+          {/* FAQ Section */}
+          <div className="space-y-6">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="bg-white border border-gray-200 rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow"
+              >
+                <div className="flex items-start gap-4">
+                  <FaQuestionCircle className="text-2xl text-green-500 mt-1" />
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800">
+                      Q{index + 1}: {faq.question}
+                    </h3>
+                    <p className="text-gray-600 mt-2 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <p className="text-white mt-2">{faq.answer}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Chart Section */}
-        <div className="flex justify-center items-center">
-          <div className="w-full h-96 bg-white rounded-lg shadow-xl p-4">
-            <h3 className="text-2xl font-semibold text-center text-green-600 mb-4 bg-green-100 p-2 rounded-md">
-              Customer Satisfaction
+          {/* Doughnut Chart */}
+          <div className="w-full bg-white rounded-xl shadow-md p-6">
+            <h3 className="text-xl font-semibold text-gray-800 mb-6 text-center">
+              Customer Satisfaction Overview
             </h3>
-            <Bar data={data} options={options} />
+            <div className="w-full flex justify-center">
+              <div className="w-64 h-64">
+                <Doughnut data={data} options={options} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
