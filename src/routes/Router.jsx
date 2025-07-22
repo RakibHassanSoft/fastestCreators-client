@@ -13,8 +13,6 @@ import LogoDesignForm from "../pages/LogoDesignForm/LogoDesignForm";
 import Payment from "../Payment/Payment";
 import Gig from "../pages/DashBoard/Gig/Gig";
 import Dashboard from "../pages/DashBoard/Dashboard";
-import ContactUs from "../components/contractUs/contractUs";
-import ServiceTab from "../components/service/ServiceTab";
 import Error from "../pages/Error/Error";
 import FAQ from "../pages/FAQ/FAQ";
 import Service from "../pages/DashBoard/Service/Service";
@@ -39,6 +37,7 @@ import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 import PaymentFail from "../pages/Payment/PaymentFail";
 import Contact from "../pages/Contact/Contact";
 import MainService from "../pages/MainService/MainService";
+import Meeting from "../pages/Meeting/Meeting";
 
   const Router = createBrowserRouter([
     {
@@ -107,6 +106,10 @@ import MainService from "../pages/MainService/MainService";
         {
             path:'/payment',
             element:<Payment></Payment>
+        },
+        {
+            path:'/meeting',
+            element:<Meeting></Meeting>
         },
         {
             path:'/gig-from', 

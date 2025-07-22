@@ -38,11 +38,11 @@ const Hero = () => {
           </p>
 
           <Link
-            to="/contact"
+            to="/meeting"
             className="inline-flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition"
           >
             <CalendarDays className="w-5 h-5" />
-            Schedule a Call
+            Schedule a Meeting
           </Link>
         </motion.div>
 

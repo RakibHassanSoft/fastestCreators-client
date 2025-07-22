@@ -4,6 +4,7 @@ import Select from "react-select";
 import Swal from "sweetalert2";
 import { postPublicData } from "../../BcckendConnection/postData";
 import OurProcess from "../OurProcess/OurProcess";
+import Header from "../Header/Header";
 
 const countries = [
   { value: "USA", label: "USA" },
@@ -109,12 +110,17 @@ const ContactUs = () => {
   };
 
   return (
-    <div>
-      <div className="container mx-auto  grid grid-cols-1 md:grid-cols-2 gap-0 w-full lg:w-[60%] mt-16 lg:mt-32 mb-12 lg:mb-32 ">
+    <div className="mt-16 lg:mt-18 lg:mb-16">
+      <Header
+        title="Reach Out to Us"
+        description="We are here to help you. Please fill out the form below to get in touch with us."
+      />
+      <div className="container mx-auto  grid grid-cols-1 md:grid-cols-2 gap-0 w-full lg:w-[60%]  ">
+
         {/* Form Section */}
         <div className="p-4 border   bg-white   green-400  ">
           <h2 className="text-4xl font-bold p-4 text-gray-500 mb-6 text-center font-serif">
-            Contact Us
+            Send Message
           </h2>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="flex flex-col lg:flex-row gap-2">

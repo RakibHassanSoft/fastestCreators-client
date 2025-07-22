@@ -5,37 +5,37 @@ const processSteps = [
     title: "Project Planning & Discovery",
     description:
       "Client Consultation, scope definition, research & analysis, proposal & roadmap, and client approval.",
-    icon: <FaLightbulb className="text-blue-600 text-4xl" />,
+    icon: <FaLightbulb className="text-green-600 text-4xl" />,
   },
   {
     title: "Design & Pre-Production",
     description:
       "Wireframes, mockups, storyboards, client feedback, and finalization of creative direction.",
-    icon: <FaPencilRuler className="text-blue-600 text-4xl" />,
+    icon: <FaPencilRuler className="text-green-600 text-4xl" />,
   },
   {
     title: "Execution & Production",
     description:
       "Development or video editing, regular updates, and quality checks.",
-    icon: <FaCogs className="text-blue-600 text-4xl" />,
+    icon: <FaCogs className="text-green-600 text-4xl" />,
   },
   {
     title: "Testing & Review",
     description:
       "Cross-browser/device testing, bug fixes, client reviews, and revisions.",
-    icon: <FaCheckCircle className="text-blue-600 text-4xl" />,
+    icon: <FaCheckCircle className="text-green-600 text-4xl" />,
   },
   {
     title: "Delivery & Launch",
     description:
       "Final deployment or delivery, documentation, training, and client sign-off.",
-    icon: <FaRocket className="text-blue-600 text-4xl" />,
+    icon: <FaRocket className="text-green-600 text-4xl" />,
   },
   {
     title: "Post-Launch Support & Maintenance",
     description:
       "Ongoing bug fixes, updates, enhancements, and performance monitoring.",
-    icon: <FaLifeRing className="text-blue-600 text-4xl" />,
+    icon: <FaLifeRing className="text-green-600 text-4xl" />,
   },
 ];
 
@@ -59,7 +59,7 @@ const OurProcess = () => {
               <div className="flex justify-center mb-4">
                 <div className="relative w-16 h-16 bg-white shadow-xl rounded-full flex items-center justify-center mx-auto">
                   {icon}
-                  <span className="absolute -top-2 -right-2 bg-blue-100 text-green-700 rounded-full w-6 h-6 text-xs font-bold flex items-center justify-center">
+                  <span className="absolute -top-2 -right-2 bg-green-100 text-green-700 rounded-full w-6 h-6 text-xs font-bold flex items-center justify-center">
                     {index + 1}
                   </span>
                 </div>

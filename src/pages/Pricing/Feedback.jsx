@@ -142,9 +142,7 @@ const DemoData = [
   },
 ];
 
-
 const Feedback = () => {
-  const [feedbackData, setFeedbackData] = useState(DemoData);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -155,10 +153,10 @@ const Feedback = () => {
   }, []);
 
   const activeItems = [
-    feedbackData[activeIndex],
-    feedbackData[(activeIndex + 1) % feedbackData.length],
-    feedbackData[(activeIndex + 2) % feedbackData.length],
-    feedbackData[(activeIndex + 3) % feedbackData.length],
+    DemoData[activeIndex],
+    DemoData[(activeIndex + 1) % DemoData.length],
+    DemoData[(activeIndex + 2) % DemoData.length],
+    DemoData[(activeIndex + 3) % DemoData.length],
   ];
 
   return (
@@ -182,9 +180,8 @@ const Feedback = () => {
             className="flex flex-wrap justify-center gap-8"
           >
             {activeItems.map((item) => {
-              const isRed = item.rating >= 4;
-              const primaryColor = isRed ? "green" : "green"; // red or purple
-              const bgLight = isRed ? "white" : "white";
+              const primaryColor = "green";
+              const bgLight = "white";
 
               return (
                 <motion.div
@@ -192,29 +189,19 @@ const Feedback = () => {
                   className="relative w-[330px] overflow-visible"
                   whileHover={{ scale: 1.05 }}
                 >
-                  {/* Top Wave */}
                   <div className="relative w-full h-20 bg-white">
-                    <svg
-                      viewBox="0 0 500 150"
-                      preserveAspectRatio="none"
-                      className="absolute top-0 left-0 w-full h-full"
-                    >
+                    <svg viewBox="0 0 500 150" preserveAspectRatio="none" className="absolute top-0 left-0 w-full h-full">
                       <path
                         d="M0.00,49.98 C150.00,150.00 349.47,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
-                        style={{
-                          stroke: "none",
-                          fill: primaryColor,
-                        }}
+                        style={{ stroke: "none", fill: primaryColor }}
                       />
                     </svg>
                   </div>
 
-                  {/* Card Body */}
                   <div
                     className="relative rounded-xl shadow-lg border p-5 pt-10 mt-[-20px] z-10"
                     style={{ backgroundColor: bgLight }}
                   >
-                    {/* Avatar */}
                     <div
                       className="absolute -left-5 -top-10 w-16 h-16 border-4 bg-white z-20"
                       style={{
@@ -234,21 +221,17 @@ const Feedback = () => {
                     <FaQuoteLeft className="text-xl mb-2" style={{ color: primaryColor }} />
                     <p className="text-sm text-gray-800 italic mb-4">{item.comment}</p>
 
-                    {/* Stars */}
                     <div className="flex justify-center mb-3">
                       {[...Array(5)].map((_, index) => (
                         <FaStar
                           key={index}
                           className={`mx-0.5 ${
-                            index < item.rating
-                              ? "text-yellow-500"
-                              : "text-gray-300"
+                            index < item.rating ? "text-yellow-500" : "text-gray-300"
                           }`}
                         />
                       ))}
                     </div>
 
-                    {/* Name & Status */}
                     <div className="text-center mt-2">
                       <h4 className="text-md font-semibold" style={{ color: primaryColor }}>
                         {item.name}
@@ -259,7 +242,6 @@ const Feedback = () => {
                       )}
                     </div>
 
-                    {/* Country */}
                     <div className="flex items-center justify-center mt-2 text-lg text-gray-500">
                       <Flag
                         code={item.country}
